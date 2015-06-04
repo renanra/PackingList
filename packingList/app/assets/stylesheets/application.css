@@ -15,7 +15,10 @@
  *= require_self
  */
 
-
+/*.container {
+  margin-left: 0px;
+  padding-left: 0px;
+}*/
 .form-signin {
   max-width: 330px;
   padding: 15px;
@@ -71,4 +74,10 @@
 a.btn.btn-primary.btn-lg {
   background: #1abc9c;
   border: 2px solid white;
+}
+#homepic {
+   width: 100%;
+    position: absolute;
+    left: 0;
+    z-index: -1000;
 }
