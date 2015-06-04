@@ -70,3 +70,13 @@
 .location {
   max-width: 500px;
 }
+.container .jumbotron {
+  color: rgb(35, 115, 60);
+  background-color: white;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+a.btn.btn-primary.btn-lg {
+  background: #1abc9c;
+  border: 2px solid white;
+}

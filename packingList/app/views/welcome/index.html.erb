@@ -15,20 +15,18 @@
 
 
 <div class="jumbotron">
-<h1><img style="max-width:100px; margin-top: -7px;" src="http://i.imgur.com/pjs3K1M.jpg">Travel Packing Application</h1>
+<h1><img style="max-width:200px;" src="http://i.imgur.com/pjs3K1M.jpg">Travel Packing Application</h1>
 <p>This is an application for generating a personalized packing list with custom items for packing</p>
-      <% if current_user %>
-      <% else %>
-<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
-      <% end %>
-
+<!--   <img src="http://turne.by/i/photo/chto_vzyat_v_poezdku_turne.jpg"> -->
+<div class="text-center">
+<img src="http://concourse.gogoair.com/wp-content/uploads/2015/01/How-to-pack-your-carry-on-bag-for-flying-photo-by-flickr-user-Lyza-Tips-for-Packing-and-Traveling-with-Carry-on-Luggage-Only.jpg">
 </div>
-
-<h2>Create A Trip</h2>
+</div>
+      <% if current_user %>
+      <h2>Create A Trip</h2>
   <p>Fill out the fields below and click on Generate to get the suggested Packing List</p>
  
-
-  <form role="form", html: {class: "form-signin"}>
+  <form role="form">
       <div class="form-group">
       <label for="current">What is your current location?</label>
       <input type="text" class="form-control location">
@@ -47,6 +45,16 @@
     </div>
       <button type="submit", class="btn-block location">CREATE TRIP</button>
   </form>
+      <% else %>
+              <div class="text-center">
+<%= link_to "Log In", new_user_session_path, class: "btn btn-primary btn-lg" %>
+<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+      <% end %>
+      </div>
+
+
+
+
 
  </div>
 </body>
