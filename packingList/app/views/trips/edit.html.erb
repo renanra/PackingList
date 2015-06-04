@@ -1,0 +1,25 @@
+<div class="container-fluid" style="margin-left: 115px;">
+<h1> Edit your Trip here...</h1>
+<% if @trip.errors.count > 0 %>
+  <p class="error">Your Trip had the following errors: <%= @trip.errors.full_messages.join(', ') %> </p>
+<% end %>
+
+ <%= form_for @trip do |form| %>
+<p> <%=form.label :destination  %> <br />
+<%=form.text_field :destination  %> 
+</p>
+<p> <%=form.label :start_date  %> <br />
+<%=form.text_field :start_date  %> 
+</p>
+<p> <%=form.label :end_date  %> <br />
+<%=form.text_field :end_date %> 
+</p>
+
+<%= form.submit "UPDATE MY TRIP", class: "btn btn-update" %> 
+
+<% end %> 
+
+<br />
+<a href="/trips"><button class="btn btn-edit"> CANCEL</button></a>
+
+</div>

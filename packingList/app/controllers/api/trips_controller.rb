@@ -18,7 +18,7 @@ module Api
 	    @trip.id = params[:id]
 
 	    if @trip.save
-	      redirect_to trips_path
+	      redirect_to items_path
 	    else 
 	      render :new
 	    end

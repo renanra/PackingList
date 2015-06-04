@@ -20,9 +20,9 @@
 <h2>Start Date : <%=trip.start_date %></h2>
 <h2>End Date : <%=trip.end_date %></h2>
 
- <%=link_to '<button class="btn btn-edit" type="button">CHANGE ME!</button>'.html_safe, edit_trip_path(trip) %>
- <%= link_to '<button class="btn btn-delete" type="button">DELETE ME!</button>'.html_safe, trip_path(trip), method: :delete,
-    data: { confirm: 'Are you sure you want to kill me?' } %> 
+ <%=link_to '<button class="btn btn-edit" type="button">CHANGE DETAILS</button>'.html_safe, edit_trip_path(trip) %>
+ <%= link_to '<button class="btn btn-delete" type="button">DELETE TRIP</button>'.html_safe, trip_path(trip), method: :delete,
+    data: { confirm: 'Are you sure you want to permanently delete this trip?' } %> 
 <hr />
  </div>
 <% end %>
