@@ -11,5 +11,14 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require font-awesome
  *= require_self
  */
+
+
+.container-fluid {
+	margin-top: 0px;
+  width: 1430px;
+  height: 87px;
+  padding-left: 0px;
+}
