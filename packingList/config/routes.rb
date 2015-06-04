@@ -5,12 +5,11 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'welcome#index'
-
+   resources :trips
   # Example of regular route:
-    get '/api/trips/default_items' => 'api/trips#default_items'
 
   namespace :api do
-      resources :trips
+      resources :trips, :default_items
   end
   #   get 'products/:id' => 'catalog#view'
 

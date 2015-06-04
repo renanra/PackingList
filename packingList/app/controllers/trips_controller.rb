@@ -1,8 +1,7 @@
-module Api
+
 	class TripsController < ApplicationController
 		def index
-			trips = Trip.all
-			render json: trips
+			@trips = Trip.all
 		end
 
 		def new 
@@ -18,11 +17,9 @@ module Api
 	    @trip.id = params[:id]
 
 	    if @trip.save
-	      redirect_to trips_path
+	      redirect_to trips
 	    else 
 	      render :new
 	    end
 	  end
-
 	end
-end

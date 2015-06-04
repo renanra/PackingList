@@ -81,3 +81,11 @@ a.btn.btn-primary.btn-lg {
     left: 0;
     z-index: -1000;
 }
+.btn-edit {
+background: rgb(26, 188, 156);
+color: white;
+}
+.btn-delete {
+background: rgb(231, 76, 60);
+color: white;
+}
