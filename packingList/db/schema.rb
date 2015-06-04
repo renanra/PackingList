@@ -11,10 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604015238) do
+ActiveRecord::Schema.define(version: 20150604135144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "custom_items", force: :cascade do |t|
+    t.string "item"
+  end
+
+  create_table "custom_trips", force: :cascade do |t|
+    t.integer "trip_id"
+    t.integer "custom_item_id"
+  end
+
+  create_table "default_items", force: :cascade do |t|
+    t.string "item"
+  end
+
+  create_table "default_trips", force: :cascade do |t|
+    t.integer "trip_id"
+    t.integer "default_item_id"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "destination"
+    t.date    "start_date"
+    t.date    "end_date"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
