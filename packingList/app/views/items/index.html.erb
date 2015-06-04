@@ -8,6 +8,7 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.0.0/mustache.js"></script>
 </head>
 
 <body>
@@ -18,15 +19,25 @@
         <div class="col-md-6">
             <div class="toPacklist not-packed">
              <h1>To pack</h1>
-                <input type="text" class="form-control add-toPack" placeholder="Add todo">
+                <input type="text" class="form-control add-toPack" placeholder="Add your item to pack">
                     <button id="checkAll" class="btn btn-success">Mark all as Packed</button>
                     
                     <hr>
                     <ul id="sortable" class="list-unstyled">
                     <li class="ui-state-default">
-                        <div class="checkbox">
+
+                    <script id="item-template" type="text/template">
+                        {{#default_items}}
+                         <div id="checkbox">
+                         <label>
+                          <input type="checkbox" id="item">{{item}} </label>
+                          </div>
+                        {{/default_items}}
+                        </script>
+
+                        <div id="checkbox">
                             <label>
-                                <input type="checkbox" value="" />Toothbrush</label>
+                                <input type="checkbox" id="item">{{item}} </label>
                         </div>
                     </li>
                     <li class="ui-state-default">

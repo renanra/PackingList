@@ -10,14 +10,34 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery_ujs
+//= require mustache
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
 
-/////////////////////////////////// PLACES AUTOCOMPLETE ////////////////////
+
   $(function() {
+
+        $.ajax({url: "api/default_items", success: function(default_items){
+          // console.log(result[10].item);
+        var template = $('#item-template').html();
+        var info = Mustache.render(template, {default_items: default_items});
+        $('#checkbox').append(info);
+        // $("#checkbox").append("<label>" + result[10].item + "</label>");
+
+        }});
+   
+
+
+
+
+
+
+/////////////////////////////////// PLACES AUTOCOMPLETE ////////////////////
+
     function log( message ) {
       $( "<div>" ).text( message ).prependTo( "#log" );
       $( "#log" ).scrollTop( 0 );
@@ -134,6 +154,7 @@ function removeItem(element){
 
 
 ////////////////////END OF TO PACK /////////////////
+
 
 
   }); //end of ready function 

@@ -65,7 +65,7 @@
 .btn-lg:hover {
   background: rgba(22, 160, 133,1.0);
 }
-.location {
+.location .date {
   max-width: 500px;
 }
 .container .jumbotron {
