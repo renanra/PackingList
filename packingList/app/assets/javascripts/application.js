@@ -22,12 +22,9 @@
   $(function() {
 
         $.ajax({url: "api/default_items", success: function(default_items){
-          // console.log(result[10].item);
         var template = $('#item-template').html();
         var info = Mustache.render(template, {default_items: default_items});
         $('#checkbox').append(info);
-        // $("#checkbox").append("<label>" + result[10].item + "</label>");
-
         }});
    
 
@@ -75,12 +72,12 @@
 
 countTodos();
 
-// all done btn
+// all packed btn
 $("#checkAll").click(function(){
     AllDone();
 });
 
-//create todo
+//create an item
 $('.add-toPack').on('keypress',function (e) {
       e.preventDefault;
       if (e.which == 13) {
@@ -93,7 +90,7 @@ $('.add-toPack').on('keypress',function (e) {
            }
       }
 });
-// mark task as done
+// mark item as packed
 $('.toPacklist').on('change','#sortable li input[type="checkbox"]',function(){
     if($(this).prop('checked')){
         var doneItem = $(this).parent().parent().find('label').text();
@@ -103,29 +100,29 @@ $('.toPacklist').on('change','#sortable li input[type="checkbox"]',function(){
     }
 });
 
-//delete done task from "already done"
+//delete item from "already packed"
 $('.toPacklist').on('click','.remove-item',function(){
     removeItem(this);
 });
 
-// count tasks
+// count how many items left to pack
 function countTodos(){
     var count = $("#sortable li").length;
     $('.count-todos').html(count);
 }
 
-//create task
+//create your own item
 function createTodo(text){
     var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />'+ text +'</label></div></li>';
     $('#sortable').prepend(markup);
     $('.add-toPack').val('');
 }
 
-//mark task as done
+//mark item as packed
 function done(doneItem){
     var done = doneItem;
     var markup = '<li>'+ done +'<button class="btn btn-default btn-xs pull-right  remove-item"><span class="glyphicon glyphicon-remove"></span></button></li>';
-    $('#done-items').append(markup);
+    $('#done-items').prepend(markup);
     $('.remove').remove();
 }
 
