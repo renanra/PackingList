@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   # Example of regular route:
 
   namespace :api do
-      resources :trips, :default_items
+      resources :trips
+      resources :default_items
+      resources :default_trips
   end
   #   get 'products/:id' => 'catalog#view'
 

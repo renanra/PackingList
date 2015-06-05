@@ -5,6 +5,13 @@ module Api
 			render json: trips
 		end
 
+		def show
+			trip = Trip.find(params[:id])
+			render json: trip.to_json( include:{
+				default_items: {only: [:item]}
+				})
+		end
+
 		def new 
     @trip = Trip.new
   	end
