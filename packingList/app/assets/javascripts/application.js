@@ -15,16 +15,18 @@
 //= require jquery_ujs
 //= require mustache
 //= require twitter/bootstrap
+//= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
 
 
   $(function() {
 
-        $.ajax({url: "api/default_items", success: function(default_items){
+        $.ajax({url: "/api/default_items", success: function(default_items){
         var template = $('.item-template').html();
         var info = Mustache.render(template, {default_items: default_items});
         $('#checkbox').append(info);
+
         }});
    
 

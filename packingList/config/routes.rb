@@ -12,10 +12,12 @@ Rails.application.routes.draw do
   # Example of regular route:
 
   namespace :api do
-      get 'trips/:id/default_items' => 'default_items#index'
+      # get 'trips/api/default_items' => 'default_items#index'
       resources :trips
       resources :default_items
+      resources :custom_items
       resources :default_trips
+      resources :custom_trips
   end
   #   get 'products/:id' => 'catalog#view'
 
