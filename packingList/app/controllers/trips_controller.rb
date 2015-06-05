@@ -16,13 +16,17 @@ class TripsController < ApplicationController
 	    @trip.id = params[:id]
 
 	    if @trip.save
-	      redirect_to items
+	      redirect_to(@trip)
 	    else 
 	      render :new
 	    end
 	  end
 
-  def edit #has view
+  	def show
+    		@trip = Trip.find(params[:id])
+  			end
+
+  def edit
     @trip = Trip.find(params[:id])
   end
 

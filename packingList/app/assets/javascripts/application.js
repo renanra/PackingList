@@ -22,7 +22,7 @@
   $(function() {
 
         $.ajax({url: "api/default_items", success: function(default_items){
-        var template = $('#item-template').html();
+        var template = $('.item-template').html();
         var info = Mustache.render(template, {default_items: default_items});
         $('#checkbox').append(info);
         }});

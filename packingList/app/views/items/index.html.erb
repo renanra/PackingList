@@ -30,7 +30,7 @@
             <strong><span class="count-todos"></span></strong> Items Left to pack
             </div> <br>
 <!--         <button id="checkAll" class="btn btn-success">Mark all as Packed</button> -->
-        <script id="item-template" type="text/template">
+        <script class="item-template" type="text/template">
         {{#default_items}}
         <ul id="sortable" class="list-unstyled">
             <li class="ui-state-default">
@@ -61,10 +61,10 @@
         </div>
     </div>
     </div>
-<!--         <form action="/api/trips" method="post"> -->
+<!--         <form action="/api/default_trips" method="post"> -->
         <div class="text-center">
   <div class="btn-group btn-group-info">
-      <button class="btn btn-info" type="button">CHOOSE YOUR ßTRIP</button>
+      <button class="btn btn-info" type="button">CHOOSE YOUR TRIP</button>
       <button data-toggle="dropdown" class="btn btn-info dropdown-toggle" type="button"><span class="caret"></span>
       </button>
       <ul class="dropdown-menu">

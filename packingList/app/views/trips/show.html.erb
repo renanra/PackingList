@@ -1,1 +1,94 @@
-<h1> One Trip will go here </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Your Trip</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.0.0/mustache.js"></script>
+</head>
+
+<body>
+  <!--   TRIP INFO PART -->
+  <div class="row">
+<div class="col-md-6">
+<h2> YOUR TRIP INFORMATION </h2>
+<h4>Destination: <%=@trip.destination%></h4>
+<h4>Start Date : <%=@trip.start_date %></h4>
+<h4>End Date : <%=@trip.end_date %></h4>
+
+ 
+<hr />
+ </div>
+ </div>
+<!--   END OF TRIP INFO -->
+
+    <!--  TO PACK PART -->
+    <div class="jumbotron text-center">
+
+<h2 class ="text-center">Create A Packing List</h2>
+<p>You can choose items from the suggested list or add your own items below!</p>
+</div>
+
+<div class="row">
+<div class="col-md-6">
+    <div class="toPacklist not-packed">
+    <h3 class = "text-center">ITEMS TO PACK</h3> <hr>
+        <input type="text" class="form-control add-toPack" placeholder="Add your own item to the list">
+        <img id="checkAll" src="http://activerain.trulia.com/image_store/uploads/7/5/4/1/2/ar12675014621457.gif" height="100px" width="100px"> <span id ="markall">Click to mark all as PACKED!</span>
+        <hr>
+        <div class="todo-footer">
+            <strong><span class="count-todos"></span></strong> Items Left to pack
+            </div> <br>
+
+        <script class="item-template" type="text/template">
+        {{#default_items}}
+        <ul id="sortable" class="list-unstyled">
+            <li class="ui-state-default">
+                <div class="checkbox">
+                    <label><input type="checkbox" value="" id="item">{{item}}</label>
+                 </div>
+            </li>
+            {{/default_items}}
+        </ul>
+        </script>
+
+            <div id="checkbox">
+            <label></label>
+             </div>
+            </li>
+        </div>
+    </div>
+         <div class="col-md-6">
+         <div class="toPacklist">
+        <h3 class = "text-center">PACKED ITEMS</h3><hr />
+
+        <ul id="done-items" class="list-unstyled">
+        <li> This packing List
+        <button class="remove-item btn btn-default btn-xs pull-right">
+        <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        </li>
+        </ul>
+        </div>
+    </div>
+    </div>
+
+        <div class="text-center">
+        <button type="submit", class="btn btn-edit location">SAVE PACKING LIST TO THE TRIP</button>
+        </div><br><br>
+
+
+
+            <!--   END OF TO PACK -->
+
+</body>
+</html>
+ 
+
+
+
+    
