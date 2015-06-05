@@ -1,71 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Create Packing List</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.0.0/mustache.js"></script>
+<meta charset="utf-8">
+<title>Create Packing List</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.0.0/mustache.js"></script>
 </head>
 
 <body>
-   <h2>Create A Packing List</h2>
-                   <!--  TO PACK PART -->
-           
-    <div class="row">
-        <div class="col-md-6">
-            <div class="toPacklist not-packed">
-             <h1>To pack</h1>
-                <input type="text" class="form-control add-toPack" placeholder="Add your item to pack">
-                    <button id="checkAll" class="btn btn-success">Mark all as Packed</button>
-                    
-                    <hr>
-                    <ul id="sortable" class="list-unstyled">
-                    <li class="ui-state-default">
+    <!--  TO PACK PART -->
+    <div class="jumbotron text-center">
+<h2 class ="text-center">Create A Packing List</h2>
+<p>This is an application for generating a personalized packing list with custom items for packing</p>
+</div>
 
-                    <script id="item-template" type="text/template">
-                        {{#default_items}}
-                         <div id="checkbox">
-                         <label>
-                          <input type="checkbox" id="item">{{item}} </label>
-                          </div>
-                        {{/default_items}}
-                        </script>
-
-                        <div id="checkbox">
-                            <label>
-                                <input type="checkbox" id="item">{{item}} </label>
-                        </div>
-                    </li>
-                    <li class="ui-state-default">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="" />Toothpaste</label>
-                        </div>
-                    </li>
-                </ul>
-                <div class="todo-footer">
-                    <strong><span class="count-todos"></span></strong> Items Left
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="toPacklist">
-             <h1>Packed</h1>
-                <ul id="done-items" class="list-unstyled">
-                    <li>Some item <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>
-                    
-                </ul>
-            </div>
+<div class="row">
+<div class="col-md-6">
+    <div class="toPacklist not-packed">
+    <h3 class = "text-center">ITEMS TO PACK</h3> <hr>
+        <input type="text" class="form-control add-toPack" placeholder="Add your item to pack">
+        <img id="checkAll" src="http://activerain.trulia.com/image_store/uploads/7/5/4/1/2/ar12675014621457.gif" height="100px" width="100px"> <span id ="markall">Click to mark all as PACKED!</span>
+        <hr>
+        <div class="todo-footer">
+            <strong><span class="count-todos"></span></strong> Items Left to pack
+            </div> <br>
+<!--         <button id="checkAll" class="btn btn-success">Mark all as Packed</button> -->
+        <script id="item-template" type="text/template">
+        {{#default_items}}
+        <ul id="sortable" class="list-unstyled">
+            <li class="ui-state-default">
+                <div class="checkbox">
+                    <label><input type="checkbox" value="" id="item">{{item}}</label>
+                 </div>
+            </li>
+            {{/default_items}}
+        </ul>
+        </script>
+            <div id="checkbox">
+            <label></label>
+             </div>
+            </li>
         </div>
     </div>
-                    
-<!--   END OF TO PACK -->
-  
+         <div class="col-md-6">
+         <div class="toPacklist">
+        <h3 class = "text-center">PACKED ITEMS</h3><hr />
 
+        <ul id="done-items" class="list-unstyled">
+        <li> This packing List
+        <button class="remove-item btn btn-default btn-xs pull-right">
+        <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        </li>
+        </ul>
+        </div>
+    </div>
+</div>
+            <!--   END OF TO PACK -->
 </body>
 </html>
  

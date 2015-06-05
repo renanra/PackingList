@@ -136,8 +136,8 @@ li.ui-state-default:last-child{
 #done-items li:last-child{
     border-bottom:none;
 }
-#checkAll{
-    margin-top:10px;
-}
 
+#markall {
+  color: green;
+}
 

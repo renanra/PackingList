@@ -117,7 +117,7 @@ function countTodos(){
 //create task
 function createTodo(text){
     var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />'+ text +'</label></div></li>';
-    $('#sortable').append(markup);
+    $('#sortable').prepend(markup);
     $('.add-toPack').val('');
 }
 
