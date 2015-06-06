@@ -19,6 +19,8 @@
   margin-left: 0px;
   padding-left: 0px;
 }*/
+
+
 .form-signin {
   max-width: 330px;
   padding: 15px;
@@ -141,4 +143,12 @@ li.ui-state-default:last-child{
   color: green;
 }
 
+#item {
+ display: none; 
+}
 
+@media print {
+    .notPrint, #notPrint{
+      display: none;
+    }
+}

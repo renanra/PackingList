@@ -20,6 +20,7 @@
 //= require_tree .
 
 
+/////////////////////////////////// RENDERING DEFAULT ITEMS ON A TRIP PAGE////////////////////
   $(function() {
 
         $.ajax({url: "/api/default_items", success: function(default_items){
@@ -30,17 +31,12 @@
         }});
    
 
-
-
-
-
-
 /////////////////////////////////// PLACES AUTOCOMPLETE ////////////////////
 
-    function log( message ) {
-      $( "<div>" ).text( message ).prependTo( "#log" );
-      $( "#log" ).scrollTop( 0 );
-    }
+    // function log( message ) {
+    //   $( "<div>" ).text( message ).prependTo( "#log" );
+    //   $( "#log" ).scrollTop( 0 );
+    // }
  
     $( ".location" ).autocomplete({
       source: function( request, response ) {
@@ -56,23 +52,23 @@
         });
       },
       minLength: 3,
-      select: function( event, ui ) {
-        log( ui.item ?
-          "Selected: " + ui.item.label :
-          "Nothing selected, input was " + this.value);
-      },
-      open: function() {
-        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-      },
-      close: function() {
-        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-      }
+      // select: function( event, ui ) {
+      //   log( ui.item ?
+      //     "Selected: " + ui.item.label :
+      //     "Nothing selected, input was " + this.value);
+      // },
+      // open: function() {
+      //   $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+      // },
+      // close: function() {
+      //   $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+      // }
     });
 ///////////////////////////////   END OF PLACES AUTOCOMPLETE ////////////////
 
 //////////////////////////////////////// To PACK ////////////////////////////
 
-countTodos();
+// countTodos();
 
 // all packed btn
 $("#checkAll").click(function(){
@@ -115,7 +111,7 @@ function countTodos(){
 
 //create your own item
 function createTodo(text){
-    var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" />'+ text +'</label></div></li>';
+    var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" id="item" />'+ text +'</label><button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button><button class="check-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-ok"></span></button></div></li>';
     $('#sortable').prepend(markup);
     $('.add-toPack').val('');
 }

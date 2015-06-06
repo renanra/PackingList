@@ -13,13 +13,7 @@ module Api
 
 		def create
       default_trip = DefaultTrip.new(default_trip_params)
-      #default_trip = DefaultTrip.new(params[:trip_id, :default_item_id])
-      
-      # @trip.start_date = params[:start_date]
-      # @trip.end_date = params[:end_date]
-      # @trip.id = params[:id]
       default_trip.save
-      # render json: {default_items: default_items}
       render json: default_trip.to_json
     end
 
@@ -31,8 +25,8 @@ module Api
 
     private
       def default_trip_params
-        params.permit(:trip_id, :default_item_id)
-        # params.require(:default_trip).permit(:trip_id, :default_item_id)
+         params.permit(:trip_id, :default_item_id)
+          #params.permit([{trip: :trip_id}, {default_items: :item}])
       end
 
 	end
