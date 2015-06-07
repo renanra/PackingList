@@ -5,13 +5,15 @@
   </head>
   <body>
     <div class="container-fluid">
+           <img style="float:right" id="trash" src="http://www.themichiganvoice.com/wp-content/uploads/2013/03/Trash-can-logo-400x330.gif" width="120px" height="90px"/>
       <div class="text-center">
         <h1> ALL YOUR TRIPS</h1>
+
         <br /> <br />
       </div>
       <div class="row">
         <% @trips.each do |trip| %>
-        <div class="col-xs-18 col-sm-3 col-md-4">
+        <div class="col-xs-18 col-sm-3 col-md-4 stack">
           <br> 
           <div class="thumbnail text-center">
             <img src="http://www.ehshousing.com/images/slider/santorini.jpg">
@@ -29,5 +31,29 @@
         <% end %>
       </div>
     </div>
+
+
+
+
+
+
+
+
+
+<style>
+  .stack{
+
+border:1px solid black;    
+}
+
+</style>
+
+
+
+
+
+
+
   </body>
 </html>
+

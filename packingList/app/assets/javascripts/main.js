@@ -1,7 +1,36 @@
-////////////////////////// TOGGLE BUTTON /////////////////////////
+
 $(function() {
 
-  $('.datepicker').datepicker();
+////////////////////////// DRAG A TRIP TO TRASH CAN /////////////////////////
+
+
+ $(".stack").draggable();
+$( '#trash' ).droppable( {
+    drop: function( event, ui ) {
+        if(ui.draggable.parent('.sortable').length){
+        ui.draggable
+            .clone()
+            .appendTo('#trash')
+            .addClass("sort-drop")
+            .css(ui.position)
+            .hide( 500 );
+        
+        ui.draggable.hide();
+                console.log(ui,event);
+    }
+       else{
+        ui.draggable.hide(500);
+            } 
+
+        
+    }
+} );
+
+
+
+
+///////////////// TOGGLE BUTTON TO SHOW AND HIDE DEFAULT ITEMS////////////////
+
 
   $("#toggleIt").click(function() {
     $("#toggled").toggle("slow");

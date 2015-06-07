@@ -11,9 +11,10 @@
   }
 
   th {
-    background: #DDD;
-    color: #666;
+    background: rgba(22, 160, 133,1.0);
+    color: white;
     text-align: center;
+    font-size: 130%;
     width: 14.2857142857143%;
   }
 
@@ -42,6 +43,6 @@
 }
 
 #trips ul {
-  font-size: 11px;
+  font-size: 16px;
   padding-left: 20px;
 }
