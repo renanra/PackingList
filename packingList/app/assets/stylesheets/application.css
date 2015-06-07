@@ -170,17 +170,6 @@ li.ui-state-default:last-child{
 }
 
 
-/*div#bs-example-navbar-collapse-1 {
-  background-color: white;
-  align-content: center;
-      display: inline-block;
-    float: none;
-    text-align: center;
+#count-trips {
+  color: green;
 }
-.container-fluid {
-    background-color: white;
-  align-content: center;
-      display: inline-block;
-    float: none;
-    text-align: center;
-}*/

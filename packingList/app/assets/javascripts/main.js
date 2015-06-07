@@ -1,36 +1,44 @@
-
 $(function() {
 
-////////////////////////// DRAG A TRIP TO TRASH CAN /////////////////////////
+  ////////////////////////// DRAG A TRIP TO TRASH CAN /////////////////////////
 
-
- $(".stack").draggable();
-$( '#trash' ).droppable( {
-    drop: function( event, ui ) {
-        if(ui.draggable.parent('.sortable').length){
+  $(".stack").draggable();
+  $('#trash').droppable({
+    drop: function(event, ui) {
+      if (ui.draggable.parent('.sortable').length) {
         ui.draggable
-            .clone()
-            .appendTo('#trash')
-            .addClass("sort-drop")
-            .css(ui.position)
-            .hide( 500 );
-        
+          .clone()
+          .appendTo('#trash')
+          .addClass("sort-drop")
+          .css(ui.position)
+          .hide(500);
+
         ui.draggable.hide();
-                console.log(ui,event);
-    }
-       else{
+        console.log(ui, event);
+      } else {
         ui.draggable.hide(500);
-            } 
+
+    setTimeout(function() {
+ ui.draggable.remove();
+        countTrips();
+    }, 500)
+  
+
+
 
         
+      }
+
     }
-} );
-
-
-
-
-///////////////// TOGGLE BUTTON TO SHOW AND HIDE DEFAULT ITEMS////////////////
-
+  });
+////////////////////////////// COUNT TRIPS /////////////////////////////////////
+  function countTrips() {
+    var tripCount = $(".container-fluid div#tripLi").length;
+    $('#count-trips').empty();
+    $('#count-trips').append(tripCount);
+  }
+  countTrips();
+  ///////////////// TOGGLE BUTTON TO SHOW AND HIDE DEFAULT ITEMS////////////////
 
   $("#toggleIt").click(function() {
     $("#toggled").toggle("slow");
@@ -76,10 +84,7 @@ $( '#trash' ).droppable( {
   });
   // });
   /////////////////////////////////// PLACES AUTOCOMPLETE ////////////////////
-  // function log( message ) {
-  //   $( "<div>" ).text( message ).prependTo( "#log" );
-  //   $( "#log" ).scrollTop( 0 );
-  // }
+
   $(".location").autocomplete({
     source: function(request, response) {
       $.ajax({
@@ -93,18 +98,7 @@ $( '#trash' ).droppable( {
         }
       });
     },
-    minLength: 3,
-    // select: function( event, ui ) {
-    //   log( ui.item ?
-    //     "Selected: " + ui.item.label :
-    //     "Nothing selected, input was " + this.value);
-    // },
-    // open: function() {
-    //   $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-    // },
-    // close: function() {
-    //   $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-    // }
+    minLength: 3
   });
   ///////////////////////////////   END OF PLACES AUTOCOMPLETE ////////////////
   //////////////////////////////////////// To PACK ////////////////////////////
@@ -163,7 +157,7 @@ $( '#trash' ).droppable( {
     $('#sortable li').each(function() {
       myArray.push($(this).text());
     });
-    // add to done
+    // mark all as packed
     for (i = 0; i < myArray.length; i++) {
       $('#done-items').append('<li>' + myArray[i] + '<button class="btn btn-default btn-xs pull-right  remove-item"><span class="glyphicon glyphicon-remove"></span></button></li>');
     }
@@ -171,7 +165,7 @@ $( '#trash' ).droppable( {
     $('#sortable li').remove();
     countTodos();
   }
-  //remove done task from list
+  //remove packed item from list
   function removeItem(element) {
     $(element).parent().remove();
   }

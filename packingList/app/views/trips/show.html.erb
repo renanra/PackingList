@@ -51,11 +51,13 @@
       </div>
       <div class = "text-center notPrint">
         <input type="text" id = "wide" class="form-control add-toPack" placeholder="Add your own item to the list">
+                   <img src="https://lh5.ggpht.com/QDPh6BDfY_9LtBaTtdwUzthYHXh3EcVqZy7L1X7-z_OComHq38lOJPI1-jTCmj7CU59z=w300" height="100px" width="100px">
+                    <form>
+              <input type="button" id="notPrint" class="btn btn-edit location" value="PRINT YOUR PACKING LIST" onClick="window.print()">
+            </form>
         <hr>
-        <br>
-        <img id="checkAll" class = "notPrint" src="http://activerain.trulia.com/image_store/uploads/7/5/4/1/2/ar12675014621457.gif" height="100px" width="100px"> <span id ="markall">Click to mark all as PACKED!</span>
-        <br>
-        <hr>
+
+
         <br>
       </div>
     </div>
@@ -64,7 +66,7 @@
         <div class="toPacklist not-packed">
           <div class = "notPrint">
             <div class="text-center">
-              <button type="submit", class="btn btn-edit location">SAVE THIS LIST TO YOUR TRIP</button>
+  <!--             <button type="submit", class="btn btn-edit location">SAVE THIS LIST TO YOUR TRIP</button> -->
             </div>
           </div>
           <h3 class = "text-center">ITEMS TO PACK</h3>
@@ -108,12 +110,11 @@
       <div class="col-md-6">
         <div class="toPacklist">
           <div class = "text-center">
-            <form>
-              <input type="button" id="notPrint" class="btn btn-edit location" value="PRINT YOUR PACKING LIST" onClick="window.print()">
-            </form>
           </div>
           <h3 class = "text-center">PACKED ITEMS</h3>
           <hr />
+
+
           <ul id="done-items" class="list-unstyled">
             <li> This packing List
               <button class="remove-item btn btn-default btn-xs pull-right">
@@ -121,11 +122,15 @@
               </button>
             </li>
           </ul>
+                               <br>
+        <img id="checkAll" class = "notPrint" src="http://activerain.trulia.com/image_store/uploads/7/5/4/1/2/ar12675014621457.gif" height="60px" width="60px"> <span id ="markall">Click to mark all as PACKED!</span>
+        <br>
         </div>
       </div>
     </div>
     <hr>
     <br>
+
     <div class="todo-footer">
       <strong><span class="count-todos"></span></strong> Items left to pack
     </div>
