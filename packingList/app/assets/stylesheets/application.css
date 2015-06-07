@@ -98,7 +98,10 @@ color: white;
 background: rgb(155, 89, 182);
 color: white;
 }
-
+.btn-weather {
+  background: rgba(231, 76, 60, 0.8);
+  color: white;
+}
 
 
 

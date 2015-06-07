@@ -20,9 +20,34 @@
 
       <div class="form-group">
       <label for="current">What is your current location?</label>
-      <input type="text" class="form-control location">
+     <input type="text" id="query" class="form-control location">
     </div>
+<!-- 
+<button id="weather" class="btn btn-update location">CHECK WEATHER</button><br />
+<div id="results">
 
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  $('#weather').click(function(){
+  var query = $("#query").val().split(', ');
+  var city = query.shift();
+  var state = query.shift();
+  // var city = "Cedar_Rapids";
+  $.ajax({
+  url : "http://api.wunderground.com/api/c391db3a2a98fb5a/geolookup/conditions/q/"+state+"/"+city+".json",
+  dataType : "jsonp",
+  success : function(parsed_json) {
+  var location = parsed_json['location']['city'];
+  var temp_f = parsed_json['current_observation']['temp_f'];
+  console.log("Current temperature in " + location + " is: " + temp_f);
+  }
+  });
+});
+});
+console.log("clicked");
+</script> -->
  <form action="/api/trips" method="post">
    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
     <div class="form-group">

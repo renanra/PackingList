@@ -12,7 +12,14 @@ Rails.application.routes.draw do
   # Example of regular route:
 
   namespace :api do
-      # get 'trips/api/default_items' => 'default_items#index'
+      #get '/trips/:trip_id' => 'default_trips#joinMethod'
+      #get '/api/default_trips' => 'default_trips#joinMethod'
+      # resources :trips, except: [:new, :edit] do
+      # resources :default_trips, except: [:new, :edit, :show]
+      resources :trips do
+      resources :default_trips
+    end
+
       resources :trips
       resources :default_items
       resources :custom_items

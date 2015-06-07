@@ -14,19 +14,60 @@
     <!--   TRIP INFO PART -->
     <div class="notPrint">
       <div class="row">
-        <div class="col-md-6">
-          <h2> YOUR TRIP INFORMATION </h2>
-          <!--  <form action="/api/default_trips" method="post"> -->
-          <h4>Destination: <%=@trip.destination%></h4>
-          <h4>Start Date : <%=@trip.start_date %></h4>
-          <h4>End Date : <%=@trip.end_date %></h4>
-          <hr />
+        <div class="col-md-4">
+          <h3> YOUR TRIP INFORMATION </h3>
+      <!--  <form action="/api/default_trips" method="post"> -->
+        <!--   <%=@trip.id %> -->
+          <h4 style="display:inline">Destination : </h4>
+          <h5  id="query" style="display:inline"><%=@trip.destination%></h5><br>
+          <h4 style="display:inline">Start Date : </h4>
+          <h5 style="display:inline"><%=@trip.start_date %></h5><br>
+          <h4 style="display:inline">End Date : </h4>
+          <h5 style="display:inline"><%=@trip.end_date %></h5><br><br>
+          <button id="weather" class="btn btn-weather location">CHECK WEATHER</button><br />
+         
         </div>
+           <div class="col-md-4">
+<!-- <div id="results"> -->
+<img src="http://holyoke.schoolfusion.us/modules/groups/homepagefiles/cms/412428/Image/Weather.gif" width="300px"  height="200px">
+<!-- </div> -->
+</div>
+ <div class="col-md-4" id = "results">
+  <h4> Result goes here </h4>
+ </div>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  $('#weather').click(function(){
+  var query = $("#query").text().split(', ');
+  console.log(query);
+  var city = query.shift();
+  var state = query.shift();
+  $.ajax({
+  url : "http://api.wunderground.com/api/c391db3a2a98fb5a/geolookup/conditions/q/"+state+"/"+city+".json",
+  dataType : "jsonp",
+  success : function(parsed_json) {
+  var location = parsed_json['location']['city'];
+  var temp = parsed_json['current_observation']['temperature_string'];
+  var result = "Current temperature in " + location + " is: " + temp;  
+  // var result = "Current temperature in " + location + " is: " + temp_f + "°F";
+  console.log(result);
+  $("#results").append(result);
+  }
+  });
+});
+});
+console.log("clicked");
+</script>
+
+
+
+
       </div>
+       <hr />
       <!--   END OF TRIP INFO -->
       <!--  TO PACK PART -->
       <div class="jumbotron text-center">
-        <h2 class ="text-center">Create A Packing List</h2>
+        <h2 class ="text-center">CREATE A PACKING LIST FOR THE TRIP</h2>
         <p>You can choose items from the suggested list or add your own items below!</p>
         <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
       </div>
@@ -91,7 +132,7 @@
         </div>
       </div>
     </div>
-    <!--   </form> -->
+<!-- </form>  -->
     <!--   END OF TO PACK -->
   </body>
 </html>
