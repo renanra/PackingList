@@ -1,5 +1,8 @@
 ////////////////////////// TOGGLE BUTTON /////////////////////////
 $(function() {
+
+  $('.datepicker').datepicker();
+
   $("#toggleIt").click(function() {
     $("#toggled").toggle("slow");
   });

@@ -7,7 +7,8 @@ Rails.application.routes.draw do
    root 'welcome#index'
    resources :trips
    resources :items
-
+   resources :calendar
+    get '/calendar' => 'calendar#index'
   
   # Example of regular route:
 

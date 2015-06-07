@@ -10,9 +10,11 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require font-awesome
- *= require_self
+
+*= require font-awesome
+*= require_self
+*= require jquery-ui
+*= require_tree .
  */
 
 /*.container {
@@ -66,6 +68,11 @@
 }
 .btn-lg:hover {
   background: rgba(22, 160, 133,1.0);
+}
+
+#toggleIt:hover {
+  background-color: black;
+  color: white;
 }
 .location .date {
   max-width: 500px;

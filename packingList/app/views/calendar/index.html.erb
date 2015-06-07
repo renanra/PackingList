@@ -1,0 +1,21 @@
+<h1>TRIPS</h1>
+
+<div id="trips">
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y") %>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+    <%= date.day %>
+    <% if @trips_by_date[date] %>
+      <ul>
+        <% @trips_by_date[date].each do |trip| %>
+          <li><%= link_to trip.destination, trip %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
+
+<p><%= link_to "Create Trip", "/" %></p>
