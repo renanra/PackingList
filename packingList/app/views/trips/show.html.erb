@@ -16,60 +16,45 @@
       <div class="row">
         <div class="col-md-4">
           <h3> YOUR TRIP INFORMATION </h3>
-      <!--  <form action="/api/default_trips" method="post"> -->
-        <!--   <%=@trip.id %> -->
+          <!--  <form action="/api/default_trips" method="post"> -->
+          <!--   <%=@trip.id %> -->
           <h4 style="display:inline">Destination : </h4>
-          <h5  id="query" style="display:inline"><%=@trip.destination%></h5><br>
+          <h5  id="query" style="display:inline"><%=@trip.destination%></h5>
+          <br>
           <h4 style="display:inline">Start Date : </h4>
-          <h5 style="display:inline"><%=@trip.start_date %></h5><br>
+          <h5 style="display:inline"><%=@trip.start_date %></h5>
+          <br>
           <h4 style="display:inline">End Date : </h4>
-          <h5 style="display:inline"><%=@trip.end_date %></h5><br><br>
+          <h5 style="display:inline"><%=@trip.end_date %></h5>
+          <br><br>
           <button id="weather" class="btn btn-weather location">CHECK WEATHER</button><br />
-         
         </div>
-           <div class="col-md-4">
-<!-- <div id="results"> -->
-<img src="http://holyoke.schoolfusion.us/modules/groups/homepagefiles/cms/412428/Image/Weather.gif" width="300px"  height="200px">
-<!-- </div> -->
-</div>
- <div class="col-md-4" id = "results">
-  <h4> Result goes here </h4>
- </div>
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-  $('#weather').click(function(){
-  var query = $("#query").text().split(', ');
-  console.log(query);
-  var city = query.shift();
-  var state = query.shift();
-  $.ajax({
-  url : "http://api.wunderground.com/api/c391db3a2a98fb5a/geolookup/conditions/q/"+state+"/"+city+".json",
-  dataType : "jsonp",
-  success : function(parsed_json) {
-  var location = parsed_json['location']['city'];
-  var temp = parsed_json['current_observation']['temperature_string'];
-  var result = "Current temperature in " + location + " is: " + temp;  
-  // var result = "Current temperature in " + location + " is: " + temp_f + "°F";
-  console.log(result);
-  $("#results").append(result);
-  }
-  });
-});
-});
-console.log("clicked");
-</script>
-
-
-
-
+        <div class="col-md-4">
+          <!-- <div id="results"> -->
+          <img src="http://holyoke.schoolfusion.us/modules/groups/homepagefiles/cms/412428/Image/Weather.gif" width="300px"  height="200px">
+          <!-- </div> -->
+        </div>
+        <div class="col-md-4" id = "results">
+          <h3 style="float:left"> CURRENT WEATHER: &nbsp; </h3>
+          <div id="icon" style="float:left"></div>
+          <br> 
+          <div style="clear:both"> </div>
+        </div>
       </div>
-       <hr />
+      <hr />
       <!--   END OF TRIP INFO -->
+
       <!--  TO PACK PART -->
       <div class="jumbotron text-center">
         <h2 class ="text-center">CREATE A PACKING LIST FOR THE TRIP</h2>
         <p>You can choose items from the suggested list or add your own items below!</p>
         <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+      </div>
+      <div class = "text-center notPrint">
+        <input type="text" id = "wide" class="form-control add-toPack" placeholder="Add your own item to the list">
+        <hr><br>
+        <img id="checkAll" class = "notPrint" src="http://activerain.trulia.com/image_store/uploads/7/5/4/1/2/ar12675014621457.gif" height="100px" width="100px"> <span id ="markall">Click to mark all as PACKED!</span>
+        <br><hr><br>
       </div>
     </div>
     <div class="row" id="printable">
@@ -82,15 +67,6 @@ console.log("clicked");
           </div>
           <h3 class = "text-center">ITEMS TO PACK</h3>
           <hr>
-          <div class = "notPrint">
-            <input type="text" class="form-control add-toPack" placeholder="Add your own item to the list">
-            <img id="checkAll" class = "notPrint" src="http://activerain.trulia.com/image_store/uploads/7/5/4/1/2/ar12675014621457.gif" height="100px" width="100px"> <span id ="markall">Click to mark all as PACKED!</span>
-            <hr>
-            <div class="todo-footer">
-              <strong><span class="count-todos"></span></strong> Items left to pack
-            </div>
-            <br>
-          </div>
           <script class="item-template" type="text/template">
             {{#default_items}}
             <ul id="sortable" class="list-unstyled">
@@ -105,7 +81,6 @@ console.log("clicked");
             </button>
             <button class="check-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-ok"></span></button>
                 </div>
-            
                 </li>
                 {{/default_items}}
             </ul>
@@ -132,7 +107,12 @@ console.log("clicked");
         </div>
       </div>
     </div>
-<!-- </form>  -->
+    <hr><br>
+    <div class="todo-footer">
+      <strong><span class="count-todos"></span></strong> Items left to pack
+    </div>
+    <br><hr>
+    <!-- </form>  -->
     <!--   END OF TO PACK -->
   </body>
 </html>

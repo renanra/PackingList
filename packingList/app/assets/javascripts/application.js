@@ -31,6 +31,44 @@
         }});
    
 
+
+
+/////////////////////////////// WEATHER //////////////////////////////////////
+
+
+
+jQuery(document).ready(function($) {
+  $('#weather').click(function(){
+  var query = $("#query").text().split(', ');
+  console.log(query);
+  var city = query.shift();
+  var state = query.shift();
+  $.ajax({
+  url : "http://api.wunderground.com/api/c391db3a2a98fb5a/geolookup/conditions/q/"+state+"/"+city+".json",
+  dataType : "jsonp",
+  success : function(parsed_json) {
+  var location = parsed_json['location']['city'];
+  var weather = parsed_json['current_observation']['weather'];
+  var temp = parsed_json['current_observation']['temperature_string'];
+  var feelsLike = parsed_json['current_observation']['feelslike_string'];
+  var result = "It is " + weather + " in " + location + "." + "<br />" + "Current temperature is: " + temp + "<br />" + "Feels like: " + feelsLike; 
+  var icon = parsed_json['current_observation']['icon_url'];
+
+  console.log(result);
+
+  $("#icon").append("<img src="+icon+ ">");
+  $("#icon").hide().show("slow");
+  $("#results").append("<h5 id = 'weatherResult'>" + result + "</h5>");
+  $("#weatherResult").hide().show("slow");
+  }
+  });
+});
+});
+console.log("clicked");
+
+
+
+
 /////////////////////////////////// PLACES AUTOCOMPLETE ////////////////////
 
     // function log( message ) {
