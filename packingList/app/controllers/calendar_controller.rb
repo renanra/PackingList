@@ -1,4 +1,5 @@
 class CalendarController < ApplicationController
+  before_action :authenticate_user!
   def index
     @trips = Trip.all
     @trips_by_date = @trips.group_by(&:start_date)

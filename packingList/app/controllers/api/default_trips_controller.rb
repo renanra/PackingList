@@ -1,6 +1,5 @@
 module Api
   class DefaultTripsController < ApplicationController
-
     def index
       default_trips = DefaultTrip.all
       render json: default_trips
