@@ -1,7 +1,7 @@
 class CalendarController < ApplicationController
   before_action :authenticate_user!
   def index
-    @trips = Trip.all
+    @trips = Trip.where(:user_id == current_user.id)
     @trips_by_date = @trips.group_by(&:start_date)
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
   end

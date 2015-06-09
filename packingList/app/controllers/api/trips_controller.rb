@@ -17,7 +17,8 @@ module Api
   	end
 
 	  def create
-	    @trip = Trip.new
+	  	@trip = current_user.trips.new
+	    # @trip = Trip.new
 	    @trip.user_id = current_user.id
 	    @trip.destination = params[:destination]
 	    @trip.start_date = params[:start_date]

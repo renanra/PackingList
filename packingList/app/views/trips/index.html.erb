@@ -5,19 +5,18 @@
   </head>
   <body>
     <div class="container-fluid">
-           <img style="float:right" id="trash" src="https://40.media.tumblr.com/91d06c61fccaaf1f441f26506262c6c3/tumblr_no6kleCLtL1rijzg7o1_400.jpg" width="150px" height="140px"/>
-         <div class="jumbotron text-center">
-     <h2> MY TOTAL TRIPS: </h2>
-     <h2 id="count-trips"></h2>
-        </div>
- 
+      <div class="jumbotron text-center">
+        <h2 style="display:inline"> TOTAL TRIPS: </h2>
+        <h2 style="display:inline" id="count-trips"></h2>
+        <img style="display:inline float:right" id="trash" src="https://40.media.tumblr.com/91d06c61fccaaf1f441f26506262c6c3/tumblr_no6kleCLtL1rijzg7o1_400.jpg" width="150px" height="140px"/>
+      </div>
       <div class="row">
         <% @trips.each do |trip| %>
         <div class="col-xs-18 col-sm-3 col-md-4 stack" id="tripLi">
           <br> 
           <div class="thumbnail text-center">
             <img src="http://www.ehshousing.com/images/slider/santorini.jpg">
-            <h3>DESTINATION: </h3>
+         <!--    <h3>DESTINATION: </h3> -->
             <h4> <%=link_to trip.destination, trip %></h4>
             <h4>Start Date : <%=trip.start_date %></h4>
             <h4>End Date : <%=trip.end_date %></h4>
@@ -31,13 +30,10 @@
         <% end %>
       </div>
     </div>
-
-<style>
-  .stack{
-border:1px solid black;    
-}
-</style>
-
+    <style>
+      .stack{
+      border:1px solid black;    
+      }
+    </style>
   </body>
 </html>
-

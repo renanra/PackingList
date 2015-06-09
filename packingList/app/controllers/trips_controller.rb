@@ -1,7 +1,7 @@
 class TripsController < ApplicationController
   before_action :authenticate_user!
 		def index
-			@trips = Trip.all
+			@trips = Trip.where(:user_id == current_user.id)
 		end
 
 		def new 
@@ -9,7 +9,8 @@ class TripsController < ApplicationController
   	end
 
 	  def create
-	    @trip = Trip.new
+      @trip = current_user.trips.new
+	    # @trip = Trip.new
 	    @trip.user_id = current_user.id
 	    @trip.destination = params[:destination]
 	    @trip.start_date = params[:start_date]
@@ -24,7 +25,7 @@ class TripsController < ApplicationController
 	  end
 
   	def show
-    		@trip = Trip.find(params[:id])
+    	 @trip = Trip.find(params[:id])
   			end
 
   def edit

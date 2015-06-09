@@ -18,25 +18,25 @@
           <h3> YOUR TRIP INFORMATION </h3>
           <!--  <form action="/api/default_trips" method="post"> -->
           <!--   <%=@trip.id %> -->
-          <h4 style="display:inline">Destination : </h4>
-          <h5  id="query" style="display:inline"><%=@trip.destination%></h5>
+          <h4 style="display:inline">Destination: &nbsp;</h4>
+          <h5  id="query" style="display:inline"><%=@trip.destination%> &nbsp;</h5>
           <br>
-          <h4 style="display:inline">Start Date : </h4>
+          <h4 style="display:inline">Start Date: &nbsp; &nbsp; </h4>
           <h5 style="display:inline"><%=@trip.start_date %></h5>
           <br>
-          <h4 style="display:inline">End Date : </h4>
+          <h4 style="display:inline">End Date: &nbsp; &nbsp; &nbsp;</h4>
           <h5 style="display:inline"><%=@trip.end_date %></h5>
-          <br><br>
-          <button id="weather" class="btn btn-weather location">CHECK WEATHER</button><br />
+          <br> <br>
+          <%=link_to 'EDIT INFO'.html_safe, edit_trip_path, class: "btn btn-primary" %>
         </div>
         <div class="col-md-4">
-          <!-- <div id="results"> -->
           <img src="http://holyoke.schoolfusion.us/modules/groups/homepagefiles/cms/412428/Image/Weather.gif" width="300px"  height="200px">
-          <!-- </div> -->
         </div>
         <div class="col-md-4" id = "results">
           <h3 style="float:left"> CURRENT WEATHER: &nbsp; </h3>
-          <div id="icon" style="float:left"></div>
+          <div id="icon" style="float:left">
+          </div>
+          <button id="weather" class="btn btn-weather location">CHECK WEATHER</button><br />
           <br> 
           <div style="clear:both"> </div>
         </div>
@@ -51,13 +51,11 @@
       </div>
       <div class = "text-center notPrint">
         <input type="text" id = "wide" class="form-control add-toPack" placeholder="Add your own item to the list">
-                   <img src="https://lh5.ggpht.com/QDPh6BDfY_9LtBaTtdwUzthYHXh3EcVqZy7L1X7-z_OComHq38lOJPI1-jTCmj7CU59z=w300" height="100px" width="100px">
-                    <form>
-              <input type="button" id="notPrint" class="btn btn-edit location" value="PRINT YOUR PACKING LIST" onClick="window.print()">
-            </form>
+        <img src="https://lh5.ggpht.com/QDPh6BDfY_9LtBaTtdwUzthYHXh3EcVqZy7L1X7-z_OComHq38lOJPI1-jTCmj7CU59z=w300" height="100px" width="100px">
+        <form>
+          <input type="button" id="notPrint" class="btn btn-edit location" value="PRINT YOUR PACKING LIST" onClick="window.print()">
+        </form>
         <hr>
-
-
         <br>
       </div>
     </div>
@@ -66,7 +64,6 @@
         <div class="toPacklist not-packed">
           <div class = "notPrint">
             <div class="text-center">
-  <!--             <button type="submit", class="btn btn-edit location">SAVE THIS LIST TO YOUR TRIP</button> -->
             </div>
           </div>
           <h3 class = "text-center">ITEMS TO PACK</h3>
@@ -78,12 +75,10 @@
             <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>PAPERWORK</button>
             <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>ELECTRONICS</button>
             <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>CARRY-ON</button>
-            <!--       <button class="btn btn-info btn-xs" id="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>MISC</button> -->
           </div>
           <script class="item-template" type="text/template">
             <div id = "toggled" style="display: none">
-            
-            
+
                         {{#default_items}}
             
                         <ul id="sortable" class="list-unstyled">
@@ -96,14 +91,12 @@
                         <button class="remove-item btn btn-default btn-xs pull-right">
                         <span class="glyphicon glyphicon-remove"></span>
                         </button>
-                        <button class="check-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-ok"></span></button>
                             </div>
                             </li>
                             {{/default_items}}
                         </ul>
                         </div>
-                      
-          </script>
+             </script>
           <div id="checkbox"> </div>
         </div>
       </div>
@@ -113,8 +106,6 @@
           </div>
           <h3 class = "text-center">PACKED ITEMS</h3>
           <hr />
-
-
           <ul id="done-items" class="list-unstyled">
             <li> This packing List
               <button class="remove-item btn btn-default btn-xs pull-right">
@@ -122,21 +113,19 @@
               </button>
             </li>
           </ul>
-                               <br>
-        <img id="checkAll" class = "notPrint" src="http://activerain.trulia.com/image_store/uploads/7/5/4/1/2/ar12675014621457.gif" height="60px" width="60px"> <span class = "notPrint" id ="markall">Click to mark all as PACKED!</span>
-        <br>
+          <br>
+          <img id="checkAll" class = "notPrint" src="http://activerain.trulia.com/image_store/uploads/7/5/4/1/2/ar12675014621457.gif" height="60px" width="60px"> <span class = "notPrint" id ="markall">Click to mark all as PACKED!</span>
+          <br>
         </div>
       </div>
     </div>
     <hr>
     <br>
-
     <div class="todo-footer">
       <strong><span class="count-todos"></span></strong> Items left to pack
     </div>
     <br>
     <hr>
-    <!-- </form>  -->
     <!--   END OF TO PACK -->
   </body>
 </html>

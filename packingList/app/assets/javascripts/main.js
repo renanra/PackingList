@@ -14,24 +14,19 @@ $(function() {
           .hide(500);
 
         ui.draggable.hide();
-        console.log(ui, event);
+        //console.log(ui, event);
       } else {
         ui.draggable.hide(500);
 
-    setTimeout(function() {
- ui.draggable.remove();
-        countTrips();
-    }, 500)
-  
-
-
-
-        
+        setTimeout(function() {
+          ui.draggable.remove();
+          countTrips();
+        }, 500)
       }
 
     }
   });
-////////////////////////////// COUNT TRIPS /////////////////////////////////////
+  ////////////////////////////// COUNT TRIPS /////////////////////////////////////
   function countTrips() {
     var tripCount = $(".container-fluid div#tripLi").length;
     $('#count-trips').empty();
@@ -52,7 +47,7 @@ $(function() {
       var info = Mustache.render(template, {
         default_items: all_items
       });
-      console.log(info);
+      //console.log(info);
       $('#checkbox').append(info);
     }
   });
@@ -60,7 +55,7 @@ $(function() {
   // jQuery(document).ready(function($) {
   $('#weather').click(function() {
     var query = $("#query").text().split(', ');
-    console.log(query);
+    //console.log(query);
     var city = query.shift();
     var state = query.shift();
     $.ajax({
@@ -101,6 +96,7 @@ $(function() {
     minLength: 3
   });
   ///////////////////////////////   END OF PLACES AUTOCOMPLETE ////////////////
+
   //////////////////////////////////////// To PACK ////////////////////////////
   // countTodos();
   // all packed btn
@@ -121,7 +117,8 @@ $(function() {
     }
   });
   // mark item as packed
-  $('.toPacklist').on('change', '#sortable li input[type="checkbox"]', function() {
+
+  $('.toPacklist').on('change', '#sortable li input[type="checkbox"]', '#checkIcon', function() {
     if ($(this).prop('checked')) {
       var doneItem = $(this).parent().parent().find('label').text();
       $(this).parent().parent().parent().addClass('remove');
@@ -140,7 +137,7 @@ $(function() {
   }
   //create your own item
   function createTodo(text) {
-    var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" id="item" />' + text + '</label><button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button><button class="check-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-ok"></span></button></div></li>';
+    var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" id="item" />' + text + '</label><button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></div></li>';
     $('#sortable').prepend(markup);
     $('.add-toPack').val('');
   }

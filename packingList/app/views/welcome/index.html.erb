@@ -1,71 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Create Your Trip!</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <head>
+    <meta charset="utf-8">
+    <title>Create Your Trip!</title>
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'  type='text/css'>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-</head>
-
-<body>
-      <% if current_user %>
-          <div class="jumbotron text-center">
-             <h2>ADD A NEW TRIP</h2>
-  <p>Fill out the fields below and click on Generate to get the suggested Packing List</p>
-          </div>
-  <div class="row">
-  <div class="col-sm-7">
-
-
-
-      <div class="form-group">
-      <label for="current">What is your current location?</label>
-     <input type="text" id="query" class="form-control location">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <% if current_user %>
+    <div class="jumbotron text-center">
+      <h2>ADD A NEW TRIP</h2>
+      <p>Fill out the fields below and click on Generate to get the suggested Packing List</p>
     </div>
-
- <form action="/api/trips" method="post">
-   <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-    <div class="form-group">
-      <label for="destination">What is your Destination?</label>
-      <input type="text" name="destination" class="form-control location">
-    </div>
-    <div class="form-group">
-      <label for="date">Start Date</label>
-      <input type="date" name="start_date" class="form-control date">
-      </div>
+    <div class="row">
+      <div class="col-sm-7">
         <div class="form-group">
-       <label for="date">End Date</label>
-      <input type="date" name="end_date" class="form-control date">
-    </div>
-      <button type="submit", class="btn btn-update location">CREATE TRIP</button>
-  </form>
-  </div>
-    <div class="col-sm-5">
- <img src="http://images.all-free-download.com/images/graphiclarge/world_travel_symbols_312136.jpg" width="470px" height="470px">
-    </div>
-  </div>
-      <% else %>
-<div class="jumbotron text-center">
-<h1><img style="max-width:200px;" src="http://i.imgur.com/pjs3K1M.jpg">Travel Packing Assistant</h1>
-<p>This is an application for generating a personalized packing list with custom items for packing</p>
-</div>
-<img id = "homepic" src="https://blogdotgofoxdotcom.files.wordpress.com/2014/10/cropped-cropped-world-travel1.jpg"> 
- <div class="text-center">
-
-  <div style="height: 400px"></div> 
- <div>
-
-<%= link_to "Log In", new_user_session_path, class: "btn btn-primary btn-lg" %>
-or
-<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
-      <% end %>
+          <label for="current">What is your current location?</label>
+          <input type="text" id="query" class="form-control location">
+        </div>
+        <form action="/api/trips" method="post">
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+          <div class="form-group">
+            <label for="destination">What is your Destination?</label>
+            <input type="text" name="destination" class="form-control location">
+          </div>
+          <div class="form-group">
+            <label for="date">Start Date</label>
+            <input type="date" name="start_date" class="form-control date">
+          </div>
+          <div class="form-group">
+            <label for="date">End Date</label>
+            <input type="date" name="end_date" class="form-control date">
+          </div>
+          <button type="submit", class="btn btn-weather location">CREATE TRIP</button>
+        </form>
       </div>
-
-
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-      
-</body>
+      <div class="col-sm-5">
+        <img src="http://images.all-free-download.com/images/graphiclarge/world_travel_symbols_312136.jpg" width="470px" height="470px">
+      </div>
+    </div>
+    <% else %>
+    <div class="jumbotron text-center">
+      <h2><img style="max-width:200px;" src="http://i.imgur.com/pjs3K1M.jpg">TRAVEL PACKING ASSISTANT</h2>
+      <p>This is an application for generating a personalized packing list with custom items for packing</p>
+    </div>
+    <img id = "homepic" src="https://blogdotgofoxdotcom.files.wordpress.com/2014/10/cropped-cropped-world-travel1.jpg"> 
+    <div class="text-center">
+    <div style="height: 400px"></div>
+    <div>
+      <%= link_to "Log In", new_user_session_path, class: "btn btn-primary btn-lg" %>
+      or
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+      <% end %>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  </body>
 </html>
