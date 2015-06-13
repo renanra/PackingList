@@ -23,6 +23,11 @@
   padding-left: 0px;
 }*/
 
+.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+  }
 
 body {
 font-family: 'Raleway', cursive !important;
@@ -71,6 +76,14 @@ font-family: 'Raleway', cursive !important;
   background: #1abc9c;
   border: 2px solid white;
 }
+
+media="all"
+.btn-primary {
+  color: #fff;
+  background-color: #42CAAB !important;
+  border-color: #357ebd;
+}
+
 .btn-lg:hover {
   background: rgba(22, 160, 133,1.0);
 }

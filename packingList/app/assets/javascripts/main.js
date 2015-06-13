@@ -54,6 +54,7 @@ $(function() {
   /////////////////////////////// WEATHER //////////////////////////////////////
   // jQuery(document).ready(function($) {
   $('#weather').click(function() {
+     $('#loader').html('<img id="loader-img" alt="" src="http://i.imgur.com/IUwNLXT.gif" width="30" height="30" align="center" class="displayed"/>');
     var query = $("#query").text().split(', ');
     //console.log(query);
     var city = query.shift();
@@ -70,10 +71,13 @@ $(function() {
         var icon = parsed_json['current_observation']['icon_url'];
         console.log(result);
         console.log("clicked");
+        $('#loader').empty();
         $("#icon").append("<img src=" + icon + ">");
         $("#icon").hide().show("slow");
+        // $("#icon").effect( "shake" );
         $("#results").append("<h5 id = 'weatherResult'>" + result + "</h5>");
         $("#weatherResult").hide().show("slow");
+         //$("#weatherResult").effect( "shake" );
       }
     });
   });

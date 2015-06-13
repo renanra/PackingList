@@ -38,7 +38,7 @@
           </div>
           <button id="weather" class="btn btn-weather location">CHECK WEATHER</button><br />
           <br> 
-          <div style="clear:both"> </div>
+          <div style="clear:both" id="loader"> </div>
         </div>
       </div>
       <hr />
@@ -79,6 +79,7 @@
           <script class="item-template" type="text/template">
             <div id = "toggled" style="display: none">
 
+
                         {{#default_items}}
             
                         <ul id="sortable" class="list-unstyled">
@@ -95,6 +96,9 @@
                             </li>
                             {{/default_items}}
                         </ul>
+                        </div>
+                        <div class="text-center">
+                        <h6> Click  on the category to get suggested items </h6>
                         </div>
              </script>
           <div id="checkbox"> </div>
