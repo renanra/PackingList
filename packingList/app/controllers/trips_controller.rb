@@ -35,7 +35,7 @@ class TripsController < ApplicationController
   def update
     @trip = Trip.find(params[:id])
     if @trip.update_attributes(params[:trip].permit(:destination,:start_date, :end_date, :user_id))
-      redirect_to trips_path
+      redirect_to(@trip)
     else
       render :edit
     end

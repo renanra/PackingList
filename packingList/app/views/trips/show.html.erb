@@ -69,8 +69,8 @@
           <h3 class = "text-center">ITEMS TO PACK</h3>
           <hr>
           <div class = "text-center notPrint">
-            <button class="btn btn-info btn-xs" id="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>ALL</button>
-            <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>TOILETRIES</button>
+            <button class="btn btn-info btn-xs" id="showAll"><span class="glyphicon glyphicon-arrow-down"></span>ALL</button>
+            <button class="btn btn-info btn-xs" id="custom"><span class="glyphicon glyphicon-arrow-down"></span>CUSTOM</button>
             <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>CLOTHES</button>
             <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>PAPERWORK</button>
             <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>ELECTRONICS</button>
@@ -103,6 +103,17 @@
              </script>
           <div id="checkbox"> </div>
         </div>
+         <div id = "toggledCustom" style="display: none"> 
+                     <ul id="customSortable" class="list-unstyled">
+                            <li class="ui-state-default">
+                            <div class="checkbox">
+                         <label>
+                         <input type="checkbox" name="item[]" value="" id="item">
+                         </label>
+                            </div>
+                            </li>
+                        </ul>
+         </div>
       </div>
       <div class="col-md-6">
         <div class="toPacklist">
