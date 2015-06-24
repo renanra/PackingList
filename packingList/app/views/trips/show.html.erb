@@ -27,7 +27,7 @@
           <h4 style="display:inline">End Date: &nbsp; &nbsp; &nbsp;</h4>
           <h5 style="display:inline"><%=@trip.end_date %></h5>
           <br> <br>
-          <%=link_to 'EDIT INFO'.html_safe, edit_trip_path, class: "btn btn-primary" %>
+          <%=link_to '<i class="fa fa-pencil-square-o"></i> EDIT INFO'.html_safe, edit_trip_path, class: "btn btn-primary" %> 
         </div>
         <div class="col-md-4">
           <img src="http://holyoke.schoolfusion.us/modules/groups/homepagefiles/cms/412428/Image/Weather.gif" width="300px"  height="200px">
@@ -36,7 +36,7 @@
           <h3 style="float:left"> CURRENT WEATHER: &nbsp; </h3>
           <div id="icon" style="float:left">
           </div>
-          <button id="weather" class="btn btn-weather location">CHECK WEATHER</button><br />
+          <button id="weather" class="btn btn-weather location"><i class="fa fa-cloud"></i> CHECK WEATHER</button><br />
           <br> 
           <div style="clear:both" id="loader"> </div>
         </div>
@@ -50,7 +50,7 @@
         <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
       </div>
       <div class = "text-center notPrint">
-        <input type="text" id = "wide" class="form-control add-toPack" placeholder="Add your own item to the list">
+<!--         <input type="text" id = "wide" class="form-control add-toPack" placeholder="Add your own item to the list"> -->
         <img src="https://lh5.ggpht.com/QDPh6BDfY_9LtBaTtdwUzthYHXh3EcVqZy7L1X7-z_OComHq38lOJPI1-jTCmj7CU59z=w300" height="100px" width="100px">
         <form>
           <input type="button" id="notPrint" class="btn btn-edit location" value="PRINT YOUR PACKING LIST" onClick="window.print()">
@@ -69,16 +69,19 @@
           <h3 class = "text-center">ITEMS TO PACK</h3>
           <hr>
           <div class = "text-center notPrint">
-            <button class="btn btn-info btn-xs" id="showAll"><span class="glyphicon glyphicon-arrow-down"></span>ALL</button>
-            <button class="btn btn-info btn-xs" id="custom"><span class="glyphicon glyphicon-arrow-down"></span>CUSTOM</button>
+            <button class="btn  btn-custom-darken btn-m" id="showAll"><span class="glyphicon glyphicon-arrow-down"></span>ALL</button>
+            <button class="btn btn-success btn-m" id="custom"><span class="glyphicon glyphicon-arrow-down"></span>CUSTOM</button>
+
+          </div>
+          <script class="item-template" type="text/template">
+            <div id = "toggled" style="display: none">
+            <br>
+            <div class = "text-center notPrint">
             <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>CLOTHES</button>
             <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>PAPERWORK</button>
             <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>ELECTRONICS</button>
             <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>CARRY-ON</button>
-          </div>
-          <script class="item-template" type="text/template">
-            <div id = "toggled" style="display: none">
-
+            </div>
 
                         {{#default_items}}
             
@@ -97,9 +100,9 @@
                             {{/default_items}}
                         </ul>
                         </div>
-                        <div class="text-center">
+<!--                         <div class="text-center">
                         <h6> Click  on the category to get suggested items </h6>
-                        </div>
+                        </div> -->
              </script>
           <div id="checkbox"> </div>
         </div>
@@ -113,6 +116,7 @@
                             </div>
                             </li>
                         </ul>
+                                <input type="text" id = "wide" class="form-control add-toPack" placeholder="Add your own item to the list">
          </div>
       </div>
       <div class="col-md-6">

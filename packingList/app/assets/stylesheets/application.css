@@ -23,6 +23,7 @@
   padding-left: 0px;
 }*/
 
+
 .displayed {
     display: block;
     margin-left: auto;
@@ -30,7 +31,7 @@
   }
 
 body {
-font-family: 'Raleway', cursive !important;
+/*font-family: 'Raleway', cursive !important;*/
 }
 
 .form-signin {
@@ -75,6 +76,10 @@ font-family: 'Raleway', cursive !important;
 .btn-lg {
   background: #1abc9c;
   border: 2px solid white;
+}
+.btn-custom-darken {
+  background-color: #000000 ;
+  color: white;
 }
 
 media="all"

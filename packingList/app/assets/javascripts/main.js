@@ -26,6 +26,9 @@ $(function() {
 
     }
   });
+
+
+
   ////////////////////////////// COUNT TRIPS /////////////////////////////////////
   function countTrips() {
     var tripCount = $(".container-fluid div#tripLi").length;
