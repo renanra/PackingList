@@ -1,6 +1,7 @@
 ###INSTRUCTIONS TO TEST THE APP
 ___
 - **rails s** -> to run the server
+- **localhost:3000**
 - **rake db:seed** -> to populate the database
 - **log in as a guest** ->
 username: guest@fakemail.com,
