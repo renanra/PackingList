@@ -3,9 +3,11 @@ module Api
 		def index
 			trips = Trip.all
 			render json: trips
+
 		end
 
 		def show
+			@default_items = DefaultItem.all
 			trip = Trip.find(params[:id])
 			render json: trip.to_json( include:{
 				default_items: {only: [:item]}

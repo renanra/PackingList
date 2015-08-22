@@ -37,12 +37,102 @@ $(function() {
   }
   countTrips();
   ///////////////// TOGGLE BUTTON TO SHOW AND HIDE DEFAULT ITEMS////////////////
+  $("#catButtons button").click(function() {
+    var category = $(this).html();
+    console.log(category);
+    $("#allCategories").children().fadeOut();
+    $("#allCategories").children().each(function(){
+      if($(this).hasClass(category)){
+        $(this).fadeIn();
+      }
+    });
+    
+  }
+  );
 
-  $("#showAll").click(function() {
-    $("#toggled").toggle("slow");
-  });
+  // $("#toiletries").click(function() {
+  //   // $('#allCategories').empty();
+  //   // showToiletries = $('#showToiletries');
+  //   // $(this).append(showToiletries); 
+
+  //   var savedToiletries;
+    
+  //   $('#showToiletries').toggle(function() {
+  //      $('#allCategories').empty();
+  //       savedToiletries = $('#showToiletries').detach();
+
+  //   },
+  //   function() {
+
+  //        $(this).append(savedToiletries);                
+  //    });
+
+
+  //   // console.log("toiletries clicked");
+  //   // $(".showAll").empty();
+  //   // $("#showToiletries").toggle("slow");
+  // });
+
+
+  // $("#clothes").click(function() {
+  //   var savedClothes;
+    
+  //   $('#showClothes').toggle(function() {
+  //           $('#showToiletries').empty();
+  //       savedClothes = $('#showClothes').detach();
+  //   },
+  //   function() {
+  //        $(this).append(savedClothes);                
+  //    });
+
+  //   // console.log("clothes clicked");
+  //   // $(".showAll").empty();
+  //   // $("#showClothes").show("slow");
+  // });
+
+  // $("#paperwork").click(function() {
+  //   var savedPaperwork;
+    
+  //   $('#showPaperwork').toggle(function() {
+  //       savedPaperwork = $('#showPaperwork').detach();
+  //   },
+  //   function() {
+  //        $(this).append(savedPaperwork);                
+  //    });
+
+  //   // console.log("paperwork clicked");
+  //   // $(".showAll").empty();
+  //   // $("#showPaperwork").show("slow");
+  // });
+
+
+
+  // $("#electronics").click(function() {
+  //   var savedElectronics;
+    
+  //   $('#showPaperwork').toggle(function() {
+  //       savedElectronics = $('#showElectronics').detach();
+  //   },
+  //   function() {
+  //        $(this).append(savedElectronics);                
+  //    });
+
+
+  //   // console.log("electronics clicked");
+  //   // $(".showAll").empty();
+  //   // $("#showElectronics").show("slow");
+  // });
+
+
+  // $("#all").click(function() {
+  //   console.log("show all clicked");
+  //   $(".showAll").toggle("slow");
+  // });
+
+
     $("#custom").click(function() {
-    $("#toggledCustom").toggle("slow");
+    $("#allCategories").children().fadeOut();
+    $("#toggledCustom").fadeIn("slow");
   });
 
       function createCustomToPack(text) {
@@ -51,7 +141,7 @@ $(function() {
     $('.add-toPack').val('');
   }
   /////////////////////////////////// RENDERING DEFAULT ITEMS ON A TRIP PAGE////////////////////
-  //  $('#checkbox').empty();
+   $('#checkbox').empty();
   $.ajax({
     url: "/api/default_items",
     success: function(all_items) {
@@ -164,6 +254,7 @@ $(function() {
   });
   //delete item from "already packed"
   $('.toPacklist').on('click', '.remove-item', function() {
+
     removeItem(this);
   });
   // count how many items left to pack
@@ -173,14 +264,15 @@ $(function() {
   }
   //create your own item
   function createTodo(text) {
-    var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" id="item" />' + text + '</label><button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></div></li>';
+    var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" id="item" checked />' + text + '</label><button class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-arrow-right"></span></button><button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></div></li>';
     $('#sortable').prepend(markup);
     $('.add-toPack').val('');
   }
   //mark item as packed
   function done(doneItem) {
+
     var done = doneItem;
-    var markup = '<li>' + done + '<button class="btn btn-default btn-xs pull-right  remove-item"><span class="glyphicon glyphicon-remove"></span></button></li>';
+    var markup = '<li><input type="checkbox" checked>' + done + '</button><button class="btn btn-default btn-xs pull-right remove-item"><span class="glyphicon glyphicon-remove"></span></button><button class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-arrow-left"></span></button></li>';
     $('#done-items').prepend(markup);
     $('.remove').remove();
   }
@@ -192,7 +284,7 @@ $(function() {
     });
     // mark all as packed
     for (i = 0; i < myArray.length; i++) {
-      $('#done-items').append('<li>' + myArray[i] + '<button class="btn btn-default btn-xs pull-right  remove-item"><span class="glyphicon glyphicon-remove"></span></button></li>');
+      $('#done-items').append('<li><input type="checkbox" checked>' + myArray[i] + '<button class="btn btn-default btn-xs pull-right  remove-item"><span class="glyphicon glyphicon-remove"></span></button><button class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-arrow-left"></span></button></li>');
     }
     // myArray
     $('#sortable li').remove();
@@ -200,6 +292,7 @@ $(function() {
   }
   //remove packed item from list
   function removeItem(element) {
+            // debugger;
     $(element).parent().remove();
   }
   ////////////////////END OF TO PACK /////////////////

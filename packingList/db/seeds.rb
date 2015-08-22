@@ -1,111 +1,100 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-		default_items = DefaultItem.create(
-				[{ item: 'Toothpaste'},
-					{item: 'Dental Floss'},
-					{item: 'Soap'},
-					{item: 'Deodorant'},
-					{item: 'Shampoo'},
-					{item: 'Brush'},
-					{item: 'Hairstyling Essentials'},
-					{item: 'Face Cleanser'},
-					{item: 'Face Lotion'},
-					{item: 'Sunscreen'},
-					{item: 'Moisturizer'},
-					{item: 'Contact Lenses'},
-					{item: 'Shaving Supplies'},
-					{item: 'Makeup'},
-					{item: 'Makeup Remover'},
-					{item: 'Hygeine Products'},
-					{item: 'Nail file / Clippers'},
-					{item: 'Tweezers'},
-					{item: 'Hand Sanitizer'},
-					{item: 'Bandages'},
-					{item: 'First Aid Kit'},
-					{item: 'Insect Repellant'},
-					{item: 'Medications'},
-					{item: 'Pain Relievers'},
-					{item: 'Vitamins'},
-					{item: 'Laundry Kit'},
-					{item: 'Laundry Bag'},
-					{item: 'Leisure Shoes'},
-					{item: 'Underwear'},
-					{item: 'Socks'},
-					{item: 'Sleepwear'},
-					{item: 'T-Shirts'},
-					{item: 'Dress Shirts'},
-					{item: 'Casual Shirts'},
-					{item: 'Jeans'},
-					{item: 'Pants'},
-					{item: 'Shorts'},
-					{item: 'Dresses'},
-					{item: 'Skirts'},
-					{item: 'Sweaters'},
-					{item: 'Coats / Jackets'},
-					{item: 'Hats'},
-					{item: 'Gloves'},
-					{item: 'Scarves'},
-					{item: 'Umbrella'},
-					{item: 'Athletic Shoes'},
-					{item: 'Rain Boots'},
-					{item: 'Dress Shoes'},
-					{item: 'Sandals / Flip-Flops'},
-					{item: 'Belts'},
-					{item: 'Ties'},
-					{item: 'Jewelry'},
-					{item: 'Purses'},
-					{item: 'Collapsible Totes'},
-					{item: 'Plain Tickets'},
-					{item: 'Hotel Confirmation'},
-					{item: 'Rental Car Confirmation'},
-					{item: 'Cash / Credit Cards'},
-					{item: 'Dollar Bills for Tips'},
-					{item: 'Checkbook'},
-					{item: 'Passports'},
-					{item: 'Birth Certificates'},	
-					{item: 'ID / Drivers License'},
-					{item: 'Health Insurance Card'},
-					{item: 'Maps / Directions'},
-					{item: 'Membership Cards'},
-					{item: 'Address Book'},
-					{item: 'Notepad / Pens'},
-					{item: 'Batteries'},
-					{item: 'Cameras / Chargers'},
-					{item: 'Camera Lenses'},
-					{item: 'Camera Tripod'},
-					{item: 'Cellphones / Chargers'},
-					{item: 'MP3 Player'},
-					{item: 'Laptops / Chargers'},
-					{item: 'Headphones'},
-					{item: 'Multipower Outlet'},
-					{item: 'Voltage Adaptor'},
-					{item: 'Hair Dryer'},
-					{item: 'Watch'},
-					{item: 'Alarm Clock'},
-					{item: 'GPS'},
-					{item: 'Books'},
-					{item: 'Tissues'},
-					{item: 'Travel Pillow'},
-					{item: 'Lip Balm'},
-					{item: 'Change of Clothes'},
-					{item: 'Empty Water Bottle'},
-					{item: 'In-flight Medications'},
-					{item: 'Valuables'},
-					{item: 'Sleeping Mask'},
-					{item: 'Multi-tool'},
-					{item: 'Bottle Opener'},	
-					{item: 'Cork Screw'},
-					{item: 'Poker Cards'},
-					{item: 'Lighter'},
-					{item: 'Flash Light'},
-					{item: 'Sunglasses'},
-					{item: 'Safety Pins'},
-					{item: 'Duct Tape'},
-					{item: 'Super Glue'}])
+	DefaultItem.create(item: 'Toothpaste', category: 'Toiletries')
+	DefaultItem.create(item: 'Dental Floss', category: 'Toiletries')
+	DefaultItem.create(item: 'Soap', category: 'Toiletries')
+	DefaultItem.create(item: 'Shampoo', category: 'Toiletries')
+	DefaultItem.create(item: 'Brush', category: 'Toiletries')
+	DefaultItem.create(item: 'Hairstyling Essentials', category: 'Toiletries')
+	DefaultItem.create(item: 'Face Cleanser', category: 'Toiletries')
+	DefaultItem.create(item: 'Face Lotion', category: 'Toiletries')
+	DefaultItem.create(item: 'Sunscreen', category: 'Toiletries')
+	DefaultItem.create(item: 'Moisturizer', category: 'Toiletries')
+	DefaultItem.create(item: 'Shaving Supplies', category: 'Toiletries')
+	DefaultItem.create(item: 'Makeup', category: 'Toiletries')	
+	DefaultItem.create(item: 'Makeup Remover', category: 'Toiletries')
+	DefaultItem.create(item: 'Hygeine Products', category: 'Toiletries')
+	DefaultItem.create(item: 'Nail file / Clippers', category: 'Toiletries')	
+	DefaultItem.create(item: 'Tweezers', category: 'Toiletries')	
+	DefaultItem.create(item: 'Hand Sanitizer', category: 'Toiletries')	
+	DefaultItem.create(item: 'Bandages', category: 'Toiletries')	
+	DefaultItem.create(item: 'First Aid Kit', category: 'Toiletries')	
+	DefaultItem.create(item: 'Insect Repellant', category: 'Toiletries')	
+	DefaultItem.create(item: 'Medications', category: 'Toiletries')	
+	DefaultItem.create(item: 'Pain Relievers', category: 'Toiletries')	
+	DefaultItem.create(item: 'Vitamins', category: 'Toiletries')		
+	DefaultItem.create(item: 'Laundry Kit', category: 'Clothes')	
+	DefaultItem.create(item: 'Laundry Bag', category: 'Clothes')	
+	DefaultItem.create(item: 'Leisure Shoes', category: 'Clothes')	
+	DefaultItem.create(item: 'Underwear', category: 'Clothes')	
+	DefaultItem.create(item: 'Socks', category: 'Clothes')	
+	DefaultItem.create(item: 'Sleepwear', category: 'Clothes')	
+	DefaultItem.create(item: 'T-Shirts', category: 'Clothes')	
+	DefaultItem.create(item: 'Dress Shirts', category: 'Clothes')	
+	DefaultItem.create(item: 'Casual Shirts', category: 'Clothes')	
+	DefaultItem.create(item: 'Jeans', category: 'Clothes')	
+	DefaultItem.create(item: 'Pants', category: 'Clothes')	
+	DefaultItem.create(item: 'Shorts', category: 'Clothes')	
+	DefaultItem.create(item: 'Dresses', category: 'Clothes')	
+	DefaultItem.create(item: 'Skirts', category: 'Clothes')		
+	DefaultItem.create(item: 'Sweaters', category: 'Clothes')		
+	DefaultItem.create(item: 'Coats / Jackets', category: 'Clothes')		
+	DefaultItem.create(item: 'Hats', category: 'Clothes')		
+	DefaultItem.create(item: 'Gloves', category: 'Clothes')		
+	DefaultItem.create(item: 'Scarves', category: 'Clothes')		
+	DefaultItem.create(item: 'Umbrella', category: 'Clothes')		
+	DefaultItem.create(item: 'Athletic Shoes', category: 'Clothes')		
+	DefaultItem.create(item: 'Rain Boots', category: 'Clothes')		
+	DefaultItem.create(item: 'Dress Shoes', category: 'Clothes')		
+	DefaultItem.create(item: 'Sandals / Flip-Flops', category: 'Clothes')		
+	DefaultItem.create(item: 'Belts', category: 'Clothes')	
+	DefaultItem.create(item: 'Ties', category: 'Clothes')	
+	DefaultItem.create(item: 'Jewelry', category: 'Clothes')	
+	DefaultItem.create(item: 'Purses', category: 'Clothes')	
+	DefaultItem.create(item: 'Collapsible Totes', category: 'Clothes')	
+	DefaultItem.create(item: 'Plain Tickets', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Hotel Confirmation', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Rental Car Confirmation', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Cash / Credit Cards', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Dollar Bills for Tips', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Checkbook', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Passports', category: 'Travel Paperwork')				
+	DefaultItem.create(item: 'Birth Certificates', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'ID / Drivers License', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Health Insurance Card', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Maps / Directions', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Membership Cards', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Address Book', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Notepad / Pens', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Batteries', category: 'Electronics')	
+	DefaultItem.create(item: 'Cameras / Chargers', category: 'Electronics')
+	DefaultItem.create(item: 'Camera Lenses', category: 'Electronics')
+	DefaultItem.create(item: 'Camera Tripod', category: 'Electronics')
+	DefaultItem.create(item: 'Cellphones / Chargers', category: 'Electronics')
+	DefaultItem.create(item: 'MP3 Player', category: 'Electronics')
+	DefaultItem.create(item: 'Laptops / Chargers', category: 'Electronics')
+	DefaultItem.create(item: 'Headphones', category: 'Electronics')
+	DefaultItem.create(item: 'Multipower Outlet', category: 'Electronics')
+	DefaultItem.create(item: 'Voltage Adaptor', category: 'Electronics')
+	DefaultItem.create(item: 'Hair Dryer', category: 'Electronics')
+	DefaultItem.create(item: 'Watch', category: 'Electronics')	
+	DefaultItem.create(item: 'Alarm Clock', category: 'Electronics')	
+	DefaultItem.create(item: 'GPS', category: 'Electronics')		
+	DefaultItem.create(item: 'Books', category: 'Carry-on')	
+	DefaultItem.create(item: 'Tissues', category: 'Carry-on')	
+	DefaultItem.create(item: 'Travel Pillow', category: 'Carry-on')	
+	DefaultItem.create(item: 'Lip Balm', category: 'Carry-on')	
+	DefaultItem.create(item: 'Change of Clothes', category: 'Carry-on')	
+	DefaultItem.create(item: 'Empty Water Bottle', category: 'Carry-on')	
+	DefaultItem.create(item: 'In-flight Medications', category: 'Carry-on')	
+	DefaultItem.create(item: 'Valuables', category: 'Carry-on')	
+	DefaultItem.create(item: 'Sleeping Mask', category: 'Carry-on')	
+	DefaultItem.create(item: 'Multi-tool', category: 'Miscellaneous')	
+	DefaultItem.create(item: 'Bottle Opener', category: 'Miscellaneous')		
+	DefaultItem.create(item: 'Cork Screw', category: 'Miscellaneous')	
+	DefaultItem.create(item: 'Poker Cards', category: 'Miscellaneous')	
+	DefaultItem.create(item: 'Lighter', category: 'Miscellaneous')	
+	DefaultItem.create(item: 'Flash Light', category: 'Miscellaneous')	
+	DefaultItem.create(item: 'Sunglasses', category: 'Miscellaneous')	
+	DefaultItem.create(item: 'Safety Pins', category: 'Miscellaneous')	
+	DefaultItem.create(item: 'Duct Tape', category: 'Miscellaneous')	
+	DefaultItem.create(item: 'Super Glue', category: 'Miscellaneous')	

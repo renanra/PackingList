@@ -5,8 +5,9 @@
     <title>Your Trip</title>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.0.0/mustache.js"></script>
   </head>
@@ -16,8 +17,7 @@
       <div class="row">
         <div class="col-md-4">
           <h3> YOUR TRIP INFORMATION </h3>
-          <!--  <form action="/api/default_trips" method="post"> -->
-          <!--   <%=@trip.id %> -->
+
           <h4 style="display:inline">Destination: &nbsp;</h4>
           <h5  id="query" style="display:inline"><%=@trip.destination%> &nbsp;</h5>
           <br>
@@ -61,6 +61,7 @@
     </div>
     <div class="row" id="printable">
       <div class="col-md-6">
+
         <div class="toPacklist not-packed">
           <div class = "notPrint">
             <div class="text-center">
@@ -69,74 +70,70 @@
           <h3 class = "text-center">ITEMS TO PACK</h3>
           <hr>
           <div class = "text-center notPrint">
-            <button class="btn  btn-custom-darken btn-m" id="showAll"><span class="glyphicon glyphicon-arrow-down"></span>ALL</button>
-            <button class="btn btn-success btn-m" id="custom"><span class="glyphicon glyphicon-arrow-down"></span>CUSTOM</button>
+            <button class="btn btn-success btn-m" id="custom"><span class="glyphicon glyphicon-arrow-down"></span>ADD CUSTOM</button>
 
           </div>
-          <script class="item-template" type="text/template">
-            <div id = "toggled" style="display: none">
+
+
             <br>
-            <div class = "text-center notPrint">
-            <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>CLOTHES</button>
-            <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>PAPERWORK</button>
-            <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>ELECTRONICS</button>
-            <button class="btn btn-info btn-xs" class="toggleIt"><span class="glyphicon glyphicon-arrow-down"></span>CARRY-ON</button>
+            <div class = "text-center notPrint" id="catButtons">
+            <button class="btn btn-info btn-xs" id="all">ALL</button>
+            <button class="btn btn-info btn-xs" id="toiletries">TOILETRIES</button>
+            <button class="btn btn-info btn-xs" id="clothes">CLOTHES</button>
+            <button class="btn btn-info btn-xs" id="paperwork">PAPERWORK</button>
+            <button class="btn btn-info btn-xs" id="electronics">ELECTRONICS</button>
+            <button class="btn btn-info btn-xs" id="carry-on">CARRY-ON</button>
+            <button class="btn btn-info btn-xs" id="misc">MISCELLANEOUS</button>
             </div>
 
-                        {{#default_items}}
-            
-                        <ul id="sortable" class="list-unstyled">
-                            <li class="ui-state-default">
-                            <div class="checkbox">
-                         <label>
-                         <input type="checkbox" name="item[]" value="" id="item">
-                         {{item}} 
-                         </label>
-                        <button class="remove-item btn btn-default btn-xs pull-right">
-                        <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                            </div>
-                            </li>
-                            {{/default_items}}
-                        </ul>
-                        </div>
-<!--                         <div class="text-center">
-                        <h6> Click  on the category to get suggested items </h6>
-                        </div> -->
-             </script>
-          <div id="checkbox"> </div>
-        </div>
-         <div id = "toggledCustom" style="display: none"> 
-                     <ul id="customSortable" class="list-unstyled">
-                            <li class="ui-state-default">
-                            <div class="checkbox">
-                         <label>
-                         <input type="checkbox" name="item[]" value="" id="item">
-                         </label>
-                            </div>
-                            </li>
-                        </ul>
-                                <input type="text" id = "wide" class="form-control add-toPack" placeholder="Add your own item to the list">
-         </div>
+    <script class="item-template" type="text/template">
+      <div class="text-center">
+      <h6> Click  on the category to get suggested items </h6>
       </div>
-      <div class="col-md-6">
-        <div class="toPacklist">
-          <div class = "text-center">
-          </div>
-          <h3 class = "text-center">PACKED ITEMS</h3>
-          <hr />
-          <ul id="done-items" class="list-unstyled">
-            <li> This packing List
-              <button class="remove-item btn btn-default btn-xs pull-right">
-              <span class="glyphicon glyphicon-remove"></span>
-              </button>
-            </li>
-          </ul>
-          <br>
-          <img id="checkAll" class = "notPrint" src="http://activerain.trulia.com/image_store/uploads/7/5/4/1/2/ar12675014621457.gif" height="60px" width="60px"> <span class = "notPrint" id ="markall">Click to mark all as PACKED!</span>
-          <br>
+        <%= form_for :default_items_trips, :url => {:action => "create_default_items_trip"} do |f| %>
+      <%= render "all_categories" %>
+                  <%= f.submit "Save Trip Items"%>
+        <% end %>
+    </script>
+
+  <div id="checkbox">
+  </div>
         </div>
+  <div id = "toggledCustom" style="display: none"> 
+    <ul id="customSortable" class="list-unstyled">
+      <li class="ui-state-default">
+        <div class="checkbox">
+        <label>
+        <input type="checkbox" name="item[]" value="" id="item">
+        </label>
+        </div>
+      </li>
+    </ul>
+  <input type="text" id = "wide" class="form-control add-toPack" placeholder="Add your own item to the list">
+  </div>
       </div>
+  <div class="col-md-6">
+    <div class="toPacklist">
+    <div class = "text-center"></div>
+    <h3 class = "text-center">PACKED ITEMS</h3>
+    <hr />
+      <ul id="done-items" class="list-unstyled">
+        <li><input type="checkbox" checked> This packing List
+        <button class="remove-item btn btn-default btn-xs pull-right">
+        <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <button class="btn btn-default btn-xs pull-right">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        </button>
+        </li>
+
+      </ul>
+    <br>
+    <img id="checkAll" class = "notPrint" src="http://activerain.trulia.com/image_store/uploads/7/5/4/1/2/ar12675014621457.gif" height="60px" width="60px"> <span class = "notPrint" id ="markall">Click to mark all as PACKED!</span>
+    <br>
+    </div>
+  </div>
+
     </div>
     <hr>
     <br>
@@ -145,6 +142,7 @@
     </div>
     <br>
     <hr>
+
     <!--   END OF TO PACK -->
   </body>
 </html>

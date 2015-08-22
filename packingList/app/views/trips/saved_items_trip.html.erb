@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Your Saved Trip</title>
+</head>
+<body>
+	Trip info and Items List
+
+	<h2> Trip Info</h2>
+	Destination <%= @saved_items_trip.destination %>
+	<ul>
+	<h2>List of Saved Items</h2>
+
+	    <% @saved_items_trip.default_items.each do |saved_item| %>
+            <li>
+            <%= saved_item.item %>
+            <%= saved_item.id %>  
+            </li>
+            <% end %>
+	</ul>
+
+
+	   <%=link_to '<i class="fa fa-pencil-square-o"></i> EDIT ITEMS'.html_safe, trip_path, class: "btn btn-primary" %> 
+</body>
+</html>

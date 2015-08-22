@@ -12,7 +12,7 @@
  * file per style scope.
  *
 
-*= require font-awesome
+
 *= require_self
 *= require jquery-ui
 *= require_tree .
@@ -82,7 +82,6 @@ body {
   color: white;
 }
 
-media="all"
 .btn-primary {
   color: #fff;
   background-color: #42CAAB !important;
