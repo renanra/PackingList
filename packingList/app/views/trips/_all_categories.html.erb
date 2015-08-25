@@ -1,12 +1,14 @@
 <ul id="allCategories">
 
-    <div id = "showToiletries" class= "ALL TOILETRIES">
+
+    <div id = "showToiletries" class= "TOILETRIES">
         <ul id="sortable" class="list-unstyled">
         <% @default_toiletries_items.each do |item| %>
             <li class="ui-state-default">
             <div class="checkbox">
             <label>
-            <%= check_box_tag 'item_ids[]', item.id, :id => "item.id" %>
+            <%= hidden_field_tag 'item_ids[]', true %>
+            <%= check_box_tag 'item_ids[]', item.id, true %>
             <%= item.item %>
             <%= item.id %>
             </label>
@@ -23,13 +25,13 @@
     </div>
 
 
-    <div id = "showClothes" class= "ALL CLOTHES">
+    <div id = "showClothes" class= "CLOTHES">
     <% @default_clothes_items.each do |item| %>
         <ul id="sortable" class="list-unstyled">
             <li class="ui-state-default">
             <div class="checkbox">
             <label>
-            <%= check_box_tag 'item_ids[]', item.id, :id => "item.id" %>
+            <%= check_box_tag 'item_ids[]', item.id, true %>
             <%= item.item %>
             <%= item.id %>
             </label>
@@ -45,13 +47,13 @@
         </ul>
     </div>
 
-    <div id = "showPaperwork" class= "All PAPERWORK">
+    <div id = "showPaperwork" class= "PAPERWORK">
     <% @default_paperwork_items.each do |item| %>
         <ul id="sortable" class="list-unstyled">
             <li class="ui-state-default">
             <div class="checkbox">
             <label>
-            <%= check_box_tag 'item_ids[]', item.id, :id => "item.id" %>
+            <%= check_box_tag 'item_ids[]', item.id, false %>
             <%= item.item %>
             <%= item.id %>
             </label>
@@ -67,13 +69,13 @@
         </ul>
     </div>
 
-    <div id = "showElectronics" class= "All ELECTRONICS">
+    <div id = "showElectronics" class= "ELECTRONICS">
     <% @default_electronics_items.each do |item| %>
         <ul id="sortable" class="list-unstyled">
             <li class="ui-state-default">
             <div class="checkbox">
             <label>
-            <%= check_box_tag 'item_ids[]', item.id, :id => "item.id" %>
+            <%= check_box_tag 'item_ids[]', item.id, false %>
             <%= item.item %>
             <%= item.id %>            
             </label>
@@ -89,13 +91,13 @@
         </ul>
     </div> 
 
-    <div id = "showCarryon" class= "All CARRY-ON">
+    <div id = "showCarryon" class= "CARRY-ON">
     <% @default_carryon_items.each do |item| %>
         <ul id="sortable" class="list-unstyled">
             <li class="ui-state-default">
             <div class="checkbox">
             <label>
-            <%= check_box_tag 'item_ids[]', item.id, :id => "item.id" %>
+            <%= check_box_tag 'item_ids[]', item.id, false %>
             <%= item.item %>
             <%= item.id %>            
             </label>
@@ -111,13 +113,13 @@
         </ul>
     </div>  
 
-    <div id = "showMisc" class= "All MISCELLANEOUS">
+    <div id = "showMisc" class= "MISCELLANEOUS">
     <% @default_misc_items.each do |item| %>
         <ul id="sortable" class="list-unstyled">
             <li class="ui-state-default">
             <div class="checkbox">
             <label>
-            <%= check_box_tag 'item_ids[]', item.id, :id => "item.id" %>
+            <%= check_box_tag 'item_ids[]', item.id, false %>
             <%= item.item %>
             <%= item.id %>            
             </label>

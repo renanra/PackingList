@@ -12,6 +12,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.0.0/mustache.js"></script>
   </head>
   <body>
+
+
     <!--   TRIP INFO PART -->
     <div class="notPrint">
       <div class="row">
@@ -29,16 +31,208 @@
           <br> <br>
           <%=link_to '<i class="fa fa-pencil-square-o"></i> EDIT INFO'.html_safe, edit_trip_path, class: "btn btn-primary" %> 
         </div>
-        <div class="col-md-4">
-          <img src="http://holyoke.schoolfusion.us/modules/groups/homepagefiles/cms/412428/Image/Weather.gif" width="300px"  height="200px">
-        </div>
-        <div class="col-md-4" id = "results">
+
+<div id="map-canvas" style="width: 750px; height: 400px;">
+</div>
+<script type="text/javascript">
+
+  function initialize() {
+  var latlong = [];
+    var query = $("#query").text().split(', ');
+    var city = query.shift();
+    var state = query.shift();
+    var country = query.shift();
+    var results;
+    var geocoder = new google.maps.Geocoder();
+    var location = city;
+ 
+
+    // geocoder.geocode( { 'address': location }, function(results, status) {
+    //   if (status == google.maps.GeocoderStatus.OK) {
+    //       map.setCenter(results[0].geometry.location);
+    //   } else {
+    //       alert("Could not find location: " + location);
+    //   }
+    // });
+
+  var lat_result;
+  var long_result;
+
+    geocoder.geocode( { 'address': location}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            // alert("location : " + results[0].geometry.location.lat() + " " +results[0].geometry.location.lng()); 
+            map.setCenter(results[0].geometry.location);
+            lat_result = results[0].geometry.location.lat();
+            console.log(lat_result);
+            long_result = results[0].geometry.location.lng();
+            console.log(long_result);
+            latlong = lat_result + ", " + long_result;
+            weather(lat_result, long_result);
+      // return LatLng; 
+
+          } else {
+            alert("Something got wrong " + status);
+          }
+             
+       
+ 
+        });
+
+    var mapOptions = {
+      zoom: 7,
+       styles: [
+        {"featureType":"road",
+        "elementType":"geometry",
+        "stylers":[{"lightness":100},{"visibility":"simplified"}]},
+        {"featureType":"water","elementType":"all","stylers":[{"color":"#39CCCC"}]}],
+
+      center: new google.maps.LatLng(-34.397, 150.644)};
+      var map = new google.maps.Map(document.getElementById('map-canvas'), 
+                                  mapOptions);
+      }
+
+
+
+
+
+
+
+     function loadScript() {
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyD-7NSPt2Gzjn79uQ-NoKl7xGKc0oO4H54&sensor=false&callback=initialize';
+    document.body.appendChild(script);
+      }
+
+     window.onload = loadScript();
+
+
+
+
+  /////////////////////////////// WEATHER //////////////////////////////////////
+  // jQuery(document).ready(function($) {
+  // $('#weather').click(function() {
+    function weather(lat_result, long_result){
+      var lat_result = lat_result;
+      var long_result = long_result;
+
+//      $('#loader').html('<img id="loader-img" alt="" src="http://i.imgur.com/IUwNLXT.gif" width="30" height="30" align="center" class="displayed"/>').hide().fadeIn("slow");
+//    var initial_text = $("#query").text();
+
+
+// if( initial_text.indexOf('United States') >= 0){
+//   console.log("found US")
+
+//     // if (initial_text.indexOf(',') > -1){ 
+//     //   initial_text.split(',')
+//     //      console.log(initial_text.indexOf(','))
+//     //    }
+
+
+//     var query = $("#query").text().split(', ');
+//     //console.log(query);
+//     var city = query.shift();
+//     var state = query.shift();
+//     var country = query.shift();
+
+//   // console.log(city, country)
+
+//     $.ajax({
+//       url: "http://api.wunderground.com/api/c391db3a2a98fb5a/geolookup/conditions/q/" + state + "/" + city + ".json",
+//       dataType: "jsonp",
+//       success: function(parsed_json) {
+//         console.log(parsed_json.location)
+
+//           if (typeof parsed_json['location'] == 'undefined') {
+//          console.log("error")
+       
+//         $('#loader').empty();
+//         $("#results").append("<h5 id = 'weatherResult'> City Not Found. </h5><h5> Please check the spelling of the DESTINATION and try again.  </h5>");
+//         $("#weatherResult").hide().show("slow");
+//         } else {
+
+
+//         var location = parsed_json['location']['city'];
+   
+//         var weather = parsed_json['current_observation']['weather'];
+//         var temp = parsed_json['current_observation']['temperature_string'];
+//         var feelsLike = parsed_json['current_observation']['feelslike_string'];
+//         var result = "It is " + weather + " in " + location + "." + "<br />" + "Current temperature is: " + temp + "<br />" + "Feels like: " + feelsLike;
+//         var icon = parsed_json['current_observation']['icon_url'];
+//         console.log(result);
+//         console.log("clicked");
+//         console.log(location)
+//         $('#loader').empty();
+ 
+//         $("#icon").append("<img src=" + icon + ">");
+//         $("#icon").hide().show("slow");
+  
+//         $("#results").append("<h5 id = 'weatherResult'>" + result + "</h5>");
+//         $("#weatherResult").hide().show("slow");
+//        }
+//       }
+//     }); //end of ajax 
+// } else
+// // {
+//   console.log("do nothing")
+
+
+// var latitude = latlong[0];
+// var longitude = latlong[1];
+console.log(lat_result, long_result);
+
+
+    var query = $("#query").text().split(', ');
+    //console.log(query);
+    var city = query.shift();
+    var country = query.shift();
+
+  // console.log(city, country)
+
+    $.ajax({
+      // url: "http://api.wunderground.com/api/c391db3a2a98fb5a/geolookup/q/"+ lat_result+ "," + long_result + ".json",
+      url: "http://api.wunderground.com/api/c391db3a2a98fb5a/forecast10day/q/"+ lat_result+ "," + long_result + ".json",
+      dataType: "jsonp",
+      success: function(data) {
+     for (var i = 0; i < data.forecast.txt_forecast.forecastday.length; i=i+2) {
+      var day = data.forecast.txt_forecast.forecastday[i].title;
+    var weatherResult = data.forecast.txt_forecast.forecastday[i].fcttext;
+   console.log(weatherResult)
+    var icon = data.forecast.txt_forecast.forecastday[i].icon_url;
+       //  var weather = parsed_json['current_observation']['weather'];
+       //  var temp = parsed_json['current_observation']['temperature_string'];
+       //  var feelsLike = parsed_json['current_observation']['feelslike_string'];
+        var result = day + "<br />."+"It is " + weatherResult + " in " + city + "." + "<br />";
+
+       //  console.log(result);
+       //  console.log("clicked");
+       //  console.log(location)
+        // $('#loader').empty();
+   
+
+        // $("#icon").append("<img src=" + icon + ">");
+        // $("#icon").hide().show("slow");
+        $("#results").append("<br><div style='border: 2px solid #8AC007; position: relative; float: left'><img src=" + icon + "><div style='width: 100%'>" + result + "</div></div><br>");
+       // $("#weatherResult").hide().show("slow");
+     }   // end of for loop
+   }
+    }) //end of ajax 
+// }
+ }
+//end of weather
+
+    </script>
+
+
+     <hr />
+
+        <div id = "results" style="ovrflow: hidden">
           <h3 style="float:left"> CURRENT WEATHER: &nbsp; </h3>
-          <div id="icon" style="float:left">
-          </div>
+ <!--          <div id="icon" style="float:left">
+          </div> -->
           <button id="weather" class="btn btn-weather location"><i class="fa fa-cloud"></i> CHECK WEATHER</button><br />
           <br> 
-          <div style="clear:both" id="loader"> </div>
+ <!--          <div style="clear:both" id="loader"> </div> -->
         </div>
       </div>
       <hr />
@@ -50,7 +244,6 @@
         <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
       </div>
       <div class = "text-center notPrint">
-<!--         <input type="text" id = "wide" class="form-control add-toPack" placeholder="Add your own item to the list"> -->
         <img src="https://lh5.ggpht.com/QDPh6BDfY_9LtBaTtdwUzthYHXh3EcVqZy7L1X7-z_OComHq38lOJPI1-jTCmj7CU59z=w300" height="100px" width="100px">
         <form>
           <input type="button" id="notPrint" class="btn btn-edit location" value="PRINT YOUR PACKING LIST" onClick="window.print()">
@@ -69,26 +262,21 @@
           </div>
           <h3 class = "text-center">ITEMS TO PACK</h3>
           <hr>
-          <div class = "text-center notPrint">
-            <button class="btn btn-success btn-m" id="custom"><span class="glyphicon glyphicon-arrow-down"></span>ADD CUSTOM</button>
-
-          </div>
-
 
             <br>
             <div class = "text-center notPrint" id="catButtons">
-            <button class="btn btn-info btn-xs" id="all">ALL</button>
+             <button class="btn btn-info btn-xs highlight" id="toiletries">ALL</button>
             <button class="btn btn-info btn-xs" id="toiletries">TOILETRIES</button>
             <button class="btn btn-info btn-xs" id="clothes">CLOTHES</button>
             <button class="btn btn-info btn-xs" id="paperwork">PAPERWORK</button>
             <button class="btn btn-info btn-xs" id="electronics">ELECTRONICS</button>
             <button class="btn btn-info btn-xs" id="carry-on">CARRY-ON</button>
-            <button class="btn btn-info btn-xs" id="misc">MISCELLANEOUS</button>
+            <button class="btn btn-info btn-xs" id="misc">MISC</button>
             </div>
 
     <script class="item-template" type="text/template">
       <div class="text-center">
-      <h6> Click  on the category to get suggested items </h6>
+      <h6> Click on the category to get suggested items </h6>
       </div>
         <%= form_for :default_items_trips, :url => {:action => "create_default_items_trip"} do |f| %>
       <%= render "all_categories" %>
@@ -114,9 +302,15 @@
       </div>
   <div class="col-md-6">
     <div class="toPacklist">
-    <div class = "text-center"></div>
+   
     <h3 class = "text-center">PACKED ITEMS</h3>
     <hr />
+    <br>
+      <div class="text-center">
+      <button class="btn btn-info btn-xs highlighted" id="clothes">PACKED ITEMS</button>
+      
+      <h6><strong><span class="count-todos"></span></strong> Items left to pack </h6>
+</div>
       <ul id="done-items" class="list-unstyled">
         <li><input type="checkbox" checked> This packing List
         <button class="remove-item btn btn-default btn-xs pull-right">
@@ -138,11 +332,14 @@
     <hr>
     <br>
     <div class="todo-footer">
-      <strong><span class="count-todos"></span></strong> Items left to pack
+ 
     </div>
     <br>
     <hr>
+          <div class = "text-center notPrint">
+            <button class="btn btn-success btn-m" id="custom"><span class="glyphicon glyphicon-arrow-down"></span>ADD CUSTOM</button>
 
+          </div>
     <!--   END OF TO PACK -->
   </body>
 </html>

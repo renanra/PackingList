@@ -15,9 +15,9 @@
         <div class="col-xs-18 col-sm-3 col-md-4 stack" id="tripLi">
           <br> 
           <div class="thumbnail text-center">
-            <img src="http://www.ehshousing.com/images/slider/santorini.jpg">
-         <!--    <h3>DESTINATION: </h3> -->
-            <h4> <%=link_to trip.destination, trip %></h4>
+         <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{trip.destination}&zoom=14&size=400x400", class: "menu_icon") %>
+
+            <h4> <%=link_to trip.destination, saved_items_trip_path(trip.id) %></h4>
             <h4>Start Date : <%=trip.start_date %></h4>
             <h4>End Date : <%=trip.end_date %></h4>
           </div>

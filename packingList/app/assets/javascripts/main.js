@@ -36,8 +36,14 @@ $(function() {
     $('#count-trips').append(tripCount);
   }
   countTrips();
+
+
+
   ///////////////// TOGGLE BUTTON TO SHOW AND HIDE DEFAULT ITEMS////////////////
   $("#catButtons button").click(function() {
+    $("#catButtons button").siblings().removeClass('highlight');
+    $(this).addClass('highlight');
+        // $(this).toggleClass('highlight');
     var category = $(this).html();
     console.log(category);
     $("#allCategories").children().fadeOut();
@@ -50,84 +56,7 @@ $(function() {
   }
   );
 
-  // $("#toiletries").click(function() {
-  //   // $('#allCategories').empty();
-  //   // showToiletries = $('#showToiletries');
-  //   // $(this).append(showToiletries); 
 
-  //   var savedToiletries;
-    
-  //   $('#showToiletries').toggle(function() {
-  //      $('#allCategories').empty();
-  //       savedToiletries = $('#showToiletries').detach();
-
-  //   },
-  //   function() {
-
-  //        $(this).append(savedToiletries);                
-  //    });
-
-
-  //   // console.log("toiletries clicked");
-  //   // $(".showAll").empty();
-  //   // $("#showToiletries").toggle("slow");
-  // });
-
-
-  // $("#clothes").click(function() {
-  //   var savedClothes;
-    
-  //   $('#showClothes').toggle(function() {
-  //           $('#showToiletries').empty();
-  //       savedClothes = $('#showClothes').detach();
-  //   },
-  //   function() {
-  //        $(this).append(savedClothes);                
-  //    });
-
-  //   // console.log("clothes clicked");
-  //   // $(".showAll").empty();
-  //   // $("#showClothes").show("slow");
-  // });
-
-  // $("#paperwork").click(function() {
-  //   var savedPaperwork;
-    
-  //   $('#showPaperwork').toggle(function() {
-  //       savedPaperwork = $('#showPaperwork').detach();
-  //   },
-  //   function() {
-  //        $(this).append(savedPaperwork);                
-  //    });
-
-  //   // console.log("paperwork clicked");
-  //   // $(".showAll").empty();
-  //   // $("#showPaperwork").show("slow");
-  // });
-
-
-
-  // $("#electronics").click(function() {
-  //   var savedElectronics;
-    
-  //   $('#showPaperwork').toggle(function() {
-  //       savedElectronics = $('#showElectronics').detach();
-  //   },
-  //   function() {
-  //        $(this).append(savedElectronics);                
-  //    });
-
-
-  //   // console.log("electronics clicked");
-  //   // $(".showAll").empty();
-  //   // $("#showElectronics").show("slow");
-  // });
-
-
-  // $("#all").click(function() {
-  //   console.log("show all clicked");
-  //   $(".showAll").toggle("slow");
-  // });
 
 
     $("#custom").click(function() {
@@ -153,60 +82,117 @@ $(function() {
       $('#checkbox').append(info);
     }
   });
-  /////////////////////////////// WEATHER //////////////////////////////////////
-  // jQuery(document).ready(function($) {
-  $('#weather').click(function() {
-     $('#loader').html('<img id="loader-img" alt="" src="http://i.imgur.com/IUwNLXT.gif" width="30" height="30" align="center" class="displayed"/>').hide().fadeIn("slow");
-    var query = $("#query").text().split(', ');
-    //console.log(query);
-    var city = query.shift();
-    var state = query.shift();
-    var country = query.shift();
-    $.ajax({
-      url: "http://api.wunderground.com/api/c391db3a2a98fb5a/geolookup/conditions/q/" + state + "/" + city + ".json",
-      dataType: "jsonp",
-      success: function(parsed_json) {
-        console.log(parsed_json.location)
-        //  if (parsed_json.location == "undefined") {
-        //  console.log("error")
-        // $('#loader').empty();
-        // $("#results").append("<h5 id = 'weatherResult'> City Not Found. </h5><h5> Please check the spelling of the Destination and try again.  </h5>");
-        // $("#weatherResult").hide().show("slow");
-        // } else {
-        var location = parsed_json['location']['city'];
-        var weather = parsed_json['current_observation']['weather'];
-        var temp = parsed_json['current_observation']['temperature_string'];
-        var feelsLike = parsed_json['current_observation']['feelslike_string'];
-        var result = "It is " + weather + " in " + location + "." + "<br />" + "Current temperature is: " + temp + "<br />" + "Feels like: " + feelsLike;
-        var icon = parsed_json['current_observation']['icon_url'];
-        console.log(result);
-        console.log("clicked");
-        console.log(location)
-        $('#loader').empty();
-        // $('#loader').fadeOut( 1600 );
-        $("#icon").append("<img src=" + icon + ">");
-        $("#icon").hide().show("slow");
-        // $("#icon").effect( "shake" );
-        $("#results").append("<h5 id = 'weatherResult'>" + result + "</h5>");
-        $("#weatherResult").hide().show("slow");
-         //$("#weatherResult").effect( "shake" );
-       // }
-      },
-      error: function(a, b, error){
-        console.log(error)
-        if (state == undefined) {
-         console.log("error")
-        $('#loader').empty();
-        $("#results").append("<h5 id = 'weatherResult'> City Not Found. </h5><h5> Please check the spelling of the Destination and try again.  </h5>");
-        $("#weatherResult").hide().show("slow");
-        } 
-      }
-    });
-  });
-  // });
+//   /////////////////////////////// WEATHER //////////////////////////////////////
+//   // jQuery(document).ready(function($) {
+//   // $('#weather').click(function() {
+//      $('#loader').html('<img id="loader-img" alt="" src="http://i.imgur.com/IUwNLXT.gif" width="30" height="30" align="center" class="displayed"/>').hide().fadeIn("slow");
+//    var initial_text = $("#query").text();
+
+
+// if( initial_text.indexOf('United States') >= 0){
+//   console.log("found US")
+
+//     // if (initial_text.indexOf(',') > -1){ 
+//     //   initial_text.split(',')
+//     //      console.log(initial_text.indexOf(','))
+//     //    }
+
+
+//     var query = $("#query").text().split(', ');
+//     //console.log(query);
+//     var city = query.shift();
+//     var state = query.shift();
+//     var country = query.shift();
+
+//   // console.log(city, country)
+
+//     $.ajax({
+//       url: "http://api.wunderground.com/api/c391db3a2a98fb5a/geolookup/conditions/q/" + state + "/" + city + ".json",
+//       dataType: "jsonp",
+//       success: function(parsed_json) {
+//         console.log(parsed_json.location)
+
+//           if (typeof parsed_json['location'] == 'undefined') {
+//          console.log("error")
+       
+//         $('#loader').empty();
+//         $("#results").append("<h5 id = 'weatherResult'> City Not Found. </h5><h5> Please check the spelling of the DESTINATION and try again.  </h5>");
+//         $("#weatherResult").hide().show("slow");
+//         } else {
+
+
+//         var location = parsed_json['location']['city'];
+   
+//         var weather = parsed_json['current_observation']['weather'];
+//         var temp = parsed_json['current_observation']['temperature_string'];
+//         var feelsLike = parsed_json['current_observation']['feelslike_string'];
+//         var result = "It is " + weather + " in " + location + "." + "<br />" + "Current temperature is: " + temp + "<br />" + "Feels like: " + feelsLike;
+//         var icon = parsed_json['current_observation']['icon_url'];
+//         console.log(result);
+//         console.log("clicked");
+//         console.log(location)
+//         $('#loader').empty();
+ 
+//         $("#icon").append("<img src=" + icon + ">");
+//         $("#icon").hide().show("slow");
+  
+//         $("#results").append("<h5 id = 'weatherResult'>" + result + "</h5>");
+//         $("#weatherResult").hide().show("slow");
+//        }
+//       }
+//     }); //end of ajax 
+// } else
+// {
+//   console.log("do nothing")
+
+//     var query = $("#query").text().split(', ');
+//     //console.log(query);
+//     var city = query.shift();
+//     var country = query.shift();
+
+//   // console.log(city, country)
+
+//     $.ajax({
+//       url: "http://api.wunderground.com/api/c391db3a2a98fb5a/geolookup/conditions/q/" + country + "/" + city + ".json",
+//       dataType: "jsonp",
+//       success: function(parsed_json) {
+//         console.log(parsed_json.location)
+
+//           if (typeof parsed_json['location'] == 'undefined') {
+//          console.log("error")
+       
+//         $('#loader').empty();
+//         $("#results").append("<h5 id = 'weatherResult'> City Not Found. </h5><h5> Please check the spelling of the DESTINATION and try again.  </h5>");
+//         $("#weatherResult").hide().show("slow");
+//         } else {
+
+
+//         var location = parsed_json['location']['city'];
+   
+//         var weather = parsed_json['current_observation']['weather'];
+//         var temp = parsed_json['current_observation']['temperature_string'];
+//         var feelsLike = parsed_json['current_observation']['feelslike_string'];
+//         var result = "It is " + weather + " in " + location + "." + "<br />" + "Current temperature is: " + temp + "<br />" + "Feels like: " + feelsLike;
+//         var icon = parsed_json['current_observation']['icon_url'];
+//         console.log(result);
+//         console.log("clicked");
+//         console.log(location)
+//         $('#loader').empty();
+ 
+//         $("#icon").append("<img src=" + icon + ">");
+//         $("#icon").hide().show("slow");
+  
+//         $("#results").append("<h5 id = 'weatherResult'>" + result + "</h5>");
+//         $("#weatherResult").hide().show("slow");
+//        }
+//       }
+//     }); //end of ajax 
+// }
+
   /////////////////////////////////// PLACES AUTOCOMPLETE ////////////////////
 
   $(".location").autocomplete({
+    autoFocus: true,
     source: function(request, response) {
       $.ajax({
         url: "http://gd.geobytes.com/AutoCompleteCity",
@@ -215,7 +201,17 @@ $(function() {
           q: request.term
         },
         success: function(data) {
+          console.log(data)
+         if (data == "") {
+     $('#flash').delay(300).fadeIn('normal', function() {
+      $(this).delay(2500).fadeOut();
+   });
+      } else {
+            console.log("found")
+          }
           response(data);
+
+
         }
       });
     },

@@ -5,14 +5,14 @@ class TripsController < ApplicationController
 		end
 
 		def new 
-      binding.pry
+     # binding.pry
       @default_items_trip = DefaultItemsTrips.new
     @default_trip = DefaultTrip.new(default_trip_params)
     @trip = Trip.new
   	end
 
 	  def create
-   
+   #binding.pry
       # @default_items_trip = DefaultItemsTrip.create(default_trip_params)
 
 
@@ -22,7 +22,7 @@ class TripsController < ApplicationController
       # @default_trips.save
       # @trip = current_user.trips.new
 	    @trip = Trip.new(params[:trip])
-         binding.pry
+      #binding.pry
 	    @trip.user_id = current_user.id
 	    @trip.destination = params[:destination]
 	    @trip.start_date = params[:start_date]
@@ -30,26 +30,14 @@ class TripsController < ApplicationController
 	    @trip.id = params[:id]
       trip_id = params[:id]
       # @trip.default_trips.last.default_item_id = params[:default_trips][:default_item_id]
-   binding.pry
+   #binding.pry
 	    if @trip.save
 	      redirect_to(@trip)
 	    else 
-	      render :new
+        flash[:alert] = "Please fill out all the fields to proceed"
+	      redirect_to root_path
 	    end
 	  end
-
-    def create_default_items_trip
-      # binding.pry
-      @trip = Trip.find_by_id(params[:id])
-      @trip.id = params[:id]
-      trip_id = params[:id]
-      item_ids = params[:item_ids]
-      item_ids.each do |iid|
-
-        DefaultItemsTrips.find_or_create_by(trip_id: params[:id], default_item_id: iid)
-      end
-      redirect_to saved_items_trip_path
-    end
 
   	def show
       @params1 = params
@@ -78,7 +66,7 @@ class TripsController < ApplicationController
       # @default_items_trips.trip_id = trip_id
       # @default_trips.default_item_id = di_name
       # @default_trips.save
-      # binding.pry
+     #binding.pry
 
       @default_paperwork_items = DefaultItem.where(category: "Travel Paperwork")
       @default_toiletries_items = DefaultItem.where(category: "Toiletries")
@@ -88,11 +76,43 @@ class TripsController < ApplicationController
   			end
 
 
-        def saved_items_trip
-          # binding.pry
-          @saved_items_trip = Trip.find(params[:id])
-          @saved_items = @saved_items_trip.default_items.order("id ASC")
-        end
+
+   def create_default_items_trip
+      #binding.pry
+      @trip = Trip.find_by_id(params[:id])
+      @trip.id = params[:id]
+      trip_id = params[:id]
+      item_ids = params[:item_ids]
+      if item_ids
+      item_ids.each do |iid|
+
+        DefaultItemsTrips.find_or_create_by(trip_id: params[:id], default_item_id: iid)
+      end
+    end
+      redirect_to saved_items_trip_path
+    end
+
+  def saved_items_trip
+    #binding.pry
+    @saved_items_trip = Trip.find(params[:id])
+    @saved_items = @saved_items_trip.default_items.order("id ASC")
+    @saved_toiletries = @saved_items_trip.default_items.where(category: "Toiletries")
+    @saved_clothes = @saved_items_trip.default_items.where(category: "Clothes")
+    @saved_paperwork = @saved_items_trip.default_items.where(category: "Travel Paperwork")
+    @saved_electronics = @saved_items_trip.default_items.where(category: "Electronics")
+    @saved_carry_on = @saved_items_trip.default_items.where(category: "Carry-on")
+    @saved_misc = @saved_items_trip.default_items.where(category: "Miscellaneous")
+    # to delete join ids,  @saved_items_trip.default_items.clear
+  end
+
+
+def delete_saved_items_trip
+  @saved_items_trip = Trip.find(params[:id])
+  @saved_items_trip.default_items.clear
+end
+
+def packed
+end
 
   def edit
     @trip = Trip.find(params[:id])

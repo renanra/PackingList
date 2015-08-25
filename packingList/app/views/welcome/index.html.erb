@@ -12,18 +12,34 @@
     <div class="jumbotron text-center">
       <h2>ADD A NEW TRIP</h2>
       <p>Fill out the fields below and click on Generate to get the suggested Packing List</p>
+      <div style="height:25px">
+                      <p id="flash">That location does not exist. Please check your spelling or select from a suggested list</p>
+
+
+    <% if flash[:alert] %>
+    <p class="flash-error"><%= flash[:alert] %></p>
+  <% end %>
+  <% if flash[:notice] %>
+    <p class="flash-notice"><%= flash[:notice] %></p>
+  <% end %>
+                      </div>
+
     </div>
+
     <div class="row">
       <div class="col-sm-7">
         <div class="form-group">
+
           <label for="current">What is your current location?</label>
-          <input type="text" id="query" class="form-control location">
+          <input type="text" id="query" class="form-control location" placeholder="Enter a location" id="log"> 
         </div>
-        <form action="/api/trips" method="post">
+ 
+        <form action="/trips" method="post">
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
           <div class="form-group">
             <label for="destination">What is your Destination?</label>
-            <input type="text" name="destination" class="form-control location">
+            <input type="text" name="destination" class="form-control location" placeholder="Enter a location" id="log">
+   
           </div>
           <div class="form-group">
             <label for="date">Start Date</label>
@@ -35,7 +51,9 @@
           </div>
           <button type="submit", class="btn btn-weather location">CREATE TRIP</button>
         </form>
+
       </div>
+
       <div class="col-sm-5">
         <img src="http://images.all-free-download.com/images/graphiclarge/world_travel_symbols_312136.jpg" width="470px" height="470px">
       </div>

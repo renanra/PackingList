@@ -196,3 +196,37 @@ li.ui-state-default:last-child{
   color: green;
 }
 
+
+ul { padding-left:20px; list-style-type: none; }
+li.unchecked { margin-bottom:10px; }
+li.unchecked:before {    
+    font-family: 'FontAwesome';
+    content: "\f096";
+    margin:0 5px 0 -15px;
+}
+
+ul { padding-left:20px; list-style-type: none; }
+li.checked { margin-bottom:10px; }
+li.checked:before {    
+    font-family: 'FontAwesome';
+    content: "\f046";
+    margin:0 5px 0 -15px;
+}
+
+.red {
+  background-color: red;
+}
+
+#catButtons button {
+    background:rgb(255,145,0);
+}
+
+#catButtons button.highlight {
+    background: #39CCCC;
+}
+.highlighted {
+    background: #39CCCC !important;
+}
+
+#flash { display:none; background-color:#F50057; color:#fff}
+.flash-error { background-color:#F50057; color:#fff}
