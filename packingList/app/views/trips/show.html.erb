@@ -92,11 +92,6 @@
       }
 
 
-
-
-
-
-
      function loadScript() {
       var script = document.createElement('script');
       script.type = 'text/javascript';
@@ -105,8 +100,6 @@
       }
 
      window.onload = loadScript();
-
-
 
 
   /////////////////////////////// WEATHER //////////////////////////////////////
@@ -187,6 +180,7 @@ console.log(lat_result, long_result);
     var city = query.shift();
     var country = query.shift();
 
+  $(".heading").append(city);
   // console.log(city, country)
 
     $.ajax({
@@ -194,7 +188,7 @@ console.log(lat_result, long_result);
       url: "http://api.wunderground.com/api/c391db3a2a98fb5a/forecast10day/q/"+ lat_result+ "," + long_result + ".json",
       dataType: "jsonp",
       success: function(data) {
-     for (var i = 0; i < data.forecast.txt_forecast.forecastday.length; i=i+2) {
+     for (var i = 0; i < data.forecast.txt_forecast.forecastday.length; i++) {
       var day = data.forecast.txt_forecast.forecastday[i].title;
     var weatherResult = data.forecast.txt_forecast.forecastday[i].fcttext;
    console.log(weatherResult)
@@ -202,7 +196,7 @@ console.log(lat_result, long_result);
        //  var weather = parsed_json['current_observation']['weather'];
        //  var temp = parsed_json['current_observation']['temperature_string'];
        //  var feelsLike = parsed_json['current_observation']['feelslike_string'];
-        var result = day + "<br />."+"It is " + weatherResult + " in " + city + "." + "<br />";
+        var result = "<strong>" + day+ "</strong>" + ".<br />" + weatherResult
 
        //  console.log(result);
        //  console.log("clicked");
@@ -212,7 +206,8 @@ console.log(lat_result, long_result);
 
         // $("#icon").append("<img src=" + icon + ">");
         // $("#icon").hide().show("slow");
-        $("#results").append("<br><div style='border: 2px solid #8AC007; position: relative; float: left'><img src=" + icon + "><div style='width: 100%'>" + result + "</div></div><br>");
+        // $("#results").append("<br><div style='border: 2px solid #8AC007; position: relative; float: left'><img src=" + icon + "><div style='width: 100%'>" + result + "</div></div><br>");
+        $(".day"+i).append("<img src=" + icon + "><h5 style='width: 100%'>" + result + "</h5><hr>");
        // $("#weatherResult").hide().show("slow");
      }   // end of for loop
    }
@@ -226,13 +221,27 @@ console.log(lat_result, long_result);
 
      <hr />
 
-        <div id = "results" style="ovrflow: hidden">
-          <h3 style="float:left"> CURRENT WEATHER: &nbsp; </h3>
- <!--          <div id="icon" style="float:left">
-          </div> -->
-          <button id="weather" class="btn btn-weather location"><i class="fa fa-cloud"></i> CHECK WEATHER</button><br />
-          <br> 
- <!--          <div style="clear:both" id="loader"> </div> -->
+        <div class="text-center">
+          <h3 class="heading"> 10 DAY WEATHER for:  </h3> 
+
+<!-- 
+          <button id="weather" class="btn btn-weather location"><i class="fa fa-cloud"></i> CHECK WEATHER</button><br /> -->
+        <!--   <br> <br> -->
+ 
+
+        <div id = "results" style="overflow: hidden">
+        <div class="weather day0 day1"></div>
+        <div class="weather day2 day3"></div>
+        <div class="weather day4 day5"></div>
+        <div class="weather day6 day7"></div>
+        <div class="weather day8 day9"></div>
+        <div class="weather day10 day11"></div>
+        <div class="weather day12 day13"></div>
+        <div class="weather day14 day15"></div>
+        <div class="weather day16 day17"></div>
+        <div class="weather day18 day19"></div>
+        </div>
+
         </div>
       </div>
       <hr />

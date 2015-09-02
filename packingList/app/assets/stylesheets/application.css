@@ -230,3 +230,12 @@ li.checked:before {
 
 #flash { display:none; background-color:#F50057; color:#fff}
 .flash-error { background-color:#F50057; color:#fff}
+
+.weather {
+  margin: 10px;
+  padding: 5px;
+  float: left;
+  height: 310px;
+  border: 1px solid black;
+  width: 210px;
+}
