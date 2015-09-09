@@ -12,7 +12,7 @@ class TripsController < ApplicationController
   	end
 
 	  def create
-   #binding.pry
+   binding.pry
       # @default_items_trip = DefaultItemsTrip.create(default_trip_params)
 
 
@@ -78,7 +78,7 @@ class TripsController < ApplicationController
 
 
    def create_default_items_trip
-      #binding.pry
+      binding.pry
       @trip = Trip.find_by_id(params[:id])
       @trip.id = params[:id]
       trip_id = params[:id]
@@ -129,6 +129,9 @@ end
   end
 
   def destroy
+
+all_trips = params[:trip]
+    binding.pry
     @trip = Trip.find(params[:id])
     @trip.destroy
     redirect_to trips_path
@@ -137,7 +140,7 @@ end
     private
 
       def default_trip_params
-  params.require(:default_items_trips).permit(:id, :trip_id, :user_id, :destination, :id => [], default_item_ids: [], default_items: [], item_ids: [])
+  params.require(:default_items_trips).permit(:id, :trip_id, :user_id, :destination, :id => [], default_item_ids: [], default_items: [], item_ids: [], trip_ids: [])
 end
     #   def default_trip_params
     #   params.require(:default_item).permit(:trip_id, :default_item_id, default_item_ids: [])

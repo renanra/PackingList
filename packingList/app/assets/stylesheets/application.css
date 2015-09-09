@@ -239,3 +239,22 @@ li.checked:before {
   border: 1px solid black;
   width: 210px;
 }
+
+.slick-prev:before, .slick-next:before { 
+    color:black !important;
+}
+#results {
+  display:block;
+}
+
+.all_thumbs .thumbnail {
+  background: #FF4081 !important;
+  color: white;
+}
+.all_thumbs .thumbnail.highlight {
+   background: #39CCCC !important;
+ }
+ #allCategories {
+  display: block;
+  height: 500px;
+ }

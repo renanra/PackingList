@@ -51,7 +51,7 @@
 	DefaultItem.create(item: 'Jewelry', category: 'Clothes')	
 	DefaultItem.create(item: 'Purses', category: 'Clothes')	
 	DefaultItem.create(item: 'Collapsible Totes', category: 'Clothes')	
-	DefaultItem.create(item: 'Plain Tickets', category: 'Travel Paperwork')	
+	DefaultItem.create(item: 'Plane Tickets', category: 'Travel Paperwork')	
 	DefaultItem.create(item: 'Hotel Confirmation', category: 'Travel Paperwork')	
 	DefaultItem.create(item: 'Rental Car Confirmation', category: 'Travel Paperwork')	
 	DefaultItem.create(item: 'Cash / Credit Cards', category: 'Travel Paperwork')	

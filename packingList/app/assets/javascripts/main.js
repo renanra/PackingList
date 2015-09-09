@@ -27,7 +27,15 @@ $(function() {
     }
   });
 
+//////////////////////////////// SCROLL WEATHER //////////////////////////////////
 
+$('#results').slick({
+  infinite: true,
+  arrows: true,
+  slidesToShow: 5,
+  slidesToScroll: 1
+});
+        
 
   ////////////////////////////// COUNT TRIPS /////////////////////////////////////
   function countTrips() {
@@ -43,13 +51,16 @@ $(function() {
   $("#catButtons button").click(function() {
     $("#catButtons button").siblings().removeClass('highlight');
     $(this).addClass('highlight');
+       $("#allCategories").css('display','block');
         // $(this).toggleClass('highlight');
     var category = $(this).html();
     console.log(category);
     $("#allCategories").children().fadeOut();
     $("#allCategories").children().each(function(){
       if($(this).hasClass(category)){
+
         $(this).fadeIn();
+
       }
     });
     
@@ -59,10 +70,10 @@ $(function() {
 
 
 
-    $("#custom").click(function() {
-    $("#allCategories").children().fadeOut();
-    $("#toggledCustom").fadeIn("slow");
-  });
+  //   $("#custom").click(function() {
+  //   $("#allCategories").children().fadeOut();
+  //   $("#toggledCustom").fadeIn("slow");
+  // });
 
       function createCustomToPack(text) {
     var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" id="item" />' + text + '</label><button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></div></li>';
@@ -70,18 +81,18 @@ $(function() {
     $('.add-toPack').val('');
   }
   /////////////////////////////////// RENDERING DEFAULT ITEMS ON A TRIP PAGE////////////////////
-   $('#checkbox').empty();
-  $.ajax({
-    url: "/api/default_items",
-    success: function(all_items) {
-      var template = $('.item-template').html();
-      var info = Mustache.render(template, {
-        default_items: all_items
-      });
-      //console.log(info);
-      $('#checkbox').append(info);
-    }
-  });
+  //  $('#checkbox').empty();
+  // $.ajax({
+  //   url: "/api/default_items",
+  //   success: function(all_items) {
+  //     var template = $('.item-template').html();
+  //     var info = Mustache.render(template, {
+  //       default_items: all_items
+  //     });
+  //     //console.log(info);
+  //     $('#checkbox').append(info);
+  //   }
+  // });
 //   /////////////////////////////// WEATHER //////////////////////////////////////
 //   // jQuery(document).ready(function($) {
 //   // $('#weather').click(function() {
@@ -188,6 +199,16 @@ $(function() {
 //       }
 //     }); //end of ajax 
 // }
+
+
+
+
+////////////////////////////////////// SELECT TILES //////////////////////////
+$(".all_thumbs .thumbnail").click(function(){
+  console.log(this);
+ $(this).addClass('highlight');
+});
+
 
   /////////////////////////////////// PLACES AUTOCOMPLETE ////////////////////
 

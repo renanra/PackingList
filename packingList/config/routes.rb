@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     # get '/trips', to: 'trips#new', as: :trip
     #post '/trips/:id', to: 'default_trips#create', as: :create
    post '/trips/:id', to: 'trips#create_default_items_trip', as: :create_default_items_trip
+   delete '/trips', to: 'trips#destroy', as: :delete
   namespace :api do
       #get '/trips/:trip_id' => 'default_trips#joinMethod'
       #get '/api/default_trips' => 'default_trips#joinMethod'

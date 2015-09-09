@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick-theme.css"/>
+
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
     <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -47,14 +50,6 @@
     var location = city;
  
 
-    // geocoder.geocode( { 'address': location }, function(results, status) {
-    //   if (status == google.maps.GeocoderStatus.OK) {
-    //       map.setCenter(results[0].geometry.location);
-    //   } else {
-    //       alert("Could not find location: " + location);
-    //   }
-    // });
-
   var lat_result;
   var long_result;
 
@@ -73,9 +68,7 @@
           } else {
             alert("Something got wrong " + status);
           }
-             
-       
- 
+        
         });
 
     var mapOptions = {
@@ -108,140 +101,53 @@
     function weather(lat_result, long_result){
       var lat_result = lat_result;
       var long_result = long_result;
-
-//      $('#loader').html('<img id="loader-img" alt="" src="http://i.imgur.com/IUwNLXT.gif" width="30" height="30" align="center" class="displayed"/>').hide().fadeIn("slow");
-//    var initial_text = $("#query").text();
-
-
-// if( initial_text.indexOf('United States') >= 0){
-//   console.log("found US")
-
-//     // if (initial_text.indexOf(',') > -1){ 
-//     //   initial_text.split(',')
-//     //      console.log(initial_text.indexOf(','))
-//     //    }
-
-
-//     var query = $("#query").text().split(', ');
-//     //console.log(query);
-//     var city = query.shift();
-//     var state = query.shift();
-//     var country = query.shift();
-
-//   // console.log(city, country)
-
-//     $.ajax({
-//       url: "http://api.wunderground.com/api/c391db3a2a98fb5a/geolookup/conditions/q/" + state + "/" + city + ".json",
-//       dataType: "jsonp",
-//       success: function(parsed_json) {
-//         console.log(parsed_json.location)
-
-//           if (typeof parsed_json['location'] == 'undefined') {
-//          console.log("error")
-       
-//         $('#loader').empty();
-//         $("#results").append("<h5 id = 'weatherResult'> City Not Found. </h5><h5> Please check the spelling of the DESTINATION and try again.  </h5>");
-//         $("#weatherResult").hide().show("slow");
-//         } else {
-
-
-//         var location = parsed_json['location']['city'];
-   
-//         var weather = parsed_json['current_observation']['weather'];
-//         var temp = parsed_json['current_observation']['temperature_string'];
-//         var feelsLike = parsed_json['current_observation']['feelslike_string'];
-//         var result = "It is " + weather + " in " + location + "." + "<br />" + "Current temperature is: " + temp + "<br />" + "Feels like: " + feelsLike;
-//         var icon = parsed_json['current_observation']['icon_url'];
-//         console.log(result);
-//         console.log("clicked");
-//         console.log(location)
-//         $('#loader').empty();
- 
-//         $("#icon").append("<img src=" + icon + ">");
-//         $("#icon").hide().show("slow");
-  
-//         $("#results").append("<h5 id = 'weatherResult'>" + result + "</h5>");
-//         $("#weatherResult").hide().show("slow");
-//        }
-//       }
-//     }); //end of ajax 
-// } else
-// // {
-//   console.log("do nothing")
-
-
-// var latitude = latlong[0];
-// var longitude = latlong[1];
-console.log(lat_result, long_result);
-
-
     var query = $("#query").text().split(', ');
-    //console.log(query);
+
     var city = query.shift();
     var country = query.shift();
 
   $(".heading").append(city);
-  // console.log(city, country)
-
+ 
     $.ajax({
-      // url: "http://api.wunderground.com/api/c391db3a2a98fb5a/geolookup/q/"+ lat_result+ "," + long_result + ".json",
       url: "http://api.wunderground.com/api/c391db3a2a98fb5a/forecast10day/q/"+ lat_result+ "," + long_result + ".json",
       dataType: "jsonp",
       success: function(data) {
      for (var i = 0; i < data.forecast.txt_forecast.forecastday.length; i++) {
       var day = data.forecast.txt_forecast.forecastday[i].title;
+      var new_day = day.toUpperCase()
     var weatherResult = data.forecast.txt_forecast.forecastday[i].fcttext;
-   console.log(weatherResult)
     var icon = data.forecast.txt_forecast.forecastday[i].icon_url;
-       //  var weather = parsed_json['current_observation']['weather'];
-       //  var temp = parsed_json['current_observation']['temperature_string'];
-       //  var feelsLike = parsed_json['current_observation']['feelslike_string'];
-        var result = "<strong>" + day+ "</strong>" + ".<br />" + weatherResult
+   var today = new Date();
+    var dd = today.getDate();
 
-       //  console.log(result);
-       //  console.log("clicked");
-       //  console.log(location)
-        // $('#loader').empty();
-   
-
-        // $("#icon").append("<img src=" + icon + ">");
-        // $("#icon").hide().show("slow");
-        // $("#results").append("<br><div style='border: 2px solid #8AC007; position: relative; float: left'><img src=" + icon + "><div style='width: 100%'>" + result + "</div></div><br>");
-        $(".day"+i).append("<img src=" + icon + "><h5 style='width: 100%'>" + result + "</h5><hr>");
-       // $("#weatherResult").hide().show("slow");
+        $(".day"+i).append("<span> "+new_day + "<img src=" + icon + " style='float:right'></span><div style='clear:both'><h6 style='width: 100%; display:block; height: 100px'> " + weatherResult + "</h6></div>");
+     
      }   // end of for loop
+
    }
     }) //end of ajax 
-// }
- }
-//end of weather
 
+ }
     </script>
 
-
-     <hr />
+     <hr/>
 
         <div class="text-center">
-          <h3 class="heading"> 10 DAY WEATHER for:  </h3> 
+          <h3 class="heading"> 10 DAY WEATHER:  </h3> 
 
-<!-- 
-          <button id="weather" class="btn btn-weather location"><i class="fa fa-cloud"></i> CHECK WEATHER</button><br /> -->
-        <!--   <br> <br> -->
- 
 
-        <div id = "results" style="overflow: hidden">
-        <div class="weather day0 day1"></div>
-        <div class="weather day2 day3"></div>
-        <div class="weather day4 day5"></div>
-        <div class="weather day6 day7"></div>
-        <div class="weather day8 day9"></div>
-        <div class="weather day10 day11"></div>
-        <div class="weather day12 day13"></div>
-        <div class="weather day14 day15"></div>
-        <div class="weather day16 day17"></div>
-        <div class="weather day18 day19"></div>
+        <div id = "results">
+        <div class="weather day0"></div>
+        <div class="weather day2"></div>
+        <div class="weather day4"></div>
+        <div class="weather day6"></div>
+        <div class="weather day8"></div>
+        <div class="weather day10"></div>
+        <div class="weather day12"></div>
+        <div class="weather day14"></div>
+        <div class="weather day16"></div>
+        <div class="weather day18"></div>
         </div>
-
         </div>
       </div>
       <hr />
@@ -251,6 +157,7 @@ console.log(lat_result, long_result);
         <h2 class ="text-center">CREATE A PACKING LIST FOR THE TRIP</h2>
         <p>You can choose items from the suggested list or add your own items below!</p>
         <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+
       </div>
       <div class = "text-center notPrint">
         <img src="https://lh5.ggpht.com/QDPh6BDfY_9LtBaTtdwUzthYHXh3EcVqZy7L1X7-z_OComHq38lOJPI1-jTCmj7CU59z=w300" height="100px" width="100px">
@@ -262,20 +169,11 @@ console.log(lat_result, long_result);
       </div>
     </div>
     <div class="row" id="printable">
-      <div class="col-md-6">
 
-        <div class="toPacklist not-packed">
-          <div class = "notPrint">
-            <div class="text-center">
-            </div>
-          </div>
-          <h3 class = "text-center">ITEMS TO PACK</h3>
-          <hr>
 
-            <br>
             <div class = "text-center notPrint" id="catButtons">
-             <button class="btn btn-info btn-xs highlight" id="toiletries">ALL</button>
-            <button class="btn btn-info btn-xs" id="toiletries">TOILETRIES</button>
+ <!--            <button class="btn btn-info btn-xs highlight">ALL</button> -->
+            <button class="btn btn-info btn-xs highlight"  id="toiletries">TOILETRIES</button>
             <button class="btn btn-info btn-xs" id="clothes">CLOTHES</button>
             <button class="btn btn-info btn-xs" id="paperwork">PAPERWORK</button>
             <button class="btn btn-info btn-xs" id="electronics">ELECTRONICS</button>
@@ -283,72 +181,17 @@ console.log(lat_result, long_result);
             <button class="btn btn-info btn-xs" id="misc">MISC</button>
             </div>
 
-    <script class="item-template" type="text/template">
-      <div class="text-center">
-      <h6> Click on the category to get suggested items </h6>
-      </div>
         <%= form_for :default_items_trips, :url => {:action => "create_default_items_trip"} do |f| %>
-      <%= render "all_categories" %>
+
+      <%= render "tile_items" %>
                   <%= f.submit "Save Trip Items"%>
         <% end %>
-    </script>
 
-  <div id="checkbox">
-  </div>
-        </div>
-  <div id = "toggledCustom" style="display: none"> 
-    <ul id="customSortable" class="list-unstyled">
-      <li class="ui-state-default">
-        <div class="checkbox">
-        <label>
-        <input type="checkbox" name="item[]" value="" id="item">
-        </label>
-        </div>
-      </li>
-    </ul>
-  <input type="text" id = "wide" class="form-control add-toPack" placeholder="Add your own item to the list">
-  </div>
-      </div>
-  <div class="col-md-6">
-    <div class="toPacklist">
-   
-    <h3 class = "text-center">PACKED ITEMS</h3>
-    <hr />
-    <br>
-      <div class="text-center">
-      <button class="btn btn-info btn-xs highlighted" id="clothes">PACKED ITEMS</button>
-      
-      <h6><strong><span class="count-todos"></span></strong> Items left to pack </h6>
-</div>
-      <ul id="done-items" class="list-unstyled">
-        <li><input type="checkbox" checked> This packing List
-        <button class="remove-item btn btn-default btn-xs pull-right">
-        <span class="glyphicon glyphicon-remove"></span>
-        </button>
-        <button class="btn btn-default btn-xs pull-right">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-        </button>
-        </li>
+  
 
-      </ul>
-    <br>
-    <img id="checkAll" class = "notPrint" src="http://activerain.trulia.com/image_store/uploads/7/5/4/1/2/ar12675014621457.gif" height="60px" width="60px"> <span class = "notPrint" id ="markall">Click to mark all as PACKED!</span>
-    <br>
-    </div>
-  </div>
 
-    </div>
-    <hr>
-    <br>
-    <div class="todo-footer">
- 
-    </div>
-    <br>
-    <hr>
-          <div class = "text-center notPrint">
-            <button class="btn btn-success btn-m" id="custom"><span class="glyphicon glyphicon-arrow-down"></span>ADD CUSTOM</button>
 
-          </div>
-    <!--   END OF TO PACK -->
+
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.min.js"></script>
   </body>
 </html>
