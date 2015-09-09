@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822184200) do
+ActiveRecord::Schema.define(version: 20150909022643) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20150822184200) do
   create_table "default_trips", force: :cascade do |t|
     t.integer "trip_id"
     t.integer "default_item_id"
+  end
+
+  create_table "trip_default_items", force: :cascade do |t|
+    t.integer  "trip_id"
+    t.integer  "default_item_id"
+    t.boolean  "checked",         default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "trips", force: :cascade do |t|

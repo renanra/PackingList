@@ -47,12 +47,6 @@ module Api
     private
       def default_trip_params
          params.permit(:trip_id, :default_item_id)
-          #params.permit(:trip_id, [:item])
-           #params[:trip].permit( {:default_item_ids => []})
-           #puts @default_trip
-         #params.permit(:trip_id, default_items_ids: [])
-          #params.require(:default_trip).permit(:trip_id, :default_item_id)
-          #params.permit({:trip_id => @trip})
       end
 
   end

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
    end
 
    get '/trips/:id/saved_items_trip' => "trips#saved_items_trip", as: :saved_items_trip
-   resources :trips
+   resources :trips do
+    put :update_default_items, on: :member
+   end
    resources :items
    resources :calendar
     get '/calendar' => 'calendar#index'

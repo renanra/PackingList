@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
+	gem 'rubocop'
 	gem 'byebug'
 	gem 'web-console', '~> 2.0'
 	gem 'spring'
@@ -25,3 +26,4 @@ gem 'simple_form'
 gem 'devise'
 gem 'jquery-ui-rails'
 gem 'google-webfonts-rails'
+

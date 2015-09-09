@@ -88,7 +88,7 @@
      function loadScript() {
       var script = document.createElement('script');
       script.type = 'text/javascript';
-      script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyD-7NSPt2Gzjn79uQ-NoKl7xGKc0oO4H54&sensor=false&callback=initialize';
+      script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%=Rails.application.secrets.google_api_key%>&sensor=false&callback=initialize';
     document.body.appendChild(script);
       }
 
@@ -109,7 +109,7 @@
   $(".heading").append(city);
  
     $.ajax({
-      url: "http://api.wunderground.com/api/c391db3a2a98fb5a/forecast10day/q/"+ lat_result+ "," + long_result + ".json",
+      url: "http://api.wunderground.com/api/<%= Rails.application.secrets.weather_api_key%>/forecast10day/q/"+ lat_result+ "," + long_result + ".json",
       dataType: "jsonp",
       success: function(data) {
      for (var i = 0; i < data.forecast.txt_forecast.forecastday.length; i++) {
@@ -168,6 +168,36 @@
         <br>
       </div>
     </div>
+    <div class ="row"> 
+      <%= form_for(@trip, url: update_default_items_trip_path(@trip), method: :put) do |f| %>
+
+
+          <fieldset>
+            <legend> 
+              all categories
+            </legend>
+            <ul>
+              <% @trip.trip_default_items.each do |trip_default_item| %>
+                <li>
+              <%= f.fields_for "trip_default_items[]", trip_default_item do |ff| %>
+                  <%= ff.hidden_field :id %>
+                  <%= ff.check_box :checked %>
+                  <%= trip_default_item.default_item.item %>  
+              <% end %>
+                </li>
+              <% end %>  
+            </ul>
+          </fieldset>
+        <button>
+          Send
+        </button>
+      <% end %>  
+
+    </div>
+
+
+
+
     <div class="row" id="printable">
 
 
