@@ -248,13 +248,39 @@ li.checked:before {
 }
 
 .all_thumbs .thumbnail {
-  background: #FF4081 !important;
+  background: #ff5252 !important;
   color: white;
+  position: relative;
+  margin-bottom: 3px;
 }
 .all_thumbs .thumbnail.highlight {
    background: #39CCCC !important;
  }
  #allCategories {
   display: block;
-  height: 500px;
+  padding-bottom: 70px;
+  overflow: hidden;
+/*  height: 500px;*/
  }
+/*label { background-color:#333; color:#FFF; }*/
+
+input[type="checkbox"] {
+    margin: -5px 0 0 !important;
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+input[type="checkbox"]:checked + label {
+  /*  background: brown;*/
+      text-decoration: line-through;
+      color: black;
+}
+
+.activity {
+  background: yellow !important;
+}

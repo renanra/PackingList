@@ -27,6 +27,8 @@ $(function() {
     }
   });
 
+
+
 //////////////////////////////// SCROLL WEATHER //////////////////////////////////
 
 $('#results').slick({
@@ -205,11 +207,32 @@ $('#results').slick({
 
 ////////////////////////////////////// SELECT TILES //////////////////////////
 $(".all_thumbs .thumbnail").click(function(){
-  console.log(this);
- $(this).addClass('highlight');
+  // console.log(this);
+ $(this).toggleClass('highlight');
 });
 
 
+
+ ///////////// CHECKBOXES COLOR //////////////////
+//  $('input:checkbox').change(function(){
+//     if($(this).is(":checked")) {
+//      $('input:checkbox').addClass("highlight");
+//     } else {
+//        $('input:checkbox').removeClass("highlight");
+//     }
+// }); 
+
+// if ($('input.checkbox_check').is(':checked')) {
+//   $(".all_thumbs .thumbnail").css('background','red');
+// }
+// $(":checkbox").on('click', function(){
+//   console.log($(this).parent())
+//   if($(this).is(":checked")) {
+//       $(this).parent().toggleClass("highlight");
+//     } else {
+//        $('input:checkbox').removeClass("highlight");
+//     }
+// });
   /////////////////////////////////// PLACES AUTOCOMPLETE ////////////////////
 
   $(".location").autocomplete({

@@ -20,139 +20,11 @@
     <!--   TRIP INFO PART -->
     <div class="notPrint">
       <div class="row">
-        <div class="col-md-4">
-          <h3> YOUR TRIP INFORMATION </h3>
 
-          <h4 style="display:inline">Destination: &nbsp;</h4>
-          <h5  id="query" style="display:inline"><%=@trip.destination%> &nbsp;</h5>
-          <br>
-          <h4 style="display:inline">Start Date: &nbsp; &nbsp; </h4>
-          <h5 style="display:inline"><%=@trip.start_date %></h5>
-          <br>
-          <h4 style="display:inline">End Date: &nbsp; &nbsp; &nbsp;</h4>
-          <h5 style="display:inline"><%=@trip.end_date %></h5>
-          <br> <br>
-          <%=link_to '<i class="fa fa-pencil-square-o"></i> EDIT INFO'.html_safe, edit_trip_path, class: "btn btn-primary" %> 
-        </div>
-
-<div id="map-canvas" style="width: 750px; height: 400px;">
-</div>
-<script type="text/javascript">
-
-  function initialize() {
-  var latlong = [];
-    var query = $("#query").text().split(', ');
-    var city = query.shift();
-    var state = query.shift();
-    var country = query.shift();
-    var results;
-    var geocoder = new google.maps.Geocoder();
-    var location = city;
- 
-
-  var lat_result;
-  var long_result;
-
-    geocoder.geocode( { 'address': location}, function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            // alert("location : " + results[0].geometry.location.lat() + " " +results[0].geometry.location.lng()); 
-            map.setCenter(results[0].geometry.location);
-            lat_result = results[0].geometry.location.lat();
-            console.log(lat_result);
-            long_result = results[0].geometry.location.lng();
-            console.log(long_result);
-            latlong = lat_result + ", " + long_result;
-            weather(lat_result, long_result);
-      // return LatLng; 
-
-          } else {
-            alert("Something got wrong " + status);
-          }
-        
-        });
-
-    var mapOptions = {
-      zoom: 7,
-       styles: [
-        {"featureType":"road",
-        "elementType":"geometry",
-        "stylers":[{"lightness":100},{"visibility":"simplified"}]},
-        {"featureType":"water","elementType":"all","stylers":[{"color":"#39CCCC"}]}],
-
-      center: new google.maps.LatLng(-34.397, 150.644)};
-      var map = new google.maps.Map(document.getElementById('map-canvas'), 
-                                  mapOptions);
-      }
+ <!--  render "weather_map"  -->
 
 
-     function loadScript() {
-      var script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%=Rails.application.secrets.google_api_key%>&sensor=false&callback=initialize';
-    document.body.appendChild(script);
-      }
 
-     window.onload = loadScript();
-
-
-  /////////////////////////////// WEATHER //////////////////////////////////////
-  // jQuery(document).ready(function($) {
-  // $('#weather').click(function() {
-    function weather(lat_result, long_result){
-      var lat_result = lat_result;
-      var long_result = long_result;
-    var query = $("#query").text().split(', ');
-
-    var city = query.shift();
-    var country = query.shift();
-
-  $(".heading").append(city);
- 
-    $.ajax({
-      url: "http://api.wunderground.com/api/<%= Rails.application.secrets.weather_api_key%>/forecast10day/q/"+ lat_result+ "," + long_result + ".json",
-      dataType: "jsonp",
-      success: function(data) {
-     for (var i = 0; i < data.forecast.txt_forecast.forecastday.length; i++) {
-      var day = data.forecast.txt_forecast.forecastday[i].title;
-      var new_day = day.toUpperCase()
-    var weatherResult = data.forecast.txt_forecast.forecastday[i].fcttext;
-    var icon = data.forecast.txt_forecast.forecastday[i].icon_url;
-   var today = new Date();
-    var dd = today.getDate();
-
-        $(".day"+i).append("<span> "+new_day + "<img src=" + icon + " style='float:right'></span><div style='clear:both'><h6 style='width: 100%; display:block; height: 100px'> " + weatherResult + "</h6></div>");
-     
-     }   // end of for loop
-
-   }
-    }) //end of ajax 
-
- }
-    </script>
-
-     <hr/>
-
-        <div class="text-center">
-          <h3 class="heading"> 10 DAY WEATHER:  </h3> 
-
-
-        <div id = "results">
-        <div class="weather day0"></div>
-        <div class="weather day2"></div>
-        <div class="weather day4"></div>
-        <div class="weather day6"></div>
-        <div class="weather day8"></div>
-        <div class="weather day10"></div>
-        <div class="weather day12"></div>
-        <div class="weather day14"></div>
-        <div class="weather day16"></div>
-        <div class="weather day18"></div>
-        </div>
-        </div>
-      </div>
-      <hr />
-      <!--   END OF TRIP INFO -->
-      <!--  TO PACK PART -->
       <div class="jumbotron text-center">
         <h2 class ="text-center">CREATE A PACKING LIST FOR THE TRIP</h2>
         <p>You can choose items from the suggested list or add your own items below!</p>
@@ -164,61 +36,93 @@
         <form>
           <input type="button" id="notPrint" class="btn btn-edit location" value="PRINT YOUR PACKING LIST" onClick="window.print()">
         </form>
-        <hr>
+      <!--   <hr> -->
         <br>
       </div>
     </div>
-    <div class ="row"> 
-      <%= form_for(@trip, url: update_default_items_trip_path(@trip), method: :put) do |f| %>
 
+
+
+ <div class ="row"> 
+      <%= form_for(@trip, url: update_default_items_trip_path(@trip), method: :put) do |f| %>
+              <% categories = @trip.trip_default_items.group_by{|tdi| tdi.default_item.category } %>
+              <% categories.each do |category_name, trip_default_items| %> 
 
           <fieldset>
             <legend> 
-              all categories
+               <%= category_name %>
             </legend>
-            <ul>
-              <% @trip.trip_default_items.each do |trip_default_item| %>
-                <li>
+            <div id="allCategories">
+              <div class="all_thumbs" id="showToiletries">
+
+              <% trip_default_items.each do |trip_default_item| %>
+         
+              <% if trip_default_item.checked == true %>
+
+                <div class="col-sm-2">
+                
+          <div class="thumbnail btn highlight">
               <%= f.fields_for "trip_default_items[]", trip_default_item do |ff| %>
                   <%= ff.hidden_field :id %>
                   <%= ff.check_box :checked %>
+                  <label>
                   <%= trip_default_item.default_item.item %>  
+                  </label>
+                  </div>
+                 
+                  </div>
+                   <% end %>
+                       <% else %>
+                <div class="col-sm-2">
+          <div class="thumbnail btn">
+              <%= f.fields_for "trip_default_items[]", trip_default_item do |ff| %>
+                  <%= ff.hidden_field :id %>
+                  <%= ff.check_box :checked %>
+                  <label>
+                  <%= trip_default_item.default_item.item %>  
+                  </label>
+                  </div>
+                 
+                  </div>
+
+
+            <% end %>
               <% end %>
-                </li>
               <% end %>  
-            </ul>
+              </div>
+            </div>
           </fieldset>
-        <button>
-          Send
-        </button>
+            <% end %>
+          <hr>
+          <br>
+          <div class = "text-center">
+        <button class="btn btn-edit location"> SAVE PROGRESS </button>
+        </div>
       <% end %>  
 
     </div>
 
 
-
-
     <div class="row" id="printable">
 
 
-            <div class = "text-center notPrint" id="catButtons">
- <!--            <button class="btn btn-info btn-xs highlight">ALL</button> -->
+<!--             <div class = "text-center notPrint" id="catButtons">
             <button class="btn btn-info btn-xs highlight"  id="toiletries">TOILETRIES</button>
             <button class="btn btn-info btn-xs" id="clothes">CLOTHES</button>
             <button class="btn btn-info btn-xs" id="paperwork">PAPERWORK</button>
             <button class="btn btn-info btn-xs" id="electronics">ELECTRONICS</button>
             <button class="btn btn-info btn-xs" id="carry-on">CARRY-ON</button>
             <button class="btn btn-info btn-xs" id="misc">MISC</button>
-            </div>
-
+            </div> -->
+<!-- 
         <%= form_for :default_items_trips, :url => {:action => "create_default_items_trip"} do |f| %>
 
       <%= render "tile_items" %>
                   <%= f.submit "Save Trip Items"%>
-        <% end %>
+        <% end %> -->
 
   
-
+</div>
 
 
 

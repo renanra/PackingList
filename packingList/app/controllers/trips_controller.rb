@@ -30,19 +30,32 @@ class TripsController < ApplicationController
     trip_id = params[:id]
 
     if @trip.save
-      redirect_to(@trip)
+      # redirect_to(@trip)
+      redirect_to activity_items_trip_path
     else
       flash[:alert] = 'Please fill out all the fields to proceed'
       redirect_to root_path
       end
     end
 
+
+def activity_items_trip
+end
+
+
+
+
+
   def show
+
     @params1 = params
     @params2 = params[:default_trips]
     @default_item_list = DefaultItem.new(params[:default_item])
 
     @trip = Trip.find(params[:id])
+    # this_trip_default_items = TripDefaultItem.where(trip_id: @trip.id)
+    # @trip_default_items = @trip.this_trip_default_items
+     # binding.pry
     trip_id = params[:id]
     @default_item = DefaultItem.find(params[:id])
     @default_clothes_items = DefaultItem.where(category: 'Clothes')
@@ -55,24 +68,45 @@ class TripsController < ApplicationController
       di_name.push(di.item)
     end
 
-    # @default_trips = DefaultTrip.new(default_trip_params)
-    # @default_trips.save
 
     default_item_id = @default_item.id
-    # @default_items_trips.trip_id = trip_id
-    # @default_trips.default_item_id = di_name
-    # @default_trips.save
-    # binding.pry
 
     @default_paperwork_items = DefaultItem.where(category: 'Travel Paperwork')
     @default_toiletries_items = DefaultItem.where(category: 'Toiletries')
     @default_electronics_items = DefaultItem.where(category: 'Electronics')
     @default_carryon_items = DefaultItem.where(category: 'Carry-on')
     @default_misc_items = DefaultItem.where(category: 'Miscellaneous')
+
+
+# Trip.find(1).trip_default_items.each do |di|
+#   puts di.default_item.group_by { |i| i.category} 
+# end 
+@trip.default_items.pluck(:category).uniq.each do |category|
+  puts category
+  @trip.default_items.where(category: category).each do |default_item|
+    puts default_item.item
+  end
+end
+
+@trip.trip_default_items.last.default_item.category
+
+
+# @trip.trip_default_items.pluck(:category).uniq.each do |category|
+#   puts category
+#   @trip.default_items.where(category: category).each do |default_item|
+#     puts default_item.item
+#   end
+# end
+
+
+
+
+
+
        end
 
   def create_default_items_trip
-    binding.pry
+    # binding.pry
     @trip = Trip.find_by_id(params[:id])
     @trip.id = params[:id]
     trip_id = params[:id]
@@ -121,7 +155,7 @@ class TripsController < ApplicationController
 
   def destroy
     all_trips = params[:trip]
-    binding.pry
+    # binding.pry
     @trip = Trip.find(params[:id])
     @trip.destroy
     redirect_to trips_path
@@ -132,7 +166,5 @@ class TripsController < ApplicationController
   def default_trip_params
     params.require(:default_items_trips).permit(:id, :trip_id, :user_id, :destination, id: [], default_item_ids: [], default_items: [], item_ids: [], trip_ids: [])
 end
-    #   def default_trip_params
-    #   params.require(:default_item).permit(:trip_id, :default_item_id, default_item_ids: [])
-    # end
+
   end

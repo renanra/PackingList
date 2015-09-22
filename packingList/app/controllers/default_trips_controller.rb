@@ -10,32 +10,25 @@ module Api
         @default_trips = DefaultTrip.all
     end
 
-    def joinMethod
-      # stuff = DefaultTrip.joins(:trip).where(trip_id: 2).first.default_item
-      stuff = DefaultTrip.joins(:trip).where(trip_id: params[:trip_id])
-      render json: stuff.to_json
-      #something = DefaultTrip.joins(:trip).where(trip_id: params[:trip_id])
-      # render json: stuff.to_json(  include: {
-      #     default_item: {only: [:item]},
-      #   })
-    end
+    # def joinMethod
+    #   # stuff = DefaultTrip.joins(:trip).where(trip_id: 2).first.default_item
+    #   stuff = DefaultTrip.joins(:trip).where(trip_id: params[:trip_id])
+    #   render json: stuff.to_json
+    #   #something = DefaultTrip.joins(:trip).where(trip_id: params[:trip_id])
+    #   # render json: stuff.to_json(  include: {
+    #   #     default_item: {only: [:item]},
+    #   #   })
+    # end
 
     def new 
     default_trip = DefaultTrip.new(default_trip_params)
     end
 
     def create
-      binding.pry
+      # binding.pry
       @default_trip = DefaultTrip.new(default_trip_params)
-      #@default_trip = DefaultTrip.new(:trip_id => @trip)
-      #@default_trip.trip_id = trip.id 
-      #trip = Trip.find(params[:id])
-        #@default_trip.trip_id = Trip.find(params[:id])
-        #@default_trip.default_item = DefaultItem.find(params[:default_item_id])
       @default_trip.save
       redirect_to(@default_trip)
-      #render json: @default_trip
-      #render json: @default_trip.to_json
     end
 
     def destroy

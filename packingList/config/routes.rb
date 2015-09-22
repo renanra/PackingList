@@ -5,13 +5,15 @@ Rails.application.routes.draw do
    get '/test_page' => 'test_page#index' do
   
    end
-
+   get '/trips/:id/activity_items_trip', to: 'trips#activity_items_trip', as: :activity_items_trip
    get '/trips/:id/saved_items_trip' => "trips#saved_items_trip", as: :saved_items_trip
    resources :trips do
     put :update_default_items, on: :member
+    # get '/activity_items', to: 'activity_items#index', as: :activity_items
    end
    resources :items
    resources :calendar
+  
     get '/calendar' => 'calendar#index'
   
   # Example of regular route:
