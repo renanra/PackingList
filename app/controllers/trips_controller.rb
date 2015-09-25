@@ -3,18 +3,16 @@ class TripsController < ApplicationController
 
   def index
     @trips = Trip.where(:user_id == current_user.id)
-    end
+  end
 
   def update_default_items
     @trip = Trip.find(params[:id])
     @trip.update_attributes!(trip_default_items_attributes: params[:trip][:trip_default_items])
-    # @trip.update_attributes!(trip_default_items_attributes: [{id: 1, checked: false}])
     redirect_to @trip
   end
 
   def create
     @trip = Trip.new(params[:trip])
-    # binding.pry
     @trip.user_id = current_user.id
     @trip.destination = params[:destination]
     @trip.start_date = params[:start_date]
@@ -24,31 +22,21 @@ class TripsController < ApplicationController
 
     if @trip.save
       redirect_to(@trip)
-      # redirect_to activity_items_trip_path
     else
       flash[:alert] = 'Please fill out all the fields to proceed'
       redirect_to root_path
-      end
     end
+  end
 
-
-def activity_items_trip
-end
-
-
-
-
+  def activity_items_trip
+  end
 
   def show
-
     @params1 = params
     @params2 = params[:default_trips]
     @default_item_list = DefaultItem.new(params[:default_item])
 
     @trip = Trip.find(params[:id])
-    # this_trip_default_items = TripDefaultItem.where(trip_id: @trip.id)
-    # @trip_default_items = @trip.this_trip_default_items
-     # binding.pry
     trip_id = params[:id]
     @default_item = DefaultItem.find(params[:id])
     @default_clothes_items = DefaultItem.where(category: 'Clothes')
@@ -61,7 +49,6 @@ end
       di_name.push(di.item)
     end
 
-
     default_item_id = @default_item.id
 
     @default_paperwork_items = DefaultItem.where(category: 'Travel Paperwork')
@@ -70,36 +57,17 @@ end
     @default_carryon_items = DefaultItem.where(category: 'Carry-on')
     @default_misc_items = DefaultItem.where(category: 'Miscellaneous')
 
+    @trip.default_items.pluck(:category).uniq.each do |category|
+      puts category
+      @trip.default_items.where(category: category).each do |default_item|
+        puts default_item.item
+      end
+    end
 
-# Trip.find(1).trip_default_items.each do |di|
-#   puts di.default_item.group_by { |i| i.category}
-# end
-@trip.default_items.pluck(:category).uniq.each do |category|
-  puts category
-  @trip.default_items.where(category: category).each do |default_item|
-    puts default_item.item
-  end
+    @trip.trip_default_items.last.default_item.category
 end
 
-@trip.trip_default_items.last.default_item.category
-
-
-# @trip.trip_default_items.pluck(:category).uniq.each do |category|
-#   puts category
-#   @trip.default_items.where(category: category).each do |default_item|
-#     puts default_item.item
-#   end
-# end
-
-
-
-
-
-
-       end
-
   def create_default_items_trip
-    # binding.pry
     @trip = Trip.find_by_id(params[:id])
     @trip.id = params[:id]
     trip_id = params[:id]
@@ -108,12 +76,11 @@ end
       item_ids.each do |iid|
         DefaultItemsTrips.find_or_create_by(trip_id: params[:id], default_item_id: iid)
       end
-  end
+    end
     redirect_to saved_items_trip_path
-   end
+    end
 
   def saved_items_trip
-    # binding.pry
     @saved_items_trip = Trip.find(params[:id])
     @saved_items = @saved_items_trip.default_items.order('id ASC')
     @saved_toiletries = @saved_items_trip.default_items.where(category: 'Toiletries')
@@ -122,7 +89,6 @@ end
     @saved_electronics = @saved_items_trip.default_items.where(category: 'Electronics')
     @saved_carry_on = @saved_items_trip.default_items.where(category: 'Carry-on')
     @saved_misc = @saved_items_trip.default_items.where(category: 'Miscellaneous')
-    # to delete join ids,  @saved_items_trip.default_items.clear
   end
 
   def delete_saved_items_trip
@@ -148,7 +114,6 @@ end
 
   def destroy
     all_trips = params[:trip]
-    # binding.pry
     @trip = Trip.find(params[:id])
     @trip.destroy
     redirect_to trips_path
@@ -158,6 +123,5 @@ end
 
   def default_trip_params
     params.require(:default_items_trips).permit(:id, :trip_id, :user_id, :destination, id: [], default_item_ids: [], default_items: [], item_ids: [], trip_ids: [])
-end
-
   end
+end

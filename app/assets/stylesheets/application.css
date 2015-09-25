@@ -16,116 +16,116 @@
 *= require_self
 *= require jquery-ui
 *= require_tree .
- */
+*/
 
 /*.container {
   margin-left: 0px;
   padding-left: 0px;
-}*/
+  }*/
 
 
-.displayed {
+  .displayed {
     display: block;
     margin-left: auto;
     margin-right: auto
   }
 
-body {
-/*font-family: 'Raleway', cursive !important;*/
-}
+  body {
+    /*font-family: 'Raleway', cursive !important;*/
+  }
 
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-.middle {
+  .form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+  }
+  .middle {
     margin-top: 150px;
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input {
-  margin-bottom: 10px;
-}
+  }
+  .form-signin .form-signin-heading,
+  .form-signin .checkbox {
+    margin-bottom: 10px;
+  }
+  .form-signin .checkbox {
+    font-weight: normal;
+  }
+  .form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input {
+    margin-bottom: 10px;
+  }
 
-.btn-block {
-  background: #1abc9c;
-  color: white;
-}
-.btn-block:hover {
-  background: rgba(22, 160, 133,1.0);
-  color: white;
-}
-.btn-lg {
-  background: #1abc9c;
-  border: 2px solid white;
-}
-.btn-custom-darken {
-  background-color: #000000 ;
-  color: white;
-}
+  .btn-block {
+    background: #1abc9c;
+    color: white;
+  }
+  .btn-block:hover {
+    background: rgba(22, 160, 133,1.0);
+    color: white;
+  }
+  .btn-lg {
+    background: #1abc9c;
+    border: 2px solid white;
+  }
+  .btn-custom-darken {
+    background-color: #000000 ;
+    color: white;
+  }
 
-.btn-primary {
-  color: #fff;
-  background-color: #42CAAB !important;
-  border-color: #357ebd;
-}
+  .btn-primary {
+    color: #fff;
+    background-color: #42CAAB !important;
+    border-color: #357ebd;
+  }
 
-.btn-lg:hover {
-  background: rgba(22, 160, 133,1.0);
-}
+  .btn-lg:hover {
+    background: rgba(22, 160, 133,1.0);
+  }
 
-#toggleIt:hover {
-  background-color: black;
-  color: white;
-}
-.location .date {
-  max-width: 500px;
-}
-.container .jumbotron {
-  color: rgb(35, 115, 60);
-  background-color: white;
-  padding-top: 1px;
-  padding-bottom: 1px;
-}
-a.btn.btn-primary.btn-lg {
-  background: #1abc9c;
-  border: 2px solid white;
-}
-#homepic {
+  #toggleIt:hover {
+    background-color: black;
+    color: white;
+  }
+  .location .date {
+    max-width: 500px;
+  }
+  .container .jumbotron {
+    color: rgb(35, 115, 60);
+    background-color: white;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+  a.btn.btn-primary.btn-lg {
+    background: #1abc9c;
+    border: 2px solid white;
+  }
+  #homepic {
    width: 100%;
-    position: absolute;
-    left: 0;
-    z-index: -1000;
-}
-.btn-edit {
-background: rgb(26, 188, 156);
-color: white;
+   position: absolute;
+   left: 0;
+   z-index: -1000;
+ }
+ .btn-edit {
+  background: rgb(26, 188, 156);
+  color: white;
 }
 .btn-delete {
-background: rgb(231, 76, 60);
-color: white;
+  background: rgb(231, 76, 60);
+  color: white;
 }
 .btn-update {
-background: rgb(155, 89, 182);
-color: white;
+  background: rgb(155, 89, 182);
+  color: white;
 }
 .btn-weather {
   background: rgba(231, 76, 60, 0.8);
@@ -135,40 +135,40 @@ color: white;
 
 
 .todolist{
-    background-color:#FFF;
-    padding:20px 20px 10px 20px;
-    margin-top:30px;
+  background-color:#FFF;
+  padding:20px 20px 10px 20px;
+  margin-top:30px;
 }
 .todolist h1{
-    margin:0;
-    padding-bottom:20px;
-    text-align:center;
+  margin:0;
+  padding-bottom:20px;
+  text-align:center;
 }
 .form-control{
-    border-radius:0;
+  border-radius:0;
 }
 li.ui-state-default{
-    background:#fff;
-    border:none;
-    border-bottom:1px solid #ddd;
+  background:#fff;
+  border:none;
+  border-bottom:1px solid #ddd;
 }
 
 li.ui-state-default:last-child{
-    border-bottom:none;
+  border-bottom:none;
 }
 
 .todo-footer{
-    background-color:#F4FCE8;
-    margin:0 -20px -10px -20px;
-    padding: 10px 20px;
+  background-color:#F4FCE8;
+  margin:0 -20px -10px -20px;
+  padding: 10px 20px;
 }
 #done-items li{
-    padding:10px 0;
-    border-bottom:1px solid #ddd;
-    text-decoration:line-through;
+  padding:10px 0;
+  border-bottom:1px solid #ddd;
+  text-decoration:line-through;
 }
 #done-items li:last-child{
-    border-bottom:none;
+  border-bottom:none;
 }
 
 #markall {
@@ -176,13 +176,13 @@ li.ui-state-default:last-child{
 }
 
 #item {
- display: none; 
+ display: none;
 }
 
 @media print {
-    .notPrint, #notPrint{
-      display: none;
-    }
+  .notPrint, #notPrint{
+    display: none;
+  }
 }
 
 #wide {
@@ -199,18 +199,18 @@ li.ui-state-default:last-child{
 
 ul { padding-left:20px; list-style-type: none; }
 li.unchecked { margin-bottom:10px; }
-li.unchecked:before {    
-    font-family: 'FontAwesome';
-    content: "\f096";
-    margin:0 5px 0 -15px;
+li.unchecked:before {
+  font-family: 'FontAwesome';
+  content: "\f096";
+  margin:0 5px 0 -15px;
 }
 
 ul { padding-left:20px; list-style-type: none; }
 li.checked { margin-bottom:10px; }
-li.checked:before {    
-    font-family: 'FontAwesome';
-    content: "\f046";
-    margin:0 5px 0 -15px;
+li.checked:before {
+  font-family: 'FontAwesome';
+  content: "\f046";
+  margin:0 5px 0 -15px;
 }
 
 .red {
@@ -218,14 +218,14 @@ li.checked:before {
 }
 
 #catButtons button {
-    background:rgb(255,145,0);
+  background:rgb(255,145,0);
 }
 
 #catButtons button.highlight {
-    background: #39CCCC;
+  background: #39CCCC;
 }
 .highlighted {
-    background: #39CCCC !important;
+  background: #39CCCC !important;
 }
 
 #flash { display:none; background-color:#F50057; color:#fff}
@@ -240,8 +240,8 @@ li.checked:before {
   width: 210px;
 }
 
-.slick-prev:before, .slick-next:before { 
-    color:black !important;
+.slick-prev:before, .slick-next:before {
+  color:black !important;
 }
 #results {
   display:block;
@@ -254,33 +254,36 @@ li.checked:before {
   margin-bottom: 3px;
 }
 .all_thumbs .thumbnail.highlight {
-   background: #39CCCC !important;
- }
- #allCategories {
+ background: #39CCCC !important;
+}
+#allCategories {
   display: block;
   padding-bottom: 70px;
   overflow: hidden;
-/*  height: 500px;*/
- }
+  /*  height: 500px;*/
+}
 /*label { background-color:#333; color:#FFF; }*/
 
 input[type="checkbox"] {
-    margin: -5px 0 0 !important;
-    position: absolute;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 100;
-    opacity: 0;
-    cursor: pointer;
-  }
+  margin: -5px 0 0 !important;
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  opacity: 0;
+  cursor: pointer;
+}
 
 input[type="checkbox"]:checked + label {
   /*  background: brown;*/
-      text-decoration: line-through;
-      color: black;
+  text-decoration: line-through;
+  color: black;
 }
 
 .activity {
   background: yellow !important;
+}
+.stack{
+  border:1px solid black;
 }
