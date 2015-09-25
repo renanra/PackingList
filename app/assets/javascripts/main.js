@@ -7,11 +7,11 @@ $(function() {
     drop: function(event, ui) {
       if (ui.draggable.parent('.sortable').length) {
         ui.draggable
-          .clone()
-          .appendTo('#trash')
-          .addClass("sort-drop")
-          .css(ui.position)
-          .hide(500);
+        .clone()
+        .appendTo('#trash')
+        .addClass("sort-drop")
+        .css(ui.position)
+        .hide(500);
 
         ui.draggable.hide();
         //console.log(ui, event);
@@ -31,12 +31,12 @@ $(function() {
 
 //////////////////////////////// SCROLL WEATHER //////////////////////////////////
 
-// $('#results').slick({
-//   infinite: true,
-//   arrows: true,
-//   slidesToShow: 5,
-//   slidesToScroll: 1
-// });
+$('#results').slick({
+  infinite: true,
+  arrows: true,
+  slidesToShow: 5,
+  slidesToScroll: 1
+});
 
 
   ////////////////////////////// COUNT TRIPS /////////////////////////////////////
@@ -53,21 +53,21 @@ $(function() {
   $("#catButtons button").click(function() {
     $("#catButtons button").siblings().removeClass('highlight');
     $(this).addClass('highlight');
-       $("#allCategories").css('display','block');
+    $("#allCategories").css('display','block');
         // $(this).toggleClass('highlight');
-    var category = $(this).html();
-    console.log(category);
-    $("#allCategories").children().fadeOut();
-    $("#allCategories").children().each(function(){
-      if($(this).hasClass(category)){
+        var category = $(this).html();
+        console.log(category);
+        $("#allCategories").children().fadeOut();
+        $("#allCategories").children().each(function(){
+          if($(this).hasClass(category)){
 
-        $(this).fadeIn();
+            $(this).fadeIn();
+
+          }
+        });
 
       }
-    });
-
-  }
-  );
+      );
 
 
 
@@ -77,11 +77,11 @@ $(function() {
   //   $("#toggledCustom").fadeIn("slow");
   // });
 
-      function createCustomToPack(text) {
-    var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" id="item" />' + text + '</label><button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></div></li>';
-    $('#customSortable').prepend(markup);
-    $('.add-toPack').val('');
-  }
+function createCustomToPack(text) {
+  var markup = '<li class="ui-state-default"><div class="checkbox"><label><input type="checkbox" value="" id="item" />' + text + '</label><button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></div></li>';
+  $('#customSortable').prepend(markup);
+  $('.add-toPack').val('');
+}
   /////////////////////////////////// RENDERING DEFAULT ITEMS ON A TRIP PAGE////////////////////
   //  $('#checkbox').empty();
   // $.ajax({
@@ -208,7 +208,7 @@ $(function() {
 ////////////////////////////////////// SELECT TILES //////////////////////////
 $(".all_thumbs .thumbnail").click(function(){
   // console.log(this);
- $(this).toggleClass('highlight');
+  $(this).toggleClass('highlight');
 });
 
 
@@ -246,18 +246,18 @@ $(".all_thumbs .thumbnail").click(function(){
         },
         success: function(data) {
           console.log(data)
-         if (data == "") {
-     $('#flash').delay(300).fadeIn('normal', function() {
-      $(this).delay(2500).fadeOut();
-   });
-      } else {
-            console.log("found")
-          }
-          response(data);
-
-
+          if (data == "") {
+           $('#flash').delay(300).fadeIn('normal', function() {
+            $(this).delay(2500).fadeOut();
+          });
+         } else {
+          console.log("found")
         }
-      });
+        response(data);
+
+
+      }
+    });
     },
     minLength: 3
   });
@@ -333,7 +333,99 @@ $(".all_thumbs .thumbnail").click(function(){
   //remove packed item from list
   function removeItem(element) {
             // debugger;
-    $(element).parent().remove();
-  }
+            $(element).parent().remove();
+          }
   ////////////////////END OF TO PACK /////////////////
+
+
+
+// google maps
+  function initialize() {
+      var latlong = [];
+        var query = $("#query").text().split(', ');
+        var city = query.shift();
+        var state = query.shift();
+        var country = query.shift();
+        var results;
+        var geocoder = new google.maps.Geocoder();
+        var location = city;
+
+
+      var lat_result;
+      var long_result;
+
+        geocoder.geocode( { 'address': location}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                lat_result = results[0].geometry.location.lat();
+                console.log(lat_result);
+                long_result = results[0].geometry.location.lng();
+                console.log(long_result);
+                latlong = lat_result + ", " + long_result;
+                weather(lat_result, long_result);
+              } else {
+                alert("Something got wrong " + status);
+              }
+
+            });
+
+        var mapOptions = {
+          zoom: 7,
+           styles: [
+            {"featureType":"road",
+            "elementType":"geometry",
+            "stylers":[{"lightness":100},{"visibility":"simplified"}]},
+            {"featureType":"water","elementType":"all","stylers":[{"color":"#39CCCC"}]}],
+
+          center: new google.maps.LatLng(-34.397, 150.644)};
+          var map = new google.maps.Map(document.getElementById('map-canvas'),
+                                      mapOptions);
+          }
+
+
+         function loadScript() {
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyD-7NSPt2Gzjn79uQ-NoKl7xGKc0oO4H54&sensor=false&callback=initialize';
+        document.body.appendChild(script);
+          }
+
+         window.onload = loadScript();
+
+
+        function weather(lat_result, long_result){
+          var lat_result = lat_result;
+          var long_result = long_result;
+        var query = $("#query").text().split(', ');
+
+        var city = query.shift();
+        var country = query.shift();
+
+      $(".heading").append(city);
+
+        $.ajax({
+          url: "http://api.wunderground.com/api/c391db3a2a98fb5a/forecast10day/q/"+ lat_result+ "," + long_result + ".json",
+          dataType: "jsonp",
+          success: function(data) {
+         for (var i = 0; i < data.forecast.txt_forecast.forecastday.length; i++) {
+          var day = data.forecast.txt_forecast.forecastday[i].title;
+          var new_day = day.toUpperCase()
+        var weatherResult = data.forecast.txt_forecast.forecastday[i].fcttext;
+        var icon = data.forecast.txt_forecast.forecastday[i].icon_url;
+       var today = new Date();
+        var dd = today.getDate();
+
+            $(".day"+i).append("<span> "+new_day + "<img src=" + icon + " style='float:right'></span><div style='clear:both'><h6 style='width: 100%; display:block; height: 100px'> " + weatherResult + "</h6></div>");
+
+         }
+
+       }
+        })
+
+     }
+
+
+     window.initialize = initialize;
+
+
 }); //end of ready function

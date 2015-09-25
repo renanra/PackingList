@@ -1,101 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Your Trip</title>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick-theme.css"/>
-    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.0.0/mustache.js"></script>
-  </head>
-  <body>
-    <!--   TRIP INFO PART -->
-    <div class="notPrint">
-      <div class="row">
-        <!--  render "weather_map"  -->
-        <div class="jumbotron text-center">
-          <h2 class ="text-center">CREATE A PACKING LIST FOR THE TRIP</h2>
-          <p>You can choose items from the suggested list or add your own items below!</p>
-          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-        </div>
-        <div class = "text-center notPrint">
-          <img src="https://lh5.ggpht.com/QDPh6BDfY_9LtBaTtdwUzthYHXh3EcVqZy7L1X7-z_OComHq38lOJPI1-jTCmj7CU59z=w300" height="100px" width="100px">
-          <form>
-            <input type="button" id="notPrint" class="btn btn-edit location" value="PRINT YOUR PACKING LIST" onClick="window.print()">
-          </form>
-          <!--   <hr> -->
-          <br>
-        </div>
-      </div>
-      <div class ="row">
-        <%= form_for(@trip, url: update_default_items_trip_path(@trip), method: :put) do |f| %>
-          <% categories = @trip.trip_default_items.group_by{|tdi| tdi.default_item.category } %>
-          <% categories.each do |category_name, trip_default_items| %>
-            <fieldset>
-              <legend>
-                <%= category_name %>
-              </legend>
-              <div id="allCategories">
-                <div class="all_thumbs" id="showToiletries">
-                  <% trip_default_items.each do |trip_default_item| %>
-                    <% if trip_default_item.checked == true %>
-                      <div class="col-sm-2">
-                        <div class="thumbnail btn highlight">
-                          <%= f.fields_for "trip_default_items[]", trip_default_item do |ff| %>
-                            <%= ff.hidden_field :id %>
-                            <%= ff.check_box :checked %>
-                            <label>
-                              <%= trip_default_item.default_item.item %>
-                            </label>
-                          </div>
-                        </div>
-                      <% end %>
-                    <% else %>
-                      <div class="col-sm-2">
-                        <div class="thumbnail btn">
-                          <%= f.fields_for "trip_default_items[]", trip_default_item do |ff| %>
-                            <%= ff.hidden_field :id %>
-                            <%= ff.check_box :checked %>
-                            <label>
-                              <%= trip_default_item.default_item.item %>
-                            </label>
-                          </div>
-                        </div>
-                      <% end %>
-                    <% end %>
+<% content_for(:page_title) { 'Your Trip' } %>
+<div class="notPrint">
+  <div class="row">
+    <div class="jumbotron text-center">
+      <h2 class ="text-center">CREATE A PACKING LIST FOR THE TRIP</h2>
+      <p>You can choose items from the suggested list or add your own items below!</p>
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+    </div>
+    <div class="text-center notPrint">
+      <img src="https://lh5.ggpht.com/QDPh6BDfY_9LtBaTtdwUzthYHXh3EcVqZy7L1X7-z_OComHq38lOJPI1-jTCmj7CU59z=w300" height="100px" width="100px">
+      <form>
+        <input type="button" id="notPrint" class="btn btn-edit location" value="PRINT YOUR PACKING LIST" onClick="window.print()">
+      </form>
+      <br>
+    </div>
+  </div>
+  <div class ="row">
+    <%= render 'weather_map' %>
+    <%= form_for(@trip, url: update_default_items_trip_path(@trip), method: :put) do |f| %>
+      <% categories = @trip.trip_default_items.group_by{|tdi| tdi.default_item.category } %>
+      <% categories.each do |category_name, trip_default_items| %>
+        <fieldset>
+          <legend>
+            <%= category_name %>
+          </legend>
+          <div id="allCategories">
+            <div class="all_thumbs" id="showToiletries">
+              <% trip_default_items.sort_by { |d| d.default_item.item }.each do |trip_default_item| %>
+                <% if trip_default_item.checked == true %>
+                  <div class="col-sm-2">
+                    <div class="thumbnail btn highlight">
+                      <%= f.fields_for "trip_default_items[]", trip_default_item do |ff| %>
+                        <%= ff.hidden_field :id %>
+                        <%= ff.check_box :checked %>
+                        <label>
+                          <%= trip_default_item.default_item.item %>
+                        </label>
+                      </div>
+                    </div>
                   <% end %>
-                </div>
-              </div>
-            </fieldset>
-          <% end %>
-          <hr>
-          <br>
-          <div class = "text-center">
-            <button class="btn btn-edit location"> SAVE PROGRESS </button>
+                <% else %>
+                  <div class="col-sm-2">
+                    <div class="thumbnail btn">
+                      <%= f.fields_for "trip_default_items[]", trip_default_item do |ff| %>
+                        <%= ff.hidden_field :id %>
+                        <%= ff.check_box :checked %>
+                        <label>
+                          <%= trip_default_item.default_item.item %>
+                        </label>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
           </div>
-        <% end %>
+        </fieldset>
+      <% end %>
+      <hr>
+      <br>
+      <div class = "text-center">
+        <button class="btn btn-edit location"> SAVE PROGRESS </button>
       </div>
-      <div class="row" id="printable">
-        <!--             <div class = "text-center notPrint" id="catButtons">
-            <button class="btn btn-info btn-xs highlight"  id="toiletries">TOILETRIES</button>
-            <button class="btn btn-info btn-xs" id="clothes">CLOTHES</button>
-            <button class="btn btn-info btn-xs" id="paperwork">PAPERWORK</button>
-            <button class="btn btn-info btn-xs" id="electronics">ELECTRONICS</button>
-            <button class="btn btn-info btn-xs" id="carry-on">CARRY-ON</button>
-            <button class="btn btn-info btn-xs" id="misc">MISC</button>
-            </div> -->
-        <!-- 
-        <%= form_for :default_items_trips, :url => {:action => "create_default_items_trip"} do |f| %>
-
-      <%= render "tile_items" %>
-                  <%= f.submit "Save Trip Items"%>
-        <% end %> -->
-      </div>
-      <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.min.js"></script>
-    </body>
-  </html>
+    <% end %>
+  </div>
+</div>
