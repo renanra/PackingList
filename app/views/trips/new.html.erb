@@ -6,6 +6,8 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet'  type='text/css'>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick-theme.css"/>
   </head>
   <body>
     <% if current_user %>
@@ -31,15 +33,15 @@
         <div class="form-group">
 
           <label for="current">What is your current location?</label>
-          <input type="text" id="query" class="form-control location" placeholder="Enter a location" id="log"> 
+          <input type="text" id="query" class="form-control location" placeholder="Enter a location" id="log">
         </div>
- 
+
         <form action="/trips" method="post">
           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
           <div class="form-group">
             <label for="destination">What is your Destination?</label>
             <input type="text" name="destination" class="form-control location" placeholder="Enter a location" id="log">
-   
+
           </div>
           <div class="form-group">
             <label for="date">Start Date</label>
@@ -63,7 +65,7 @@
       <h2><img style="max-width:200px;" src="http://i.imgur.com/pjs3K1M.jpg">TRAVEL PACKING ASSISTANT</h2>
       <p>This is an application for generating a personalized packing list with custom items for packing</p>
     </div>
-    <img id = "homepic" src="https://blogdotgofoxdotcom.files.wordpress.com/2014/10/cropped-cropped-world-travel1.jpg"> 
+    <img id = "homepic" src="https://blogdotgofoxdotcom.files.wordpress.com/2014/10/cropped-cropped-world-travel1.jpg">
     <div class="text-center">
     <div style="height: 400px"></div>
     <div>

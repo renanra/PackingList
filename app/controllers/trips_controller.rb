@@ -12,11 +12,14 @@ class TripsController < ApplicationController
     redirect_to @trip
   end
 
+  # def new
+  #   # binding.pry
+  #   @default_items_trip = DefaultItemsTrips.new
+  #   @default_trip = DefaultTrip.new(default_trip_params)
+  #   @trip = Trip.new
+  # end
+
   def new
-    # binding.pry
-    @default_items_trip = DefaultItemsTrips.new
-    @default_trip = DefaultTrip.new(default_trip_params)
-    @trip = Trip.new
   end
 
   def create
@@ -30,8 +33,8 @@ class TripsController < ApplicationController
     trip_id = params[:id]
 
     if @trip.save
-      # redirect_to(@trip)
-      redirect_to activity_items_trip_path
+      redirect_to(@trip)
+      # redirect_to activity_items_trip_path
     else
       flash[:alert] = 'Please fill out all the fields to proceed'
       redirect_to root_path
@@ -79,8 +82,8 @@ end
 
 
 # Trip.find(1).trip_default_items.each do |di|
-#   puts di.default_item.group_by { |i| i.category} 
-# end 
+#   puts di.default_item.group_by { |i| i.category}
+# end
 @trip.default_items.pluck(:category).uniq.each do |category|
   puts category
   @trip.default_items.where(category: category).each do |default_item|

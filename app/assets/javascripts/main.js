@@ -31,13 +31,13 @@ $(function() {
 
 //////////////////////////////// SCROLL WEATHER //////////////////////////////////
 
-$('#results').slick({
-  infinite: true,
-  arrows: true,
-  slidesToShow: 5,
-  slidesToScroll: 1
-});
-        
+// $('#results').slick({
+//   infinite: true,
+//   arrows: true,
+//   slidesToShow: 5,
+//   slidesToScroll: 1
+// });
+
 
   ////////////////////////////// COUNT TRIPS /////////////////////////////////////
   function countTrips() {
@@ -65,7 +65,7 @@ $('#results').slick({
 
       }
     });
-    
+
   }
   );
 
@@ -105,7 +105,7 @@ $('#results').slick({
 // if( initial_text.indexOf('United States') >= 0){
 //   console.log("found US")
 
-//     // if (initial_text.indexOf(',') > -1){ 
+//     // if (initial_text.indexOf(',') > -1){
 //     //   initial_text.split(',')
 //     //      console.log(initial_text.indexOf(','))
 //     //    }
@@ -127,7 +127,7 @@ $('#results').slick({
 
 //           if (typeof parsed_json['location'] == 'undefined') {
 //          console.log("error")
-       
+
 //         $('#loader').empty();
 //         $("#results").append("<h5 id = 'weatherResult'> City Not Found. </h5><h5> Please check the spelling of the DESTINATION and try again.  </h5>");
 //         $("#weatherResult").hide().show("slow");
@@ -135,7 +135,7 @@ $('#results').slick({
 
 
 //         var location = parsed_json['location']['city'];
-   
+
 //         var weather = parsed_json['current_observation']['weather'];
 //         var temp = parsed_json['current_observation']['temperature_string'];
 //         var feelsLike = parsed_json['current_observation']['feelslike_string'];
@@ -145,15 +145,15 @@ $('#results').slick({
 //         console.log("clicked");
 //         console.log(location)
 //         $('#loader').empty();
- 
+
 //         $("#icon").append("<img src=" + icon + ">");
 //         $("#icon").hide().show("slow");
-  
+
 //         $("#results").append("<h5 id = 'weatherResult'>" + result + "</h5>");
 //         $("#weatherResult").hide().show("slow");
 //        }
 //       }
-//     }); //end of ajax 
+//     }); //end of ajax
 // } else
 // {
 //   console.log("do nothing")
@@ -173,7 +173,7 @@ $('#results').slick({
 
 //           if (typeof parsed_json['location'] == 'undefined') {
 //          console.log("error")
-       
+
 //         $('#loader').empty();
 //         $("#results").append("<h5 id = 'weatherResult'> City Not Found. </h5><h5> Please check the spelling of the DESTINATION and try again.  </h5>");
 //         $("#weatherResult").hide().show("slow");
@@ -181,7 +181,7 @@ $('#results').slick({
 
 
 //         var location = parsed_json['location']['city'];
-   
+
 //         var weather = parsed_json['current_observation']['weather'];
 //         var temp = parsed_json['current_observation']['temperature_string'];
 //         var feelsLike = parsed_json['current_observation']['feelslike_string'];
@@ -191,15 +191,15 @@ $('#results').slick({
 //         console.log("clicked");
 //         console.log(location)
 //         $('#loader').empty();
- 
+
 //         $("#icon").append("<img src=" + icon + ">");
 //         $("#icon").hide().show("slow");
-  
+
 //         $("#results").append("<h5 id = 'weatherResult'>" + result + "</h5>");
 //         $("#weatherResult").hide().show("slow");
 //        }
 //       }
-//     }); //end of ajax 
+//     }); //end of ajax
 // }
 
 
@@ -220,7 +220,7 @@ $(".all_thumbs .thumbnail").click(function(){
 //     } else {
 //        $('input:checkbox').removeClass("highlight");
 //     }
-// }); 
+// });
 
 // if ($('input.checkbox_check').is(':checked')) {
 //   $(".all_thumbs .thumbnail").css('background','red');
