@@ -5,24 +5,36 @@ $(function() {
   $(".stack").draggable();
   $('#trash').droppable({
     drop: function(event, ui) {
-      if (ui.draggable.parent('.sortable').length) {
-        ui.draggable
-        .clone()
-        .appendTo('#trash')
-        .addClass("sort-drop")
-        .css(ui.position)
-        .hide(500);
+      ui.draggable.hide();
 
-        ui.draggable.hide();
-        //console.log(ui, event);
-      } else {
-        ui.draggable.hide(500);
+      console.log('Deleting');
 
-        setTimeout(function() {
-          ui.draggable.remove();
-          countTrips();
-        }, 500)
-      }
+      $.ajax({
+        url: '/trips',
+        data: {
+          id: ui.draggable.attr('data-id')
+        },
+        method: 'delete'
+      });
+
+      // if (ui.draggable.parent('.sortable').length) {
+      //   ui.draggable
+      //   .clone()
+      //   .appendTo('#trash')
+      //   .addClass("sort-drop")
+      //   .css(ui.position)
+      //   .hide(500);
+
+      //   ui.draggable.hide();
+      //   //console.log(ui, event);
+      // } else {
+      //   ui.draggable.hide(500);
+
+      //   setTimeout(function() {
+      //     ui.draggable.remove();
+      //     countTrips();
+      //   }, 500)
+      // }
 
     }
   });
@@ -31,12 +43,14 @@ $(function() {
 
 //////////////////////////////// SCROLL WEATHER //////////////////////////////////
 
+if ($('#results').length) {
 $('#results').slick({
   infinite: true,
   arrows: true,
   slidesToShow: 5,
   slidesToScroll: 1
 });
+}
 
 
   ////////////////////////////// COUNT TRIPS /////////////////////////////////////
@@ -338,7 +352,7 @@ $(".all_thumbs .thumbnail").click(function(){
   ////////////////////END OF TO PACK /////////////////
 
 
-
+if ($('#map-canvas').length) {
 // google maps
   function initialize() {
       var latlong = [];
@@ -426,6 +440,6 @@ $(".all_thumbs .thumbnail").click(function(){
 
 
      window.initialize = initialize;
-
+  }
 
 }); //end of ready function

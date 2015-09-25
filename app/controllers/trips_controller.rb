@@ -65,7 +65,7 @@ class TripsController < ApplicationController
     end
 
     @trip.trip_default_items.last.default_item.category
-end
+  end
 
   def create_default_items_trip
     @trip = Trip.find_by_id(params[:id])
@@ -113,10 +113,9 @@ end
   end
 
   def destroy
-    all_trips = params[:trip]
     @trip = Trip.find(params[:id])
     @trip.destroy
-    redirect_to trips_path
+    render nothing: true
   end
 
   private
