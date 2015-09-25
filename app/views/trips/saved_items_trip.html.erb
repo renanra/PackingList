@@ -14,13 +14,10 @@
   <body>
     <!--   TRIP INFO PART -->
     <div class="notPrint">
-
       <!--   END OF TRIP INFO -->
       <!--  TO PACK PART -->
-
       <div class = "text-center notPrint">
         <div class="col-md-4">
-
           <h4 style="display:inline">Destination: &nbsp;</h4>
           <h5  id="query" style="display:inline"><%=@saved_items_trip.destination%> &nbsp;</h5>
           <br>
@@ -29,187 +26,184 @@
           <br>
           <h4 style="display:inline">End Date: &nbsp; &nbsp; &nbsp;</h4>
           <h5 style="display:inline"><%=@saved_items_trip.end_date %></h5>
-          
         </div>
-            <div class="col-md-4">
+        <div class="col-md-4">
           <img src="https://lh5.ggpht.com/QDPh6BDfY_9LtBaTtdwUzthYHXh3EcVqZy7L1X7-z_OComHq38lOJPI1-jTCmj7CU59z=w300" height="100px" width="100px">
-        <form>
-          <input type="button" id="notPrint" class="btn btn-edit location" value="PRINT LIST" onClick="window.print()">
-        </form>
-
-        <hr>
-      </div>
-    </div>
-    <div class="row" id="printable">
-      <div class="col-md-6">
-
-        <div class="toPacklist not-packed">
-          <div class = "notPrint">
-            <div class="text-center">
-            </div>
-          </div>
-           <div class = "text-center">
-          <h3 class = "text-center">ITEMS TO PACK</h3>
-        <%=link_to '<i class="fa fa-pencil-square-o"></i> EDIT ITEMS'.html_safe, trip_path, class: "btn btn-primary" %> 
-          <%=link_to 'RESET ALL', :url => {:action => "delete_saved_items_trip"}, :confirm => 'Are you sure?', :method => :delete %>
-        </div>
+          <form>
+            <input type="button" id="notPrint" class="btn btn-edit location" value="PRINT LIST" onClick="window.print()">
+          </form>
           <hr>
-
-    <ul>
-                <div class="row" id="printable">
-             <div class="col-md-4">
-            <button class="btn btn-info btn-xs" id="toiletries">TOILETRIES</button>
-            <br><br>
-        
-            <% @saved_toiletries.each do |item| %>
-            <li class="unchecked">
-            <%= item.item %> 
-            </li>
-            <% end %>
-            </div>
-            <div class="col-md-4">
-            <button class="btn btn-info btn-xs" id="clothes">CLOTHES</button>
-            <br><br>
-            <% @saved_clothes.each do |item| %>
-            <li class="unchecked">
-            <%= item.item %>
-            </li>
-            <% end %>
-            </div>
-             <div class="col-md-4">
-            <button class="btn btn-info btn-xs" id="paperwork">PAPERWORK</button>
-            <br><br>
-            <% @saved_paperwork.each do |item| %>
-            <li class="unchecked">
-            <%= item.item %>
-            </li>
-            <% end %>
-            </div>
-            </div>
-                <div class="row" id="printable">
-            <div class="col-md-4">
-            <button class="btn btn-info btn-xs" id="electronics">ELECTRONICS</button>
-            <br><br>
-            <% @saved_electronics.each do |item| %>
-            <li class="unchecked">
-            <%= item.item %>
-            </li>
-            <% end %>
-            </div>
-            <div class="col-md-4">
-            <button class="btn btn-info btn-xs" id="carry-on">CARRY-ON</button>
-            <br><br>
-            <% @saved_carry_on.each do |item| %>
-            <li class="unchecked">
-            <%= item.item %>
-            </li>
-
-            <% end %>
-            </div>
-            <div class="col-md-4">
-            <button class="btn btn-info btn-xs" id="misc">MISC</button>
-            <br><br>
-            <% @saved_misc.each do |item| %>
-            <li class="unchecked">
-            <%= item.item %>
-            </li>
-
-            <% end %>
-            </div>
-</div>
         </div>
-          </ul>
-
-  <div id = "toggledCustom" style="display: none"> 
-    <ul id="customSortable" class="list-unstyled">
-      <li class="ui-state-default">
-        <div class="checkbox">
-        <label>
-        <input type="checkbox" name="item[]" value="" id="item">
-        </label>
-        </div>
-      </li>
-    </ul>
-  <input type="text" id = "wide" class="form-control add-toPack" placeholder="Add your own item to the list">
-  </div>
       </div>
-  <div class="col-md-6">
-    <div class="toPacklist">
-        <div>
-          <h3 class = "text-center">PACKED ITEMS</h3>
-        <%=link_to '<i class="fa fa-pencil-square-o"></i> EDIT PACKED ITEMS'.html_safe, trip_path, class: "btn btn-primary" %> 
-
-          <hr>
+      <div class="row" id="printable">
+        <div class="col-md-6">
+          <div class="toPacklist not-packed">
+            <div class = "notPrint">
+              <div class="text-center">
+              </div>
+            </div>
+            <div class = "text-center">
+              <h3 class = "text-center">ITEMS TO PACK</h3>
+              <%=link_to '<i class="fa fa-pencil-square-o"></i> EDIT ITEMS'.html_safe, trip_path, class: "btn btn-primary" %>
+              <%=link_to 'RESET ALL', :url => {:action => "delete_saved_items_trip"}, :confirm => 'Are you sure?', :method => :delete %>
+            </div>
+            <hr>
             <ul>
-                <div class="row" id="printable">
-             <div class="col-md-4">
-            <button class="btn btn-info btn-xs" id="toiletries">TOILETRIES</button>
-            <br><br>
-        
-            <% @saved_toiletries.each do |item| %>
-            <li class="checked">
-            <%= item.item %> 
-            </li>
-            <% end %>
+              <div class="row" id="printable">
+                <div class="col-md-4">
+                  <button class="btn btn-info btn-xs" id="toiletries">TOILETRIES</button>
+                  <br>
+                  <br>
+                  <% @saved_toiletries.each do |item| %>
+                    <li class="unchecked">
+                      <%= item.item %>
+                    </li>
+                  <% end %>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-info btn-xs" id="clothes">CLOTHES</button>
+                  <br>
+                  <br>
+                  <% @saved_clothes.each do |item| %>
+                    <li class="unchecked">
+                      <%= item.item %>
+                    </li>
+                  <% end %>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-info btn-xs" id="paperwork">PAPERWORK</button>
+                  <br>
+                  <br>
+                  <% @saved_paperwork.each do |item| %>
+                    <li class="unchecked">
+                      <%= item.item %>
+                    </li>
+                  <% end %>
+                </div>
+              </div>
+              <div class="row" id="printable">
+                <div class="col-md-4">
+                  <button class="btn btn-info btn-xs" id="electronics">ELECTRONICS</button>
+                  <br>
+                  <br>
+                  <% @saved_electronics.each do |item| %>
+                    <li class="unchecked">
+                      <%= item.item %>
+                    </li>
+                  <% end %>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-info btn-xs" id="carry-on">CARRY-ON</button>
+                  <br>
+                  <br>
+                  <% @saved_carry_on.each do |item| %>
+                    <li class="unchecked">
+                      <%= item.item %>
+                    </li>
+                  <% end %>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-info btn-xs" id="misc">MISC</button>
+                  <br>
+                  <br>
+                  <% @saved_misc.each do |item| %>
+                    <li class="unchecked">
+                      <%= item.item %>
+                    </li>
+                  <% end %>
+                </div>
+              </div>
             </div>
-            <div class="col-md-4">
-            <button class="btn btn-info btn-xs" id="clothes">CLOTHES</button>
-            <br><br>
-            <% @saved_clothes.each do |item| %>
-            <li class="checked">
-            <%= item.item %>
-            </li>
-            <% end %>
-            </div>
-             <div class="col-md-4">
-            <button class="btn btn-info btn-xs" id="paperwork">PAPERWORK</button>
-            <br><br>
-            <% @saved_paperwork.each do |item| %>
-            <li class="checked">
-            <%= item.item %>
-            </li>
-            <% end %>
-            </div>
-            </div>
-                <div class="row" id="printable">
-            <div class="col-md-4">
-            <button class="btn btn-info btn-xs" id="electronics">ELECTRONICS</button>
-            <br><br>
-            <% @saved_electronics.each do |item| %>
-            <li class="checked">
-            <%= item.item %>
-            </li>
-            <% end %>
-            </div>
-            <div class="col-md-4">
-            <button class="btn btn-info btn-xs" id="carry-on">CARRY-ON</button>
-            <br><br>
-            <% @saved_carry_on.each do |item| %>
-            <li class="checked">
-            <%= item.item %>
-            </li>
-
-            <% end %>
-            </div>
-            <div class="col-md-4">
-            <button class="btn btn-info btn-xs" id="misc">MISC</button>
-            <br><br>
-            <% @saved_misc.each do |item| %>
-            <li class="checked">
-            <%= item.item %>
-            </li>
-
-            <% end %>
-            </div>
-</div>
-         
-        </div>
           </ul>
+          <div id = "toggledCustom" style="display: none">
+            <ul id="customSortable" class="list-unstyled">
+              <li class="ui-state-default">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="item[]" value="" id="item">
+                  </label>
+                </div>
+              </li>
+            </ul>
+            <input type="text" id = "wide" class="form-control add-toPack" placeholder="Add your own item to the list">
+          </div>
         </div>
-
-    </div>
-  </div>
-
+        <div class="col-md-6">
+          <div class="toPacklist">
+            <div>
+              <h3 class = "text-center">PACKED ITEMS</h3>
+              <%=link_to '<i class="fa fa-pencil-square-o"></i> EDIT PACKED ITEMS'.html_safe, trip_path, class: "btn btn-primary" %>
+              <hr>
+              <ul>
+                <div class="row" id="printable">
+                  <div class="col-md-4">
+                    <button class="btn btn-info btn-xs" id="toiletries">TOILETRIES</button>
+                    <br>
+                    <br>
+                    <% @saved_toiletries.each do |item| %>
+                      <li class="checked">
+                        <%= item.item %>
+                      </li>
+                    <% end %>
+                  </div>
+                  <div class="col-md-4">
+                    <button class="btn btn-info btn-xs" id="clothes">CLOTHES</button>
+                    <br>
+                    <br>
+                    <% @saved_clothes.each do |item| %>
+                      <li class="checked">
+                        <%= item.item %>
+                      </li>
+                    <% end %>
+                  </div>
+                  <div class="col-md-4">
+                    <button class="btn btn-info btn-xs" id="paperwork">PAPERWORK</button>
+                    <br>
+                    <br>
+                    <% @saved_paperwork.each do |item| %>
+                      <li class="checked">
+                        <%= item.item %>
+                      </li>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row" id="printable">
+                  <div class="col-md-4">
+                    <button class="btn btn-info btn-xs" id="electronics">ELECTRONICS</button>
+                    <br>
+                    <br>
+                    <% @saved_electronics.each do |item| %>
+                      <li class="checked">
+                        <%= item.item %>
+                      </li>
+                    <% end %>
+                  </div>
+                  <div class="col-md-4">
+                    <button class="btn btn-info btn-xs" id="carry-on">CARRY-ON</button>
+                    <br>
+                    <br>
+                    <% @saved_carry_on.each do |item| %>
+                      <li class="checked">
+                        <%= item.item %>
+                      </li>
+                    <% end %>
+                  </div>
+                  <div class="col-md-4">
+                    <button class="btn btn-info btn-xs" id="misc">MISC</button>
+                    <br>
+                    <br>
+                    <% @saved_misc.each do |item| %>
+                      <li class="checked">
+                        <%= item.item %>
+                      </li>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
     <hr>
     <br>
@@ -218,7 +212,6 @@
     </div>
     <br>
     <hr>
-
     <!--   END OF TO PACK -->
   </body>
 </html>

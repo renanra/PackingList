@@ -12,16 +12,6 @@ class TripsController < ApplicationController
     redirect_to @trip
   end
 
-  # def new
-  #   # binding.pry
-  #   @default_items_trip = DefaultItemsTrips.new
-  #   @default_trip = DefaultTrip.new(default_trip_params)
-  #   @trip = Trip.new
-  # end
-
-  def new
-  end
-
   def create
     @trip = Trip.new(params[:trip])
     # binding.pry
